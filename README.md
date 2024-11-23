@@ -1,3 +1,16 @@
+Cách chạy để test màn hình mình code được:
+
+- pull code về
+
+- tạo màn trong ui rồi export ra
+
+- import vào như ví dụ trong ảnh sau
+
+![Local Image](public/images/image.png)
+
+- cd đến thư mục client và chạy lệnh: npm start
+
+
 Chi tiết các thư mục
 
 Client
@@ -28,6 +41,7 @@ services/: Chứa các logic chính xử lý nghiệp vụ.
 
 ultis/: Tiện ích cho backend (nhật ký, xử lý lỗi).
 
+
 Luồng hoạt động (Workflow)
 
 Frontend (client):
@@ -56,4 +70,4 @@ Thư mục gốc: npm i axios dotenv express mongoose react nodemon
 
 Server: npm i dotenv mongoose express nodemon
 
-Client: npm i axios react antd react-dom
+Client: npm i axios react antd react-dom react-scripts
