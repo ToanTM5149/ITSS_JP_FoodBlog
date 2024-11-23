@@ -33,4 +33,8 @@ Tương tác giữa client và server:
 Client sử dụng API để lấy dữ liệu từ server hoặc gửi dữ liệu lên server.
 Server xử lý các yêu cầu này, đảm bảo dữ liệu phản hồi đúng yêu cầu và bảo mật.
 
-Sau khi clone ve chay "npm i" ở thư mục gốc, server, và client.
+Sau khi clone ve chay:
+
+Thư mục gốc: npm i axios dotenv express mongoose react nodemon
+Server: npm i dotenv mongoose express nodemon
+Client: npm i axios react
