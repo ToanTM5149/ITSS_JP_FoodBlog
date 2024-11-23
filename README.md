@@ -56,4 +56,4 @@ Thư mục gốc: npm i axios dotenv express mongoose react nodemon
 
 Server: npm i dotenv mongoose express nodemon
 
-Client: npm i axios react
+Client: npm i axios react antd
