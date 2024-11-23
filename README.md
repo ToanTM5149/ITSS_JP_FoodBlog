@@ -15,42 +15,42 @@ Chi tiết các thư mục
 
 Client
 
-api/: Quản lý các lời gọi API.
+- api/: Quản lý các lời gọi API.
 
-assets/: Chứa tài nguyên tĩnh như ảnh, video.
+- assets/: Chứa tài nguyên tĩnh như ảnh, video.
 
-components/: Các thành phần giao diện được chia nhỏ, dễ tái sử dụng.
+- components/: Các thành phần giao diện được chia nhỏ, dễ tái sử dụng.
 
-ui/: Các trang giao diện.
+- ui/: Các trang giao diện.
 
-ultis/: Hàm tiện ích hỗ trợ cho giao diện người dùng.
+- ultis/: Hàm tiện ích hỗ trợ cho giao diện người dùng.
 
 Server
 
-config/: Tệp cấu hình, bao gồm thông tin cơ sở dữ liệu và các biến môi trường.
+- config/: Tệp cấu hình, bao gồm thông tin cơ sở dữ liệu và các biến môi trường.
 
-controllers/: Xử lý các logic cho API endpoint.
+- controllers/: Xử lý các logic cho API endpoint.
 
-db/: Thao tác với cơ sở dữ liệu.
+- db/: Thao tác với cơ sở dữ liệu.
 
-middleware/: Các middleware như xác thực, kiểm tra lỗi.
+- middleware/: Các middleware như xác thực, kiểm tra lỗi.
 
-routes/: Định nghĩa các tuyến API.
+- routes/: Định nghĩa các tuyến API.
 
-services/: Chứa các logic chính xử lý nghiệp vụ.
+- services/: Chứa các logic chính xử lý nghiệp vụ.
 
-ultis/: Tiện ích cho backend (nhật ký, xử lý lỗi).
+- ultis/: Tiện ích cho backend (nhật ký, xử lý lỗi).
 
 
 Luồng hoạt động (Workflow)
 
-Frontend (client):
+- Frontend (client):
 
 Người dùng tương tác với giao diện được xây dựng trong client.
 
 Giao diện gửi request qua API được định nghĩa trong client/src/api đến server.
 
-Backend (server):
+- Backend (server):
 
 Các request được nhận qua server/routes, xử lý logic trong server/controllers.
 
@@ -64,10 +64,11 @@ Client sử dụng API để lấy dữ liệu từ server hoặc gửi dữ li�
 
 Server xử lý các yêu cầu này, đảm bảo dữ liệu phản hồi đúng yêu cầu và bảo mật.
 
+
 Sau khi clone ve chay:
 
-Thư mục gốc: npm i axios dotenv express mongoose react nodemon
+- Thư mục gốc: npm i axios dotenv express mongoose react nodemon
 
-Server: npm i dotenv mongoose express nodemon
+- Server: npm i dotenv mongoose express nodemon
 
-Client: npm i axios react antd react-dom react-scripts
+- Client: npm i axios react antd react-dom react-scripts
