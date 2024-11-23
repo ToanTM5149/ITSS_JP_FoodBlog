@@ -4,7 +4,7 @@ Cách chạy để test màn hình mình code được:
 
 - tạo màn trong ui rồi export ra
 
-- import vào như ví dụ trong ảnh sau
+- import vào file App.js như ví dụ trong ảnh sau
 
 ![Local Image](client/public/image/image.png)
 
