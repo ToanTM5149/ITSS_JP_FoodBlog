@@ -6,7 +6,7 @@ Cách chạy để test màn hình mình code được:
 
 - import vào như ví dụ trong ảnh sau
 
-![Local Image](public/images/image.png)
+![Local Image](client/public/images/image.png)
 
 - cd đến thư mục client và chạy lệnh: npm start
 
