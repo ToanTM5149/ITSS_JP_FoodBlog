@@ -8,7 +8,7 @@ assets/: Chứa tài nguyên tĩnh như ảnh, video.
 
 components/: Các thành phần giao diện được chia nhỏ, dễ tái sử dụng.
 
-ui/: Các phần tử giao diện chung như button, modal.
+ui/: Các trang giao diện.
 
 ultis/: Hàm tiện ích hỗ trợ cho giao diện người dùng.
 
