@@ -1,6 +1,7 @@
 Chi tiết các thư mục
 
 Client
+
 api/: Quản lý các lời gọi API.
 assets/: Chứa tài nguyên tĩnh như ảnh, video.
 components/: Các thành phần giao diện được chia nhỏ, dễ tái sử dụng.
@@ -8,6 +9,7 @@ ui/: Các phần tử giao diện chung như button, modal.
 ultis/: Hàm tiện ích hỗ trợ cho giao diện người dùng.
 
 Server
+
 config/: Tệp cấu hình, bao gồm thông tin cơ sở dữ liệu và các biến môi trường.
 controllers/: Xử lý các logic cho API endpoint.
 db/: Thao tác với cơ sở dữ liệu.
