@@ -1,0 +1,14 @@
+.recommended-posts {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+  }
+  .post-list {
+    display: flex;
+    justify-content: space-between;
+  }
+  .post-item {
+    text-align: center;
+  }
+  

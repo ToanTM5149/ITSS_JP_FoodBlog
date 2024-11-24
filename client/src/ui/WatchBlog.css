@@ -1,0 +1,121 @@
+/* Tổng quan */
+.container {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+  margin: 0 auto; /* Căn giữa container */
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  gap: 10px;
+}
+
+.search {
+  padding: 5px;
+}
+
+/* Thông tin bài viết */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #ddd;
+  border-radius: 50%;
+}
+
+.follow-btn {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Bố cục chính: MainContent và Sidebar */
+.main-wrapper {
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-start; /* Căn các phần tử theo trục trên cùng */
+  gap: 20px; /* Khoảng cách giữa MainContent và Sidebar */
+}
+
+/* Nội dung bài viết */
+.article-content {
+  flex: 3; /* Chiếm 75% chiều rộng */
+  margin-top: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.tags {
+  color: #007bff;
+  margin-top: 10px;
+}
+
+.content {
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* Cột bên phải (Sidebar) */
+.right-column {
+  flex: 1; /* Chiếm 25% chiều rộng */
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Gợi ý bài viết */
+.suggestions {
+  margin-top: 40px;
+}
+
+.suggestion-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.suggestion-item {
+  width: 30%;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+}
