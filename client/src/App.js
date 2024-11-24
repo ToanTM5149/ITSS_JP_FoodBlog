@@ -1,24 +1,19 @@
-import React from "react";
-import UserDisplay from "./components/UserDisplay";
-import SearchBar from "./components/SearchBar";
-import NotificationIcon from "./components/NotificationIcon";
-import BlogList from "./components/BlogList";
-import ActionButtons from "./components/ActionButtons";
-import "./App.css";
+import React from 'react';
+import UserDisplay from './Homepage/UserDisplay'; // Import đúng đường dẫn đến UserDisplay
+import SearchBar from './Homepage/SearchBar'; // Import đúng đường dẫn đến SearchBar
+import NotificationIcon from './Homepage/NotificationIcon'; // Import đúng đường dẫn đến NotificationIcon
+import BlogList from './Homepage/BlogList'; // Import đúng đường dẫn đến BlogList
+import ActionButtons from './Homepage/ActionButtons'; // Import đúng đường dẫn đến ActionButtons
 
 function App() {
   return (
     <div className="App">
-      <header className="header">
-        <UserDisplay username="4本足のサメ" />
-        <SearchBar />
-        <NotificationIcon hasNotifications={true} />
-      </header>
-      <ActionButtons />
-      <main>
-        <BlogList type="latest" />
-        <BlogList type="all" />
-      </main>
+      <h1>Hello, React is working!</h1> 
+      <UserDisplay /> {/* Hiển thị component UserDisplay */}
+      <SearchBar /> {/* Hiển thị component SearchBar */}
+      <NotificationIcon /> {/* Hiển thị component NotificationIcon */}
+      <BlogList /> {/* Hiển thị component BlogList */}
+      <ActionButtons /> {/* Hiển thị component ActionButtons */}
     </div>
   );
 }
