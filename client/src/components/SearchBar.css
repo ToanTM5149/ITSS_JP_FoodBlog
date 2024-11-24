@@ -1,0 +1,8 @@
+.search-bar {
+    display: flex;
+  }
+  .search-bar input {
+    padding: 5px;
+    margin-right: 5px;
+  }
+  

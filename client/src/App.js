@@ -1,12 +1,24 @@
-import React from 'react';
-// import DetailsBlog from "./DetailsBlog" (đường dẫn đến file đó)
+import React from "react";
+import UserDisplay from "./components/UserDisplay";
+import SearchBar from "./components/SearchBar";
+import NotificationIcon from "./components/NotificationIcon";
+import BlogList from "./components/BlogList";
+import ActionButtons from "./components/ActionButtons";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello, React is working!</h1> {/* có thể thêm nội dung vào như này  */}
-      {/* <DetailsBlog /> */} 
-      {/* hoặc như này khi có 1 component được export với tên như vậy, và mình muốn hiển thị ở đây*/}
+      <header className="header">
+        <UserDisplay username="4本足のサメ" />
+        <SearchBar />
+        <NotificationIcon hasNotifications={true} />
+      </header>
+      <ActionButtons />
+      <main>
+        <BlogList type="latest" />
+        <BlogList type="all" />
+      </main>
     </div>
   );
 }
