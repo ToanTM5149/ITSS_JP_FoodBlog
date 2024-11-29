@@ -4,11 +4,22 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      <h1>Hello, React is working!</h1> {/* có thể thêm nội dung vào như này  */}
-      {/* <DetailsBlog /> */} 
-      {/* hoặc như này khi có 1 component được export với tên như vậy, và mình muốn hiển thị ở đây*/}
+      <h1>Hello, React is working!</h1>
     </div>
   );
 }
-
+return BlocProvider(
+  create: (_) {
+    final cubit = CarDetailsCubit(getIt<CarUseCase>());
+    return cubit;
+  },
+  child: Builder(
+    builder: (context) {
+      final cubit = context.read<CarDetailsCubit>();
+      return Scaffold(
+        
+      )
+    },
+  ),
+)
 export default App;
