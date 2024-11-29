@@ -1,0 +1,91 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #00CCFF; /* Màu xanh nhạt cho background */
+  width: 100%; /* Full width */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Logo styles */
+.logo {
+  margin-left: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333; /* Màu chữ của logo */
+}
+
+/* Search container */
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 50%; /* Adjust width as needed */
+  position: relative;
+}
+
+/* Search bar */
+.search-bar {
+  width: 100%;
+  padding: 8px 12px 8px 36px; /* Add padding-left to avoid overlap with icon */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Wrapper cho search bar và icon */
+.search-bar-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Search bar */
+.search-bar {
+  width: 100%;
+  padding: 8px 12px 8px 36px; /* Thêm padding-left để icon không che nội dung */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Icon tìm kiếm */
+.search-icon {
+  position: absolute;
+  left: 10px; /* Khoảng cách từ viền trái của search bar */
+  font-size: 16px;
+  color: #888; /* Màu sắc icon */
+}
+
+
+/* Notification icon */
+.notification-icon {
+  font-size: 20px;
+  margin-left: 30px; /* Spacing between search bar and notification icon */
+  color: #333;
+  cursor: pointer;
+}
+
+/* Header buttons */
+.header-buttons {
+  display: flex;
+  right: 20px;
+  gap: 10px; /* Control spacing between buttons */
+  margin-right: 30px; /* Add margin between the notification icon and buttons */
+}
+
+.header-buttons button {
+  padding: 5px 8px; /* Adjust padding for compact buttons */
+  background-color: transparent; /* No background */
+  color: white; /* Text color white */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Change button text color to black on hover */
+.header-buttons button:hover {
+  color: #4CAF50; /* Text color on hover */
+}
