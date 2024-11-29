@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/watchblog/Header";
+import Header from "../components/Header";
 import { fakePost } from "../components/watchblog/fakedata/fakedata";
 import "./WatchBlog.css";
 import { useState } from "react";
