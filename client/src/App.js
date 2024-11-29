@@ -8,18 +8,4 @@ function App() {
     </div>
   );
 }
-return BlocProvider(
-  create: (_) {
-    final cubit = CarDetailsCubit(getIt<CarUseCase>());
-    return cubit;
-  },
-  child: Builder(
-    builder: (context) {
-      final cubit = context.read<CarDetailsCubit>();
-      return Scaffold(
-        
-      )
-    },
-  ),
-)
 export default App;
