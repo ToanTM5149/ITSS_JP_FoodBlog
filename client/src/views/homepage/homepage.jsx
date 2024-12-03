@@ -15,17 +15,9 @@ const Homepage = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <HeaderBar showSearch={true} onLogout={handleLogout} />
 
-      <Layout style={{ padding: '36px 24px 24px' }}>
-        <Sider width={200} className="site-layout-background">
-          <Menu mode="inline" defaultSelectedKeys={['1']} style={{ height: '100%', borderRight: 0 }}>
-            <Menu.Item key="1" icon={<HomeOutlined />}>Home</Menu.Item>
-            <Menu.Item key="2" icon={<AppstoreOutlined />}>Products</Menu.Item>
-            <Menu.Item key="3" icon={<UserOutlined />}>Profile</Menu.Item>
-          </Menu>
-        </Sider>
-
+      <Layout style={{ padding: '0 0 0px' }}>
         {/* Main Content */}
-        <Layout style={{ padding: '0 24px 24px' }}>
+        <Layout style={{ padding: '0 0px 0px' }}>
           <Content
             style={{
               padding: 24,
