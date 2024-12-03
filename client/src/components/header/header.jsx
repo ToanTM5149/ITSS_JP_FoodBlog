@@ -20,10 +20,11 @@ const HeaderBar = ({ showSearch = true, onLogout }) => {
         </Col>
 
         {searchVisible && (
-          <Col span={6} className="search-container">
+          <Col span={6}>
             <Input
               prefix={<SearchOutlined />}
               placeholder="Tìm kiếm"
+              style={{ width: '180%' }}
             />
           </Col>
         )}

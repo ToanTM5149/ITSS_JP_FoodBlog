@@ -21,15 +21,6 @@
     justify-content: flex-start;
   }
   
-  /* Phần 2: Thanh tìm kiếm */
-  .search-container {
-    width: 150%;
-    display: flex;
-    justify-content: center;
-    align-items: center;  /* Căn giữa theo chiều dọc */
-  }
-  
-  /* Phần 3: Các nút (Icon thông báo, nút biên tập, nút blog, profile, logout) */
   .button-container {
     display: flex;
     justify-content: flex-end;
