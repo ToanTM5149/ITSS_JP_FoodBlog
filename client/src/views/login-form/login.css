@@ -1,0 +1,85 @@
+/* Container chính */
+.login-container {
+    display: flex;
+    justify-content: flex-start; 
+    flex-direction: column; 
+    align-items: flex-start;   
+    height: 60vh;    
+    background-color: #f9f9f9;
+    padding: 20px;  
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
+  }
+  
+  /* Container logo và tên app */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;  /* Giảm khoảng cách dưới logo */
+  }
+  
+  .image-logo {
+    margin-right: 30px;  /* Giảm khoảng cách giữa logo và tên app */
+  }
+  
+  .app-name {
+    font-size: 44px;
+    font-weight: bold;
+  }
+  
+  /* Tiêu đề và subtitle */
+  .welcome-title {
+    padding-top: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;  /* Giảm khoảng cách dưới tiêu đề */
+  }
+  
+  .welcome-subtitle {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 20px;  /* Giảm khoảng cách dưới subtitle */
+  }
+  
+  /* CSS cho input */
+  .custom-input {
+    border-color: #4caf50;  /* Màu viền của input */
+    border-radius: 6px;     /* Bo góc */
+    height: 40px;
+    padding: 10px 15px;      /* Khoảng cách bên trong */
+    font-size: 16px; 
+  }
+  
+  /* CSS cho button */
+  .login-button {
+    width: 100%;             
+    padding: 12px 15px;       /* Tăng padding để nút bấm dễ nhìn hơn */
+    font-size: 16px;          
+    height: 50px;             /* Đảm bảo chiều cao đủ lớn */
+    border-radius: 25px;      /* Bo góc mềm mại hơn */
+    border: 1px solid #4caf50; 
+    background-color: #4caf50; 
+    color: white;             
+    cursor: pointer;          
+    transition: all 0.3s ease; 
+  }
+  
+  .login-button:hover {
+    background-color: #45a049;  /* Hiệu ứng hover */
+    border-color: #45a049;  
+  }
+  
+  /* Link Đăng ký */
+  .register-link {
+    text-decoration: none;
+  }
+  
+  .register-link:hover {
+    color: #512ade;
+    text-decoration: underline;
+  }
+  
