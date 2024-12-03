@@ -30,21 +30,17 @@ const HeaderBar = ({ showSearch = true, onLogout }) => {
         )}
 
         <Col span={12} className="button-container">
-          <Badge count={5}>
+        <Badge count={5}>
             <Button shape="circle" icon={<BellOutlined />} />
           </Badge>
 
-          <Button shape="circle" icon={<EditOutlined />} />
+          <Button type="link" className="header-button">Chỉnh sửa</Button>
 
-          <Button shape="circle" icon={<AppstoreAddOutlined />} />
+          <Button type="link" className="header-button">Thêm mới</Button>
 
-          <Button shape="circle" icon={<UserOutlined />} />
+          <Button type="link" className="header-button">Thông tin</Button>
 
-          <Button
-            shape="circle"
-            icon={<LogoutOutlined />}
-            onClick={onLogout}
-          />
+          <Button type="link" className="header-button" onClick={onLogout}>Đăng xuất</Button>
         </Col>
       </Row>
     </Header>
