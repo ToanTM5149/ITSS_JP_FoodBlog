@@ -14,7 +14,7 @@
   "description": "",
   "dependencies": {
     "antd": "^5.22.3",
-    "axios": "^1.7.7",
+    "axios": "^1.7.9",
     "client": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -32,5 +32,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.16"
   }
 }
