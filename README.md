@@ -72,3 +72,5 @@ Sau khi clone ve chay:
 - Server: npm i dotenv mongoose express nodemon
 
 - Client: npm i axios react antd react-dom react-scripts
+          npm install -D tailwindcss
+          npm i quill

@@ -2,20 +2,10 @@
     margin: 0 auto;
     padding: 16px;
     max-width: 1200px;
-    margin-top: 100px;
+    
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
-}
 
-header h1 {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
 
 nav {
     display: flex;
@@ -66,13 +56,13 @@ form {
 .border {
     border: 1px solid #ccc;
     margin-top: 32px;
-    height: 400px;
-    background-color: red;
+    height: flex;
+  
 }
 
 .center {
     margin: 0 auto;
-    width: 70%;
+    width: 80%;
 }
 
 .border img {
@@ -84,3 +74,39 @@ form {
 .title{
     height: 40px;
 }
+
+
+.related-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    height: 30%;
+}
+
+.related-label {
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.related-dropdown {
+    width: 100%;
+}
+
+
+
+.selected-dishes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.selected-dish {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+

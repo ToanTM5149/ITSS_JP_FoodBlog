@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Blog.css';
 import Header from '../components/Header';
-import { Button, Input, Form } from 'antd';
+import { Button, Input, Form, Select } from 'antd';
+import BlogEditor from "./BlogEditor";
+
+const { Option } = Select;
 
 function Blog() {
+    const [selectedDishes, setSelectedDishes] = useState([]);
+
+    const handleDishChange = (values) => {
+        setSelectedDishes(values);
+    };
+
     return (
         <div>
             <Header />
@@ -15,6 +24,37 @@ function Blog() {
                 <Form layout="vertical">
                     <Form.Item>
                         <Input className="title" placeholder="タイトル" />
+                    </Form.Item>
+                    {/* Box Món ăn Nhật liên quan */}
+                    <Form.Item>
+                        <div className="related-box">
+                            <span className="related-label">日本の関連する料理:</span>
+                            <div className="related-dropdown">
+                                <Select 
+                                    mode="multiple"
+                                    placeholder=" 料理を選ぶ"
+                                    style={{ width: '100%', height: '44px' }}
+                                    onChange={handleDishChange}
+                                    dropdownStyle={{ maxHeight: 300, overflow: 'auto' }} 
+                                >
+                                    <Option value="sushi">寿司</Option>
+                                    <Option value="ramen">天ぷら</Option>
+                                    <Option value="tempura">ラーメン</Option>
+                                    <Option value="takoyaki">たこ焼き</Option>
+                                    <Option value="mochi">餅</Option>
+                                    <Option value="matcha">抹茶</Option>
+                                </Select>
+                            </div>
+                            {selectedDishes.length > 0 && (
+                                <div className="selected-dishes">
+                                    {selectedDishes.map((dish, index) => (
+                                        <span key={index} className="selected-dish">
+                                            {dish}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </Form.Item>
                     <div className="flex">
                         <Form.Item className="flex-grow" style={{ marginBottom: 0 }}>
@@ -32,7 +72,7 @@ function Blog() {
                 </Form>
                 <div className="center">
                     <div className="border">
-                        <img src="https://placehold.co/600x300" alt="Placeholder image" />
+                        <BlogEditor/>
                     </div>
                 </div>
             </main>
