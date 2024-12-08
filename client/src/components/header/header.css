@@ -3,7 +3,6 @@
 /* Toàn bộ Header */
 .header-container {
     padding: 0;
-    border: 1px solid #d9d9d9;
     background: #fff;
     display: flex;
     justify-content: 'space-between';

@@ -2,10 +2,16 @@
 const express = require('express');
 const cors = require('cors'); 
 const connectDB = require('./server/config/db');
+const authToken = require('./server/middleware/verifyToken')
 const userRoutes = require('./server/routes/user');
 
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+};
 const app = express();
-app.use(cors())
+
+app.use(cors(corsOptions));
 
 connectDB();
 

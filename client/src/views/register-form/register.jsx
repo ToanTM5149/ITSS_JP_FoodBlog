@@ -13,10 +13,7 @@ const onFinish = async (values) => {
     setLoading(true);  // Bắt đầu gửi dữ liệu
 
     try {
-        console.log("Value: ", values);
         const response = await user.createUser(values);
-        console.log("Respond Data", response.data);
-
         if (response.status === 201) {
             message.success('User created successfully!');
             navigate('/login');  
@@ -24,8 +21,6 @@ const onFinish = async (values) => {
             message.error(`Error: ${response.data.message}`);
         }
     } catch (error) {
-        console.error('Error creating user:', error);
-
         if (error.response) {
             console.error('Error response:', error.response);
             message.error(`Error: ${error.response.data.error || 'Unknown error'}`);
