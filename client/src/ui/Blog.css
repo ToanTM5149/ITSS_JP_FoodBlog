@@ -93,8 +93,6 @@ form {
     width: 100%;
 }
 
-
-
 .selected-dishes {
     display: flex;
     flex-wrap: wrap;
