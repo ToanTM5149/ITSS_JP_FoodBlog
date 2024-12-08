@@ -26,6 +26,16 @@ class HomepageService {
           throw new Error(error.message);
         }
     };
+
+      // Thêm bài viết mới
+  createPost = async (data) => {
+    try {
+      const newPost = new Blog(data);
+      return await newPost.save();
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
 }
 
 module.exports = new HomepageService();
