@@ -63,9 +63,22 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Gọi service để xử lý đăng nhập
+    const response = await userService.loginUser(email, password);
+    res.status(200).json(response); // Trả về thông tin người dùng và token
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllUsers,
   updateUser,
   createUser,
-  deleteUser
+  deleteUser,
+  loginUser
 };

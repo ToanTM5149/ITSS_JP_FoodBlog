@@ -16,6 +16,10 @@ const user = {
     deleteUser: (user_id) => {
         const url = 'user/delete/${user_id}';
         return API.delete(url);
+    },
+    loginUser: (email, password) => {
+        const url = '/user/login';
+        return API.post(url, { email, password });
     }
 }
 
