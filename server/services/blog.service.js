@@ -1,6 +1,7 @@
 const Blog = require('../models/Blog');
+const Like = require('../models/Like');
 
-class HomepageService {
+class BlogService {
     getPublicPosts = async () => {
         try {
           console.log('Finding public posts...');
@@ -36,6 +37,28 @@ class HomepageService {
       throw new Error(error.message);
     }
   };
+
+  //Lưu lượt like cho bài viết
+  likePost = async (userId, blogId) => {
+    try {
+      const like = new Like({ user_id: userId, blog_id: blogId });
+      await like.save();
+      return like;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
+  //Trả về số lượt like của bài viết
+  countLikes = async (blogId) => {
+    try {
+      const likeCount = await Like.countDocuments({ blog_id: blogId });
+      return likeCount;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
 }
 
-module.exports = new HomepageService();
+module.exports = new BlogService();
