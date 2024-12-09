@@ -7,6 +7,8 @@
     display: flex;
     justify-content: 'space-between';
     align-items: center; 
+    position:static;
+    z-index: 2;
   }
   
   /* Phần 1: Tên trang */

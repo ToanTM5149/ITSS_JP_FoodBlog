@@ -28,14 +28,14 @@ const HeaderBar = ({ showSearch = true }) => {
     <Header className="header-container">
       <Row style={{ width: '100%' }} align="middle">
         <Col span={6}>
-          <h2 className="header-title">Tên Trang</h2>
+          <h2 className="header-title">ベトフード</h2>
         </Col>
 
         {searchVisible && (
           <Col span={6}>
             <Input
               prefix={<SearchOutlined />}
-              placeholder="Tìm kiếm"
+              placeholder="ブログを探す"
               value={searchValue}
               onChange={onSearchChange}
               onPressEnter={onSearchSubmit} // Gọi hàm tìm kiếm khi nhấn Enter
@@ -49,18 +49,18 @@ const HeaderBar = ({ showSearch = true }) => {
             <Button shape="circle" icon={<BellOutlined />} />
           </Badge>
 
-          <Button type="link" className="header-button">Chỉnh sửa</Button>
+          <Button type="link" className="header-button">編集</Button>
 
-          <Button type="link" className="header-button">Thêm mới</Button>
+          <Button type="link" className="header-button">ブログ</Button>
 
-          <Button type="link" className="header-button">Thông tin</Button>
+          <Button type="link" className="header-button">プロフィール</Button>
 
           <Button 
             type="link" 
             className="header-button" 
             onClick={() => headerHandle.handleLogout(navigate)} // Truyền navigate vào đây
           >
-            Đăng xuất
+            ログアウト
           </Button> 
         </Col>
       </Row>
