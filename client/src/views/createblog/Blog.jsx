@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Blog.css';
-import Header from '../components/header/header';
+import Header from '../../components/header/header';
 import { Button, Input, Form, Select, Upload } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import BlogEditor from "./BlogEditor";

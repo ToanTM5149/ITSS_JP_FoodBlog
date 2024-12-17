@@ -4,7 +4,7 @@ import RegisterForm from './views/register-form/register';
 import LoginForm from './views/login-form/login';
 import Homepage from './views/homepage/homepage';
 import WatchBlog from './views/watchblog/WatchBlog.js';
-import BlogEC from './ui/Blog.jsx';
+import BlogEC from './views/createblog/Blog.jsx';
 function App() {
   return (
     <Router>
