@@ -1,0 +1,84 @@
+.register-container {
+    display: flex;
+    justify-content: center; 
+    flex-direction: column; 
+    align-items: center;   
+    height: 80vh;    
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
+  }
+
+  .custom-input {
+    border-color: #4caf50;  /* Màu viền của input */
+    border-radius: 6px;     /* Bo góc */
+    height: 100px;
+    padding: 10px 15px;      /* Khoảng cách bên trong */
+    font-size: 16px; 
+  }
+  
+  .register-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .ant-form-item-label {
+    font-weight: bold;
+  }
+  
+  .ant-form-item {
+    margin-bottom: 24px;
+  }
+  
+  @media (max-width: 576px) {
+    .register-container {
+      padding: 20px;
+    }
+  }
+
+  .image-logo{
+    max-width: 100%;   
+    height: auto;
+  }
+
+.register-button {
+    width: 100%;             
+    padding: 10px 15px;       
+    font-size: 16px;          
+    height: 50px; 
+    border-radius: 20px;       
+    border: 1px solid #4caf50; 
+    background-color: #4caf50; 
+    color: white;             
+    cursor: pointer;          
+    transition: all 0.3s;      
+  }
+  
+  .register-button:hover {
+    background-color: #45a049;
+    border-color: #45a049;    
+  }
+  
+  .register-button:disabled {
+    background-color: #c8e6c9; 
+    border-color: #c8e6c9;    
+    cursor: not-allowed;  
+  }
+
+  /* Tùy chỉnh kiểu dáng cho link đăng nhập */
+.login-link {
+  text-decoration: underline; 
+}
+
+.login-link:hover {
+  color: #512ade;
+  text-decoration: underline; 
+}
+
+  
+  

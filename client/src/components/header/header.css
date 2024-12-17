@@ -1,0 +1,52 @@
+/* header.css */
+
+/* Toàn bộ Header */
+.header-container {
+    padding: 0;
+    background: #fff;
+    display: flex;
+    justify-content: 'space-between';
+    align-items: center; 
+    position:static;
+    z-index: 2;
+  }
+  
+  /* Phần 1: Tên trang */
+  .header-title {
+    margin: 0;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    padding-left: 10%;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; 
+    padding-right: 50px;
+    gap: 30px;
+  }
+  
+  .icon-button {
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .header-button {
+    color: #000000;  /* Màu chữ mặc định */
+    padding: 0;       /* Loại bỏ padding để văn bản sát cạnh */
+    font-size: 16px;  /* Cỡ chữ */
+    font-weight: 500; /* Độ đậm của chữ */
+    border: none;     /* Loại bỏ viền */
+    background: none; /* Loại bỏ nền */
+  }
+  
+  .header-button:hover {
+    color: #40a9ff;  /* Màu chữ khi hover */
+  }
+  
