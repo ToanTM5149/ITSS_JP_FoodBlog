@@ -1,15 +1,24 @@
 /* header.css */
 
 /* Toàn bộ Header */
+/* header.css */
+
+/* Toàn bộ Header */
 .header-container {
-    padding: 0;
-    background: #fff;
-    display: flex;
-    justify-content: 'space-between';
-    align-items: center; 
-    position:static;
-    z-index: 2;
-  }
+  padding: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  position: fixed; /* Đặt header cố định */
+  top: 0;          /* Cố định ở góc trên */
+  left: 0;
+  width: 100%;     /* Chiếm toàn bộ chiều ngang */
+  z-index: 1000;   /* Đảm bảo luôn trên các thành phần khác */
+  border: 1px solid #ddd; /* Viền xung quanh */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Tạo hiệu ứng bóng mờ */
+}
+
   
   /* Phần 1: Tên trang */
   .header-title {

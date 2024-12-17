@@ -37,7 +37,7 @@ const Homepage = () => {
   };
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: '100vh', margin: '100px 0 0 0' }}>
       <HeaderBar showSearch={true} />
 
       <Layout style={{ padding: '0 0 0px' }}>
