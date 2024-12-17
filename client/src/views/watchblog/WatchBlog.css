@@ -89,17 +89,18 @@
 
 /* Sidebar container */
 .sidebar {
-  position: sticky; /* Giữ vị trí trong khi cuộn */
-  top: 20px; /* Cách mép trên 20px */
+  position: sticky; 
+  top: 74px; /* Cách mép trên 20px */
   right: 20px; /* Cách mép phải 20px */
   height: 240px; /* Chiều cao cố định 120px */
   width: 300px; /* Chiều rộng cố định */
   padding: 10px;
+  margin-left: 10px;
   background-color: #ffffff; /* Nền trắng */
   border-radius: 5px; /* Bo góc */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng nổi */
   overflow-y: auto; /* Nếu nội dung dài hơn chiều cao, cho phép cuộn dọc */
-
+  
 }
 
 /* Sidebar title */
@@ -107,15 +108,16 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
+  margin-left: 10px;
   color: #333;
-  text-align: center; /* Căn giữa tiêu đề */
+  text-align: left; /* Căn giữa tiêu đề */
 }
 
 /* Sidebar list styles */
 .sidebar-list {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin-left: 30px;
 }
 
 .sidebar-item {
@@ -183,4 +185,9 @@
   display: flex;
   gap: 10px; /* Khoảng cách giữa các tag */
   flex-wrap: wrap; /* Đảm bảo xuống dòng nếu không đủ chỗ */
+}
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Căn giữa pagination */
 }

@@ -1,13 +1,30 @@
 import React, { useState } from "react";
 import { Button, Tag, Avatar, List, Divider, Card } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
-import Header from "../components/Header";
-import { fakePost } from "../components/watchblog/fakedata/fakedata";
+import Header from "../../components/header/header.jsx";
+import { fakePost } from "../../components/watchblog/fakedata/fakedata.js";
 import "./WatchBlog.css";
-
+import { Pagination } from "antd";
 function WatchBlog() {
-  const [isFollowed, setIsFollowed] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6;
+  const suggestions = Array.from({ length: 12 }, (_, i) => ({
+    id: i + 1,
+    title: `おすすめの記事 ${i + 1}`,
+    content: `これは ${i + 1} の内容です。`,
+  }));
 
+  const currentSuggestions = suggestions.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  
+  const [isFollowed, setIsFollowed] = useState(false);
   const handleFollowClick = () => {
     setIsFollowed((prev) => !prev);
   };
@@ -80,30 +97,34 @@ function WatchBlog() {
 
       <div className="additional-section">
         <h3 className="additional-title">和食みたい</h3>
-        <div className="tags-container">
-          {["寿司", "ラーメン", "天ぷら", "うどん"].map((tag) => (
-            <Tag color="green" key={tag}>
-              {tag}
-            </Tag>
+        <ul className="additional-list">
+          {["寿司", "ラーメン", "天ぷら", "うどん"].map((item) => (
+            <li key={item} className="additional-item">
+              {item}
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
+
       
       <div className="suggestions">
         <h3>こちらもおすすめ</h3>
         <div className="suggestion-wrapper">
-          {Array.from({ length: 6 }, (_, i) => (
-            <Card
-              className="suggestion-item"
-              key={i}
-              hoverable
-            >
+          {currentSuggestions.map((item) => (
+            <Card className="suggestion-item" key={item.id} hoverable>
               <div className="suggestion-image" />
-              <p className="title-text">おすすめの記事 {i + 1}</p>
-              <p>これは {i + 1} の内容です。</p>
+              <p className="title-text">{item.title}</p>
+              <p>{item.content}</p>
             </Card>
           ))}
         </div>
+        <Pagination
+          current={currentPage}
+          pageSize={pageSize}
+          total={suggestions.length}
+          onChange={handlePageChange}
+          className="pagination"
+        />
       </div>
     </div>
   );

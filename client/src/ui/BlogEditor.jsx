@@ -1,21 +1,20 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import "./BlogEditor.css";
 
-
 const TOOLBAR_OPTIONS = [
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    [{ font: [] }],
-    [{ list: "ordered" }, { list: "bullet" }],
-    ["bold", "italic", "underline"],
-    [{ color: [] }, { background: [] }],
-    [{ script: "sub" }, { script: "super" }],
-    [{ align: [] }],
-    ["image", "blockquote", "code-block"],
-    ["clean"],
-  ];
-  
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ font: [] }],
+  [{ list: "ordered" }, { list: "bullet" }],
+  ["bold", "italic", "underline"],
+  [{ color: [] }, { background: [] }],
+  [{ script: "sub" }, { script: "super" }],
+  [{ align: [] }],
+  ["blockquote", "code-block"],
+  ["clean"],
+];
+
 
 export default function TextEditor() {
   const wrapperRef = useCallback((wrapper) => {
@@ -24,11 +23,18 @@ export default function TextEditor() {
     wrapper.innerHTML = "";
     const editor = document.createElement("div");
     wrapper.append(editor);
-    new Quill(editor, { theme: "snow", modules: {toolbar:
-        TOOLBAR_OPTIONS
-    } });
+    const quill = new Quill(editor, {
+      theme: "snow",
+      modules: { toolbar: TOOLBAR_OPTIONS },
+    });
 
-    // sddfsfsdf
+    // Lắng nghe sự thay đổi nội dung và cập nhật chiều cao
+    quill.on("text-change", () => {
+      const editorElement = wrapper.querySelector(".ql-editor");
+      const contentHeight = editorElement.scrollHeight;
+      editorElement.style.height = contentHeight < 100 ? "100px" : Math.min(contentHeight, 1200) + "px";
+    });
+
   }, []);
 
   return <div className="blog-container" ref={wrapperRef}></div>;
