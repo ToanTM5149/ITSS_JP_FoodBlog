@@ -40,8 +40,7 @@ function Profile() {
   };
 
   return (
-    <Layout style={{ minHeight: "100vh", margin: "80px 0 0 0" }}>
-      <Header showSearch={true} />
+    <Layout style={{ minHeight: "100vh", margin: "0 0 0 0" }}>
       <Card style={{ width: "100%", marginBottom: "20px", padding: 0 }}>
         <div className="cover-image" style={{ backgroundImage: "url(/image/back.jpg)" }} />
         <div className="avatar-container">
