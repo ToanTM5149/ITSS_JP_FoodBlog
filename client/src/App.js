@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Sử dụng Routes thay vì Switch
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RegisterForm from './views/register-form/register';
 import LoginForm from './views/login-form/login';
 import Homepage from './views/homepage/homepage';
