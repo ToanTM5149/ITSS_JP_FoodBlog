@@ -3,8 +3,6 @@ import { Layout, Card, Row, Col, Avatar, Pagination, Typography } from 'antd';
 import HeaderBar from '../../components/header/header';
 
 const { Title } = Typography;
-const { Meta } = Card;
-
 const { Content } = Layout;
 
 const Homepage = () => {
@@ -37,7 +35,7 @@ const Homepage = () => {
   };
 
   return (
-    <Layout style={{ minHeight: '100vh', margin: '100px 0 0 0' }}>
+    <Layout style={{ minHeight: '100vh', margin: '44px 0 0 0' }}>
       <HeaderBar showSearch={true} />
 
       <Layout style={{ padding: '0 0 0px' }}>
@@ -52,7 +50,7 @@ const Homepage = () => {
           }}
         >
           {/* Phần Tiêu đề */}
-          <Title level={2} className="section-title">最近のブログ投稿</Title>
+          <Title level={2} className="section-title" style={{marginLeft: '50px', marginBottom: '30px'}}>最近のブログ投稿</Title>
 
           {/* Phần card lớn */}
           <Row gutter={[16, 16]}>
@@ -64,90 +62,93 @@ const Homepage = () => {
                     <img
                       src="https://via.placeholder.com/400"
                       alt="large-card-image"
-                      style={{ width: '100%', height: '300px', objectFit: 'cover' }} // Giảm chiều cao ảnh lớn
+                      style={{ width: '100%', height: '504px', objectFit: 'cover' }}
                     />
                   </div>
                 }
               >
-                <Meta
-                  avatar={<Avatar>M</Avatar>}
-                  title="新しいスニーカーが登場。500ドル!!!"
-                  description="Male • 2023年1月1日"
-                />
+                <div style={{ padding: '10px' }}>
+                  <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
+                    新しいスニーカーが登場。500ドル!!!
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
+                    <Avatar style={{ marginRight: '8px' }}>M</Avatar>
+                    <span>Male • 2023年1月1日</span>
+                  </div>
+                </div>
               </Card>
             </Col>
 
             {/* Phần card nhỏ */}
             <Col span={24} md={8}>
               <Row gutter={[0, 16]}>
-                <Col span={24}>
-                  <Card
-                    hoverable
-                    cover={<img src="https://via.placeholder.com/250" alt="small-card" style={{ height: '200px', objectFit: 'cover' }} />} // Giảm chiều cao ảnh nhỏ
-                  >
-                    <Meta
-                      avatar={<Avatar>M</Avatar>}
-                      title="新しいスニーカーが登場。500ドル!!!"
-                      description="Male • 2023年1月1日"
-                    />
-                  </Card>
-                </Col>
-
-                <Col span={24}>
-                  <Card
-                    hoverable
-                    cover={<img src="https://via.placeholder.com/250" alt="small-card" style={{ height: '200px', objectFit: 'cover' }} />} // Giảm chiều cao ảnh nhỏ
-                  >
-                    <Meta
-                      avatar={<Avatar>M</Avatar>}
-                      title="新しいスニーカーが登場。500ドル!!!"
-                      description="Male • 2023年1月1日"
-                    />
-                  </Card>
-                </Col>
+                {paginateData(currentPage).slice(0, 2).map((blog) => (
+                  <Col span={24} key={blog.id}>
+                    <Card
+                      hoverable
+                      cover={<img src={blog.image} alt="small-card" style={{ height: '180px', objectFit: 'cover' }} />}
+                    >
+                      <div style={{ padding: '10px' }}>
+                        <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
+                          {blog.title}
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
+                          <Avatar style={{ marginRight: '8px' }}>{blog.author}</Avatar>
+                          <span>{`${blog.author} • ${blog.date}`}</span>
+                        </div>
+                      </div>
+                    </Card>
+                  </Col>
+                ))}
               </Row>
             </Col>
           </Row>
-          
-          {/* single card */}
-          <Card hoverable style={{marginTop: '20px'}}>
-          <Row gutter={16}>
-          <Col span={24} md={16}>
-              <div className="blog-image large-image">
-                <img
-                  hoverable
-                  src={"https://via.placeholder.com/400"}
-                  alt="large-card-image"
-                  style={{ width: '100%', height: '200px', objectFit: 'cover', border: '20px'}}
-                />
-              </div>
-            </Col>
 
-            <Col span={24} md={8}>
-              <Meta
-                hoverable
-                avatar={<Avatar>M</Avatar>}
-                title="新しいスニーカーが登場。500ドル!!!"
-                description="Male • 2023年1月1日"
-              />
-            </Col>
-          </Row>
+          <Card hoverable style={{ marginTop: '20px' }}>
+            <Row gutter={16}>
+              <Col span={24} md={16}>
+                <div className="blog-image large-image">
+                  <img
+                    hoverable
+                    src={"https://via.placeholder.com/400"}
+                    alt="large-card-image"
+                    style={{ width: '100%', height: '200px', objectFit: 'cover', border: '20px' }}
+                  />
+                </div>
+              </Col>
+
+              <Col span={24} md={8}>
+                <div style={{ padding: '10px' }}>
+                  <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
+                    新しいスニーカーが登場。500ドル!!!
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
+                    <Avatar style={{ marginRight: '8px' }}>M</Avatar>
+                    <span>Male • 2023年1月1日</span>
+                  </div>
+                </div>
+              </Col>
+            </Row>
           </Card>
 
-          <Title level={2} className="blog-title">すべてのブログ投稿</Title>
+          <Title level={2} className="blog-title" style={{marginLeft: '50px', marginBottom: '30px', marginTop: '40px'}}>すべてのブログ投稿</Title>
 
           <Row gutter={[16, 16]}>
             {paginateData(currentPage).map((blog) => (
               <Col span={8} key={blog.id}>
                 <Card
                   hoverable
-                  cover={<img src={blog.image} alt="blog-image" style={{ height: '200px', objectFit: 'cover' }} />} // Giảm chiều cao ảnh
+                  cover={<img src={blog.image} alt="blog-image" style={{ height: '180px', objectFit: 'cover' }} />}
                 >
-                  <Meta
-                    avatar={<Avatar>{blog.author}</Avatar>}
-                    title={blog.title}
-                    description={`${blog.author} • ${blog.date}`}
-                  />
+                  <div style={{ padding: '10px' }}>
+                    <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
+                      {blog.title}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
+                      <Avatar style={{ marginRight: '8px' }}>{blog.author}</Avatar>
+                      <span>{`${blog.author} • ${blog.date}`}</span>
+                    </div>
+                  </div>
                 </Card>
               </Col>
             ))}
@@ -159,7 +160,7 @@ const Homepage = () => {
             total={blogData.length}
             pageSize={6}
             onChange={handlePageChange}
-            style={{ textAlign: 'center', marginTop: '20px' }}
+            style={{ textAlign: 'center', marginTop: '30px', justifyContent: 'center', display: 'flex'}}
           />
         </Content>
       </Layout>
