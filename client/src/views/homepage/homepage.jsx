@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
 import { Layout, Card, Row, Col, Avatar, Pagination, Typography } from 'antd';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import HeaderBar from '../../components/header/header';
 import blogs from '../../data/blogs.json';
 import users from '../../data/users.json';
 import moment from 'moment';
+import homepageHandle from './homepage.handle'; // Import homepageHandle
 
 const { Title } = Typography;
 const { Content } = Layout;
 
 const Homepage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-
-  // Hàm để phân trang dữ liệu
-  const paginateData = (data, page) => {
-    const startIndex = (page - 1) * 6;
-    const endIndex = startIndex + 6;
-    return data.slice(startIndex, endIndex);
-  };
-
-  // Xử lý thay đổi trang
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  const navigate = useNavigate(); // Hook for navigation
 
   return (
     <Layout style={{ minHeight: '100vh', margin: '44px 0 0 0' }}>
@@ -55,6 +46,7 @@ const Homepage = () => {
                     />
                   </div>
                 }
+                onClick={() => homepageHandle.handleNavigate(navigate, blogs[0]?.id)} // Use handleNavigate
               >
                 <div style={{ padding: '10px' }}>
                   <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
@@ -71,11 +63,12 @@ const Homepage = () => {
             {/* Phần card nhỏ */}
             <Col span={24} md={8}>
               <Row gutter={[0, 16]}>
-                {paginateData(blogs, currentPage).slice(1, 3).map((blog) => (
+                {homepageHandle.paginateData(blogs, currentPage).slice(1, 3).map((blog) => (
                   <Col span={24} key={blog.id}>
                     <Card
                       hoverable
                       cover={<img src={blog.image_url} alt="small-card" style={{ height: '180px', objectFit: 'cover' }} />}
+                      onClick={() => homepageHandle.handleNavigate(navigate, blog.id)} // Use handleNavigate
                     >
                       <div style={{ padding: '10px' }}>
                         <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
@@ -127,11 +120,12 @@ const Homepage = () => {
           <Title level={2} className="blog-title" style={{ marginLeft: '50px', marginBottom: '30px', marginTop: '40px' }}>すべてのブログ投稿</Title>
 
           <Row gutter={[16, 16]}>
-            {paginateData(blogs, currentPage).map((blog) => (
+            {homepageHandle.paginateData(blogs, currentPage).map((blog) => (
               <Col span={8} key={blog.id}>
                 <Card
                   hoverable
                   cover={<img src={blog.image_url} alt="blog-image" style={{ height: '180px', objectFit: 'cover' }} />}
+                  onClick={() => homepageHandle.handleNavigate(navigate, blog.id)} // Use handleNavigate
                 >
                   <div style={{ padding: '10px' }}>
                     <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
@@ -152,7 +146,7 @@ const Homepage = () => {
             current={currentPage}
             total={blogs.length}
             pageSize={6}
-            onChange={handlePageChange}
+            onChange={(page) => homepageHandle.handlePageChange(page, setCurrentPage)} // Use handlePageChange
             style={{ textAlign: 'center', marginTop: '30px', justifyContent: 'center', display: 'flex' }}
           />
         </Content>

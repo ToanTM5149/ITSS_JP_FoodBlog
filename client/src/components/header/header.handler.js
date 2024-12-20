@@ -17,7 +17,7 @@ const headerHandle = {
   },
 
   navigateToWatchBlog: (navigate) => {
-    navigate('/watchblog');
+    navigate('/all-blogs');
   },
 
   navigateToProfile: (navigate) => {
