@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Sá
 import RegisterForm from './views/register-form/register';
 import LoginForm from './views/login-form/login';
 import Homepage from './views/homepage/homepage';
+import WatchBlog from './views/watchblog/WatchBlog.js';
+import BlogEC from './views/createblog/Blog.jsx';
 import Profile from './views/profile/profile.jsx';
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
+          <Route path="/watchblog" element={<WatchBlog/>} />
+          <Route path='/createblog' element={<BlogEC/>} />
           <Route path="/profile" element={<Profile/>} />
         </Routes>
       </div>
@@ -20,3 +24,4 @@ function App() {
 }
 
 export default App;
+
