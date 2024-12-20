@@ -1,32 +1,21 @@
 import React, { useState } from 'react';
 import { Layout, Card, Row, Col, Avatar, Pagination, Typography } from 'antd';
 import HeaderBar from '../../components/header/header';
+import blogs from '../../data/blogs.json';
+import users from '../../data/users.json';
+import moment from 'moment';
 
 const { Title } = Typography;
 const { Content } = Layout;
 
 const Homepage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  
-  // Dữ liệu mẫu cho blog
-  const blogData = [
-    { id: 1, image: 'https://via.placeholder.com/150', author: 'M', title: 'Blog Post 1', date: '2023年1月1日' },
-    { id: 2, image: 'https://via.placeholder.com/150', author: 'M', title: 'Blog Post 2', date: '2023年1月2日' },
-    { id: 3, image: 'https://via.placeholder.com/150', author: 'M', title: 'Blog Post 3', date: '2023年1月3日' },
-    { id: 4, image: 'https://via.placeholder.com/150', author: 'M', title: 'Blog Post 4', date: '2023年1月4日' },
-    { id: 5, image: 'https://via.placeholder.com/150', author: 'M', title: 'Blog Post 5', date: '2023年1月5日' },
-    { id: 6, image: 'https://via.placeholder.com/150', author: 'M', title: 'Blog Post 6', date: '2023年1月6日' },
-    { id: 7, image: 'https://via.placeholder.com/150', author: 'M', title: 'Blog Post 7', date: '2023年1月7日' },
-    { id: 8, image: 'https://via.placeholder.com/150', author: 'M', title: 'Blog Post 8', date: '2023年1月8日' },
-    { id: 9, image: 'https://via.placeholder.com/150', author: 'M', title: 'Blog Post 9', date: '2023年1月9日' },
-    // Thêm các bài viết khác vào đây...
-  ];
 
   // Hàm để phân trang dữ liệu
-  const paginateData = (page) => {
+  const paginateData = (data, page) => {
     const startIndex = (page - 1) * 6;
     const endIndex = startIndex + 6;
-    return blogData.slice(startIndex, endIndex);
+    return data.slice(startIndex, endIndex);
   };
 
   // Xử lý thay đổi trang
@@ -50,7 +39,7 @@ const Homepage = () => {
           }}
         >
           {/* Phần Tiêu đề */}
-          <Title level={2} className="section-title" style={{marginLeft: '50px', marginBottom: '30px'}}>最近のブログ投稿</Title>
+          <Title level={2} className="section-title" style={{ marginLeft: '50px', marginBottom: '30px' }}>最近のブログ投稿</Title>
 
           {/* Phần card lớn */}
           <Row gutter={[16, 16]}>
@@ -60,7 +49,7 @@ const Homepage = () => {
                 cover={
                   <div className="blog-image large-image">
                     <img
-                      src="https://via.placeholder.com/400"
+                      src={blogs[0]?.image_url || "https://via.placeholder.com/400"}
                       alt="large-card-image"
                       style={{ width: '100%', height: '504px', objectFit: 'cover' }}
                     />
@@ -69,11 +58,11 @@ const Homepage = () => {
               >
                 <div style={{ padding: '10px' }}>
                   <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
-                    新しいスニーカーが登場。500ドル!!!
+                    {blogs[0]?.title || "No Title"}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
-                    <Avatar style={{ marginRight: '8px' }}>M</Avatar>
-                    <span>Male • 2023年1月1日</span>
+                    <Avatar style={{ marginRight: '8px' }}>{users.find(user => user.id === blogs[0]?.author_id)?.username[0] || "U"}</Avatar>
+                    <span>{users.find(user => user.id === blogs[0]?.author_id)?.username || "Unknown User"} • {moment(blogs[0]?.created_at).format('YYYY年M月D日') || "Unknown Date"}</span>
                   </div>
                 </div>
               </Card>
@@ -82,19 +71,19 @@ const Homepage = () => {
             {/* Phần card nhỏ */}
             <Col span={24} md={8}>
               <Row gutter={[0, 16]}>
-                {paginateData(currentPage).slice(0, 2).map((blog) => (
+                {paginateData(blogs, currentPage).slice(1, 3).map((blog) => (
                   <Col span={24} key={blog.id}>
                     <Card
                       hoverable
-                      cover={<img src={blog.image} alt="small-card" style={{ height: '180px', objectFit: 'cover' }} />}
+                      cover={<img src={blog.image_url} alt="small-card" style={{ height: '180px', objectFit: 'cover' }} />}
                     >
                       <div style={{ padding: '10px' }}>
                         <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
                           {blog.title}
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
-                          <Avatar style={{ marginRight: '8px' }}>{blog.author}</Avatar>
-                          <span>{`${blog.author} • ${blog.date}`}</span>
+                          <Avatar style={{ marginRight: '8px' }}>{users.find(user => user.id === blog.author_id)?.username[0] || "U"}</Avatar>
+                          <span>{users.find(user => user.id === blog.author_id)?.username || "Unknown User"} • {moment(blog.created_at).format('YYYY年M月D日')}</span>
                         </div>
                       </div>
                     </Card>
@@ -104,13 +93,13 @@ const Homepage = () => {
             </Col>
           </Row>
 
+          {/* Phần card bổ sung */}
           <Card hoverable style={{ marginTop: '20px' }}>
             <Row gutter={16}>
               <Col span={24} md={16}>
                 <div className="blog-image large-image">
                   <img
-                    hoverable
-                    src={"https://via.placeholder.com/400"}
+                    src={blogs[1]?.image_url || "https://via.placeholder.com/400"}
                     alt="large-card-image"
                     style={{ width: '100%', height: '200px', objectFit: 'cover', border: '20px' }}
                   />
@@ -120,33 +109,37 @@ const Homepage = () => {
               <Col span={24} md={8}>
                 <div style={{ padding: '10px' }}>
                   <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
-                    新しいスニーカーが登場。500ドル!!!
+                    {blogs[1]?.title || "No Title"}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
-                    <Avatar style={{ marginRight: '8px' }}>M</Avatar>
-                    <span>Male • 2023年1月1日</span>
+                    <Avatar style={{ marginRight: '8px' }}>
+                      {users.find(user => user.id === blogs[1]?.author_id)?.username[0] || "U"}
+                    </Avatar>
+                    <span>
+                      {users.find(user => user.id === blogs[1]?.author_id)?.username || "Unknown User"} • {moment(blogs[1]?.created_at).format('YYYY年M月D日') || "Unknown Date"}
+                    </span>
                   </div>
                 </div>
               </Col>
             </Row>
           </Card>
 
-          <Title level={2} className="blog-title" style={{marginLeft: '50px', marginBottom: '30px', marginTop: '40px'}}>すべてのブログ投稿</Title>
+          <Title level={2} className="blog-title" style={{ marginLeft: '50px', marginBottom: '30px', marginTop: '40px' }}>すべてのブログ投稿</Title>
 
           <Row gutter={[16, 16]}>
-            {paginateData(currentPage).map((blog) => (
+            {paginateData(blogs, currentPage).map((blog) => (
               <Col span={8} key={blog.id}>
                 <Card
                   hoverable
-                  cover={<img src={blog.image} alt="blog-image" style={{ height: '180px', objectFit: 'cover' }} />}
+                  cover={<img src={blog.image_url} alt="blog-image" style={{ height: '180px', objectFit: 'cover' }} />}
                 >
                   <div style={{ padding: '10px' }}>
                     <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
                       {blog.title}
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
-                      <Avatar style={{ marginRight: '8px' }}>{blog.author}</Avatar>
-                      <span>{`${blog.author} • ${blog.date}`}</span>
+                      <Avatar style={{ marginRight: '8px' }}>{users.find(user => user.id === blog.author_id)?.username[0] || "U"}</Avatar>
+                      <span>{users.find(user => user.id === blog.author_id)?.username || "Unknown User"} • {moment(blog.created_at).format('YYYY年M月D日')}</span>
                     </div>
                   </div>
                 </Card>
@@ -157,10 +150,10 @@ const Homepage = () => {
           {/* Pagination */}
           <Pagination
             current={currentPage}
-            total={blogData.length}
+            total={blogs.length}
             pageSize={6}
             onChange={handlePageChange}
-            style={{ textAlign: 'center', marginTop: '30px', justifyContent: 'center', display: 'flex'}}
+            style={{ textAlign: 'center', marginTop: '30px', justifyContent: 'center', display: 'flex' }}
           />
         </Content>
       </Layout>
