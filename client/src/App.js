@@ -7,6 +7,7 @@ import WatchBlog from './views/watchblog/WatchBlog.js';
 import BlogEC from './views/createblog/Blog.jsx';
 import Profile from './views/profile/profile.jsx';
 import UserManage from './views/admin/usermanage.jsx';
+import BlogManage from './views/admin/contentmanage.jsx';
 function App() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function App() {
           <Route path='/createblog' element={<BlogEC/>} />
           <Route path="/profile" element={<Profile/>} />
           <Route path="/admin/usermanage" element={<UserManage/>} />
+          <Route path="/admin/blogmanage" element={<BlogManage/>} />
         </Routes>
       </div>
     </Router>
