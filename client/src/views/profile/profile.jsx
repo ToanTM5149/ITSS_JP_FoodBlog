@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Layout, Row, Col, Avatar, Card, List, Button } from "antd";
 import { UserOutlined, MailOutlined, PhoneOutlined, HomeOutlined, HeartOutlined, DeleteOutlined } from "@ant-design/icons";
-import Header from "../../components/header/header";
+import HeaderBar from "../../components/header/header";
 import "./profile.css";
 
 function Profile() {
@@ -41,6 +41,7 @@ function Profile() {
 
   return (
     <Layout style={{ minHeight: "100vh", margin: "0 0 0 0" }}>
+      <HeaderBar showSearch={true} />
       <Card style={{ width: "100%", marginBottom: "20px", padding: 0 }}>
         <div className="cover-image" style={{ backgroundImage: "url(/image/back.jpg)" }} />
         <div className="avatar-container">

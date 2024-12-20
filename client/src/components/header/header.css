@@ -25,6 +25,8 @@
     margin: 0;
     text-align: center;
     font-size: 40px;
+    font-style: oblique;
+    color: #000000;
     font-weight: bold;
     display: flex;
     padding-left: 10%;
