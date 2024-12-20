@@ -6,6 +6,7 @@ import Homepage from './views/homepage/homepage';
 import WatchBlog from './views/watchblog/WatchBlog.js';
 import BlogEC from './views/createblog/Blog.jsx';
 import Profile from './views/profile/profile.jsx';
+import UserManage from './views/admin/usermanage.jsx';
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/watchblog" element={<WatchBlog/>} />
           <Route path='/createblog' element={<BlogEC/>} />
           <Route path="/profile" element={<Profile/>} />
+          <Route path="/admin/usermanage" element={<UserManage/>} />
         </Routes>
       </div>
     </Router>
