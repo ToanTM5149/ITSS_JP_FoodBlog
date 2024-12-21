@@ -3,7 +3,7 @@ import queryString from 'query-string';
 
 const API = axios.create({
     baseURL: 'http://localhost:5000/api',
-    // withCredentials: true,
+    withCredentials: true,
     headers: {
         'Content-Type' : 'application/json',
     },

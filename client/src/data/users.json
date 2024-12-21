@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "username": "john_jackson",
+    "email": "john_jackson@example.com",
+    "password": "password384",
+    "role": "Admin",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "789 Oak St",
+    "phone": "6415653145"
+  },
+  {
+    "id": 2,
+    "username": "noah_anderson",
+    "email": "noah_anderson@example.com",
+    "password": "password276",
+    "role": "Moderator",
+    "sex": "Female",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "456 Elm St",
+    "phone": "7755356860"
+  },
+  {
+    "id": 3,
+    "username": "david_brown",
+    "email": "david_brown@example.com",
+    "password": "password948",
+    "role": "Moderator",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "101 Pine St",
+    "phone": "5144644997"
+  },
+  {
+    "id": 4,
+    "username": "olivia_lee",
+    "email": "olivia_lee@example.com",
+    "password": "password906",
+    "role": "User",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "123 Main St",
+    "phone": "0658031050"
+  },
+  {
+    "id": 5,
+    "username": "emma_johnson",
+    "email": "emma_johnson@example.com",
+    "password": "password835",
+    "role": "User",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "789 Oak St",
+    "phone": "0792819967"
+  },
+  {
+    "id": 6,
+    "username": "bob_jackson",
+    "email": "bob_jackson@example.com",
+    "password": "password912",
+    "role": "User",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "456 Elm St",
+    "phone": "3091701371"
+  },
+  {
+    "id": 7,
+    "username": "john_doe",
+    "email": "john_doe@example.com",
+    "password": "password318",
+    "role": "User",
+    "sex": "Female",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "789 Oak St",
+    "phone": "8247147140"
+  },
+  {
+    "id": 8,
+    "username": "alice_brown",
+    "email": "alice_brown@example.com",
+    "password": "password343",
+    "role": "Moderator",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "202 Maple Ave",
+    "phone": "3000234067"
+  },
+  {
+    "id": 9,
+    "username": "john_lee",
+    "email": "john_lee@example.com",
+    "password": "password223",
+    "role": "User",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "202 Maple Ave",
+    "phone": "1675372120"
+  },
+  {
+    "id": 10,
+    "username": "noah_brown",
+    "email": "noah_brown@example.com",
+    "password": "password646",
+    "role": "Moderator",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "456 Elm St",
+    "phone": "3172272225"
+  },
+  {
+    "id": 11,
+    "username": "john_jackson",
+    "email": "john_jackson@example.com",
+    "password": "password389",
+    "role": "Admin",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "101 Pine St",
+    "phone": "4035981017"
+  },
+  {
+    "id": 12,
+    "username": "alice_lee",
+    "email": "alice_lee@example.com",
+    "password": "password227",
+    "role": "User",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "789 Oak St",
+    "phone": "5121633305"
+  },
+  {
+    "id": 13,
+    "username": "liam_smith",
+    "email": "liam_smith@example.com",
+    "password": "password220",
+    "role": "Admin",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "789 Oak St",
+    "phone": "8296977738"
+  },
+  {
+    "id": 14,
+    "username": "olivia_anderson",
+    "email": "olivia_anderson@example.com",
+    "password": "password605",
+    "role": "Moderator",
+    "sex": "Male",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "123 Main St",
+    "phone": "8364360223"
+  },
+  {
+    "id": 15,
+    "username": "noah_jackson",
+    "email": "noah_jackson@example.com",
+    "password": "password199",
+    "role": "Moderator",
+    "sex": "Female",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "123 Main St",
+    "phone": "7707622349"
+  }
+]
