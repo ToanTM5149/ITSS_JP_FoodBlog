@@ -45,7 +45,6 @@ function BlogDetail() {
 
   return (
     <div className="container">
-      <Header />
       <div className="user-info-btn-container">
         <span className="back" onClick={() => window.history.back()}>戻る</span>
         <div className="user-info">

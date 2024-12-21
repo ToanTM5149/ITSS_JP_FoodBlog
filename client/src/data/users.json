@@ -163,5 +163,16 @@
     "avatar": "https://via.placeholder.com/150",
     "address": "123 Main St",
     "phone": "7707622349"
+  },
+  {
+    "id": 16,
+    "username": "noah_jackson",
+    "email": "admin@gmail.com",
+    "password": "111",
+    "role": "Moderator",
+    "sex": "Female",
+    "avatar": "https://via.placeholder.com/150",
+    "address": "123 Main St",
+    "phone": "7707622349"
   }
 ]
