@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, Card, Row, Col, Avatar, Pagination, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import blogs from '../../data/blogs.json';
-import users from '../../data/users.json';
 import moment from 'moment';
 import homepageHandle from './homepage.handle';
 import HeaderBar from '../../components/header/header';
@@ -13,7 +11,17 @@ const { Content } = Layout;
 const Homepage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  const [blogs, setBlogs] = useState([]);
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+
+  // Lấy dữ liệu từ localStorage
+  useEffect(() => {
+    const storedBlogs = JSON.parse(localStorage.getItem('blogs')) || [];
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    setBlogs(storedBlogs);
+    setUsers(storedUsers);
+  }, []);
 
   // Lọc blogs dựa trên từ khóa tìm kiếm
   const filteredBlogs = blogs.filter((blog) =>
@@ -29,14 +37,12 @@ const Homepage = () => {
   // Hàm xử lý tìm kiếm từ HeaderBar
   const handleSearch = (term) => {
     setSearchTerm(term);
-    setCurrentPage(1); // Reset về trang đầu tiên khi tìm kiếm
+    setCurrentPage(1);
   };
 
   return (
     <Layout style={{ minHeight: '100vh', margin: '44px 0 0 0' }}>
-      {/* HeaderBar với hàm tìm kiếm */}
       <HeaderBar onSearchSubmit={handleSearch} />
-
       <Layout style={{ padding: '0 0 0px' }}>
         <Content
           style={{
@@ -48,19 +54,17 @@ const Homepage = () => {
             boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
           }}
         >
-          {/* Phần tiêu đề */}
           <Title level={2} className="section-title" style={{ marginLeft: '50px', marginBottom: '30px' }}>
             最近のブログ投稿
           </Title>
 
-          {/* Hiển thị thông báo nếu không có bài viết nào */}
           {sortedBlogs.length === 0 ? (
             <p style={{ marginLeft: '50px', fontSize: '16px', color: 'red' }}>
               該当するブログ投稿が見つかりません。
             </p>
           ) : (
             <>
-              {/* Phần card lớn */}
+              {/* Card lớn */}
               {sortedBlogs.length > 0 && (
                 <Row gutter={[16, 16]}>
                   <Col span={24} md={16}>
@@ -94,7 +98,7 @@ const Homepage = () => {
                     </Card>
                   </Col>
 
-                  {/* Phần card nhỏ */}
+                  {/* Card nhỏ */}
                   <Col span={24} md={8}>
                     <Row gutter={[0, 16]}>
                       {sortedBlogs.slice(1, 3).map((blog) => (
@@ -132,9 +136,13 @@ const Homepage = () => {
                 </Row>
               )}
 
-              {/* Phần card bổ sung */}
+              {/* Card bổ sung */}
               {sortedBlogs.length > 3 && (
-                <Card hoverable style={{ marginTop: '20px' }}>
+                <Card 
+                hoverable 
+                style={{ marginTop: '20px' }}
+                onClick={() => homepageHandle.handleNavigate(navigate, sortedBlogs[3]?.id)}
+                >
                   <Row gutter={16}>
                     <Col span={24} md={16}>
                       <div className="blog-image large-image">
@@ -165,7 +173,7 @@ const Homepage = () => {
                 </Card>
               )}
 
-              {/* Phần tất cả bài viết */}
+              {/* Danh sách bài viết */}
               <Title level={2} className="blog-title" style={{ marginLeft: '50px', marginBottom: '30px', marginTop: '40px' }}>
                 すべてのブログ投稿
               </Title>

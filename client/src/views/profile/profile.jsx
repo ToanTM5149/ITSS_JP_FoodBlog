@@ -1,51 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { Layout, Row, Col, Avatar, Card, List, Button, message } from "antd";
-import { UserOutlined, MailOutlined, PhoneOutlined, HomeOutlined, HeartOutlined, DeleteOutlined } from "@ant-design/icons";
-import HeaderBar from "../../components/header/header";
-import blogs from '../../data/blogs.json'; // Import blogs JSON
-import users from '../../data/users.json'; // Import users JSON
+import React, { useEffect, useState } from "react";
+import { Layout, Row, Col, Avatar, Card, List, Button, message, Spin } from "antd";
+import {UserOutlined,MailOutlined,PhoneOutlined,HomeOutlined,HeartOutlined,DeleteOutlined,} from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import { fetchProfileData, deletePost } from "./profile.handle"; 
 import "./profile.css";
 
 function Profile() {
-  const [currentUser, setCurrentUser] = useState(null); // Người dùng hiện tại
-  const [userPosts, setUserPosts] = useState([]); // Bài viết của người dùng
+  const [currentUser, setCurrentUser] = useState(null); 
+  const [userPosts, setUserPosts] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const navigate = useNavigate(); // Để điều hướng
 
   useEffect(() => {
-    const loggedInUserEmail = JSON.parse(localStorage.getItem("loggedInUser"))?.email;
-    if (!loggedInUserEmail) {
-      message.error("Bạn chưa đăng nhập!");
-      return;
-    }
+    setLoading(true);
+    const { user, userBlogs } = fetchProfileData(); // Gọi hàm lấy dữ liệu
 
-    // Tìm thông tin người dùng hiện tại
-    const user = users.find((user) => user.email === loggedInUserEmail);
     if (user) {
       setCurrentUser(user);
-
-      // Lọc bài viết của người dùng hiện tại
-      const userBlogs = blogs.filter((blog) => blog.author_id === user.id);
       setUserPosts(userBlogs);
-    } else {
-      message.error("Không tìm thấy thông tin người dùng!");
     }
+
+    setLoading(false); // Kết thúc tải dữ liệu
   }, []);
 
-  const deletePost = (id) => {
-    setUserPosts(userPosts.filter((post) => post.id !== id)); // Xóa bài viết
-    message.success("Đã xóa bài viết!");
-  };
-
-  if (!currentUser) {
-    return <p>Loading...</p>; // Hiển thị trạng thái tải dữ liệu
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <Spin size="large" />
+      </div>
+    );
   }
 
   return (
     <Layout style={{ minHeight: "100vh", margin: "0 0 0 0" }}>
-      <HeaderBar />
       <Card style={{ width: "100%", marginBottom: "20px", padding: 0 }}>
         <div className="cover-image" style={{ backgroundImage: "url(/image/back.jpg)" }} />
         <div className="avatar-container">
-          <Avatar size={64} src={currentUser.avatar} className="avatar" style={{ width: "120px", height: "120px" }} />
+          <Avatar
+            size={64}
+            src={currentUser.avatar}
+            className="avatar"
+            style={{ width: "120px", height: "120px" }}
+          />
         </div>
 
         {/* Tên và Status */}
@@ -82,7 +78,12 @@ function Profile() {
             <List
               dataSource={userPosts}
               renderItem={(post) => (
-                <Card className="post-card" key={post.id}>
+                <Card
+                  className="post-card"
+                  key={post.id}
+                  hoverable
+                  onClick={() => navigate(`/blog-details/${post.id}`)} // Điều hướng đến trang chi tiết bài viết
+                >
                   <Row>
                     <Col span={2}>
                       <Avatar src={currentUser.avatar} size={48} />
@@ -97,7 +98,10 @@ function Profile() {
                       <Button
                         type="text"
                         icon={<DeleteOutlined />}
-                        onClick={() => deletePost(post.id)}
+                        onClick={(e) => {
+                          e.stopPropagation(); // Ngăn chặn sự kiện onClick của Card
+                          deletePost(post.id, userPosts, setUserPosts); // Gọi hàm xóa
+                        }}
                       />
                     </Col>
                   </Row>

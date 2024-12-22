@@ -1,23 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Row, Col, Avatar, Pagination } from "antd";
+import { useNavigate } from "react-router-dom";
 import HeaderBar from "../../components/header/header";
-import blogs from "../../data/blogs.json";
-import users from "../../data/users.json";
 import moment from "moment";
+import allBlogsHandle from "./all_blogs.handle"; // Import file handle
 
 const AllBlog = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [blogs, setBlogs] = useState([]);
+  const [users, setUsers] = useState([]);
   const pageSize = 10;
+  const navigate = useNavigate();
 
-  // Hàm phân trang
-  const paginateData = (data, page) => {
-    const startIndex = (page - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    return data.slice(startIndex, endIndex);
-  };
+  useEffect(() => {
+    // Lấy dữ liệu từ localStorage
+    const storedBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    setBlogs(storedBlogs);
+    setUsers(storedUsers);
+  }, []);
 
-  // Dữ liệu hiện tại
-  const currentBlogs = paginateData(blogs, currentPage);
+  // Sắp xếp blogs theo ngày giảm dần
+  const sortedBlogs = allBlogsHandle.sortBlogsByDate(blogs);
+
+  // Dữ liệu hiện tại sau phân trang
+  const currentBlogs = allBlogsHandle.paginateData(sortedBlogs, currentPage, pageSize);
 
   // Hàm xử lý khi chuyển trang
   const handlePageChange = (page) => {
@@ -25,13 +32,17 @@ const AllBlog = () => {
   };
 
   return (
-    <div style={{ paddingTop: "55px", paddingLeft: '200px', paddingRight: '200px' }}>
+    <div style={{ paddingTop: "55px", paddingLeft: "200px", paddingRight: "200px" }}>
       <Row gutter={[16, 16]}>
         {currentBlogs.map((blog) => {
           const user = users.find((user) => user.id === blog.author_id);
           return (
             <Col span={24} key={blog.id}>
-              <Card hoverable style={{ marginTop: "15px" }}>
+              <Card
+                hoverable
+                style={{ marginTop: "15px" }}
+                onClick={() => allBlogsHandle.handleNavigate(navigate, blog.id)} // Thêm onClick để điều hướng
+              >
                 <Row gutter={16}>
                   <Col span={24} md={12}>
                     <div className="blog-image large-image">
@@ -71,8 +82,7 @@ const AllBlog = () => {
                         </Avatar>
                         <span>
                           {user?.username || "Unknown User"} •{" "}
-                          {moment(blog.created_at).format("YYYY年M月D日") ||
-                            "Unknown Date"}
+                          {moment(blog.created_at).format("YYYY年M月D日") || "Unknown Date"}
                         </span>
                       </div>
                     </div>
@@ -95,7 +105,7 @@ const AllBlog = () => {
           marginTop: "30px",
           justifyContent: "center",
           display: "flex",
-          paddingBottom:'20px'
+          paddingBottom: "20px",
         }}
       />
     </div>
