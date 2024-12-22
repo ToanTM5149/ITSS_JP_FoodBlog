@@ -1,11 +1,56 @@
 import React, { useState } from "react";
 import { Button, Tag, Avatar, List, Divider, Card } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
+import { useLocation } from "react-router-dom";
 import Header from "../../components/header/header.jsx";
 import { fakePost } from "../../components/watchblog/fakedata/fakedata.js";
 import "./WatchBlog.css";
 import { Pagination } from "antd";
 function WatchBlog() {
+  const location = useLocation();
+  const { blog } = location.state || {};
+  // Trạng thái để lưu thông báo cuộn
+  const [scrollMessage, setScrollMessage] = useState("");
+  // Kiểm tra nếu có dữ liệu blog
+  if (!blog) {
+    return <div>Không có bài viết nào để hiển thị.</div>;
+  }
+  // Tìm các thẻ h1 và h2 trong nội dung blog để tạo danh sách sidebar
+  const getHeadersFromContent = (content) => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = content;
+
+    // Lấy cả h1 và h2 từ nội dung bài viết
+    const headers = Array.from(tempDiv.querySelectorAll("h1"));
+
+    // Trả về một danh sách các header
+    return headers.map((header) => ({
+      text: header.innerText,
+      element: header
+    }));
+  };
+
+  const headers = getHeadersFromContent(blog.content);
+
+  // Function to handle scroll to the header
+  const scrollToHeader = (headerText) => {
+    // Tìm tất cả các phần tử h1 và h2
+    const headerElements = document.querySelectorAll("h1");
+  
+    // Lọc ra phần tử có nội dung trùng khớp
+    const headerElement = Array.from(headerElements).find(
+      (header) => header.innerText === headerText
+    );
+  
+    if (headerElement) {
+      // Cuộn đến phần tử tìm thấy
+      headerElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      
+    }
+  };
+  //add
+
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
   const suggestions = Array.from({ length: 12 }, (_, i) => ({
@@ -53,9 +98,18 @@ function WatchBlog() {
         <Card
           title={
             <>
-              <h2 className="title">{fakePost.title}</h2>
+              <h2 
+                className="title" 
+                style={{
+                  fontSize: '36px',  // Kích thước chữ lớn hơn
+                  marginTop: '10px', // Căn lề trên 10px
+                  fontWeight: 'bold', // Đặt chữ đậm (nếu cần)
+                }}
+              >
+                {blog.title}
+              </h2>
               <div className="tags">
-                {["タグ1", "タグ2"].map((tag) => (
+                {blog.tags.map((tag) => (
                   <Tag color="blue" key={tag}>
                     {tag}
                   </Tag>
@@ -68,7 +122,7 @@ function WatchBlog() {
         >
           <div className="article-body">
             <div className="image-container">
-              <img src={fakePost.imageUrl} alt="Placeholder" />
+              <img src={blog.image} alt="Blog" />
               <div className="likes">
                 <span className="like-count">10</span>
                 <span className="like-icon">
@@ -79,7 +133,9 @@ function WatchBlog() {
             <Divider />
             <div
               className="content-container"
-              dangerouslySetInnerHTML={{ __html: fakePost.content }}
+              dangerouslySetInnerHTML={{
+                __html: blog.content,
+              }}
             ></div>
           </div>
         </Card>
@@ -87,9 +143,15 @@ function WatchBlog() {
         <div class="sidebar">
           <h3 class="sidebar-title">記事の目次</h3>
           <ul class="sidebar-list">
-            <li class="sidebar-item">第1部: 紹介</li>
-            <li class="sidebar-item">第2部: 主な内容</li>
-            <li class="sidebar-item">第3部: 結論</li>
+            {headers.map((header) => (
+                <li
+                  key={header.text}
+                  className="sidebar-item"
+                  onClick={() => scrollToHeader(header.text)}
+                >
+                  {header.text}
+                </li>
+              ))}
           </ul>
         </div>
 
