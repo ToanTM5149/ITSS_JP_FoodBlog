@@ -9,10 +9,14 @@ import Profile from './views/profile/profile.jsx';
 import ForgotPassword from './views/forgot-password/forgot-password.jsx'; // Import ForgotPassword
 import ForgotPassword2 from './views/forgot-password/password-code/password-code.jsx';
 import NewPassword from './views/forgot-password/new-password/new-password.jsx'; // Import NewPassword
-
+import AllBlog from './views/all-blogs/all_blogs.js';
+import AuthProvider from './context/auth_context.js';
+import HeaderBar from './components/header/header.jsx';
 function App() {
   return (
+    <AuthProvider>
     <Router>
+    <HeaderBar />
       <div className="App">
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -24,9 +28,11 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Route Forgot Password */}
           <Route path="/forgot-password2" element={<ForgotPassword2 />} />
           <Route path="/new-password" element={<NewPassword />} />
+          <Route path='/all-blogs' element={<AllBlog />} />
         </Routes>
       </div>
     </Router>
+     </AuthProvider>
   );
 }
 

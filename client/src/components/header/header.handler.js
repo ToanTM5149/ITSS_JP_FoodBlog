@@ -1,10 +1,14 @@
 import { message } from 'antd';
 
 const headerHandle = {
-  handleLogout: (navigate) => {
-    // Xóa token khỏi localStorage
-    localStorage.removeItem('token');
-    message.success('Đăng xuất thành công!');
+  handleLogout: (navigate, setIsLoggedIn) => {
+    localStorage.removeItem('loggedInUser'); // Xóa thông tin đăng nhập
+    setIsLoggedIn(false); // Chuyển trạng thái sang chưa đăng nhập
+    message.success('Đã đăng xuất thành công!');
+    navigate('/');
+  },
+
+  handleLoginRedirect: (navigate) => {
     navigate('/login');
   },
 
@@ -16,7 +20,7 @@ const headerHandle = {
     navigate('/createblog');
   },
 
-  navigateToWatchBlog: (navigate) => {
+  navigateToAllBlog: (navigate) => {
     navigate('/all-blogs');
   },
 
@@ -26,7 +30,11 @@ const headerHandle = {
 
   navigateToHome: (navigate) => {
     navigate('/');
-  }
+  },
+
+  isLoggedIn: () => {
+    return localStorage.getItem('loggedInUser') !== null; // Kiểm tra trạng thái đăng nhập
+  },
 };
 
 export default headerHandle;

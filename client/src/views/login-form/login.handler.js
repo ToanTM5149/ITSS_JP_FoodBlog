@@ -1,25 +1,27 @@
-// login.handler.js
-
 import { message } from 'antd';
-import user from '../../api/user'; // Import API user
+import users from '../../data/users.json';
 
-export const handleLogin = async (values, setLoading, navigate) => {
-  const { email, password } = values;
+export const handleLogin = (values, setLoading, navigate, authContext) => {
+  setLoading(true);
 
-  try {
-    setLoading(true);
+  // Kiểm tra thông tin đăng nhập
+  const user = users.find(
+    (user) => user.email === values.email && user.password === values.password
+  );
 
-    const response = await user.loginUser(email, password);
+  if (user) {
+    // Gọi hàm handleLogin từ AuthContext
+    authContext.handleLogin(user);
 
-    // Lưu token vào localStorage
-    localStorage.setItem('token', response.data.token);
+    // Hiển thị thông báo thành công
     message.success('Đăng nhập thành công!');
-
+    
+    // Điều hướng đến trang chính
     navigate('/');
-
-  } catch (error) {
-    message.error(error.response?.data?.error || 'Đăng nhập không thành công!');
-  } finally {
-    setLoading(false); 
+  } else {
+    // Hiển thị thông báo lỗi
+    message.error('Email hoặc mật khẩu không chính xác!');
   }
+
+  setLoading(false);
 };

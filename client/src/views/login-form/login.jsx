@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Input, Button, Row, Col, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
-import { handleLogin } from './login.handler';
-import './login.css'; // CSS cho trang Login
+import { AuthContext } from '../../context/auth_context'; // Import AuthContext
+import { handleLogin } from './login.handler'; // Import login handler
+import './login.css';
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false); // Để theo dõi trạng thái loading
-  const navigate = useNavigate(); // Dùng để điều hướng sau khi đăng nhập thành công
+  const navigate = useNavigate();
+  const authContext = useContext(AuthContext); // Lấy AuthContext
 
-  const handleSubmit = async (values) => {
-    handleLogin(values, setLoading, navigate);
+  const handleSubmit = (values) => {
+    handleLogin(values, setLoading, navigate, authContext); // Truyền AuthContext vào handleLogin
   };
 
   return (
@@ -24,7 +26,7 @@ const LoginForm = () => {
 
       <Form
         name="login"
-        onFinish={handleSubmit} 
+        onFinish={handleSubmit}
         initialValues={{
           remember: true,
         }}
@@ -37,7 +39,7 @@ const LoginForm = () => {
               name="email"
               label="メールアドレス"
               required={false}
-              rules={[ 
+              rules={[
                 { required: true, message: 'Vui lòng nhập email!' },
                 { type: 'email', message: 'Địa chỉ email không hợp lệ!' },
               ]}
