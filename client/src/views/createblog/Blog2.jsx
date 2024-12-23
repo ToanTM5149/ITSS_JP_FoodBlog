@@ -1,21 +1,27 @@
 import React, { useState, useRef } from 'react';
 import './Blog.css';
+import { useParams } from "react-router-dom"; // Import useParams
 import Header from '../../components/header/header';
 import { Button, Input, Form, Select, Upload } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import BlogEditor from "./BlogEditor";
-import mockData from '../../mockdata/mockdata.js';
+import blogs from '../../data/blogs.json';
+import blogsData from '../../data/blogs.json'; // Import dữ liệu gốc từ JSON
+import users from '../../data/users.json';
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const { Option } = Select;
 
 function Blog() {
+    const { id } = useParams();
+    const [blogs, setBlogs] = useState(blogsData);
     const [selectedDishes, setSelectedDishes] = useState([]);  // Các tag món ăn
     const [additionalDishes, setAdditionalDishes] = useState([]);  // Bình luận về các món ăn liên quan
     const [croppedImage, setCroppedImage] = useState(null);  // Lưu ảnh duy nhất
     const [title, setTitle] = useState("");  // Tiêu đề bài viết
     const editorRef = useRef(null);  // Tham chiếu đến BlogEditor để lấy nội dung HTML
-
+    const user = users.find((u) => u.id == id); 
     const navigate = useNavigate(); // Initialize navigate with useNavigate
 
     // Xử lý thay đổi tag món ăn
@@ -87,28 +93,31 @@ function Blog() {
         // Lấy nội dung HTML từ BlogEditor
         const editorElement = editorRef.current.querySelector(".ql-editor");
         const content = editorElement.innerHTML;
-
+        const sizex = blogs.length;
         // Tạo dữ liệu bài viết mới
         const postData = {
-            id: Date.now(), // ID bài viết - String
-            userId: 1, // ID người viết (giả định là 1) - String
-            title, // String
+            id: sizex, // ID bài viết 
+            title, // ID người viết (giả định là 1) - String
+            content, // String
+            status: "private",
             tags: selectedDishes,  // Lưu các tag món ăn - String[]
-            dishes: additionalDishes,  // Lưu các bình luận món ăn liên quan - String[]
-            timestamp: new Date().toISOString(), // Thời gian đăng bài -String[]
-            image: croppedImage,
-            content,
+            additional_food: additionalDishes,  // Lưu các bình luận món ăn liên quan - String[]
+            created_at: new Date().toISOString(), // Thời gian đăng bài -String[]
+            updated_at: "NULL",
+            image_url: croppedImage,
+            author_id: user.id
         };
         
-        // Thêm bài viết mới vào mockData (giả sử mockData là mảng lưu trữ bài viết)
-        mockData.push(postData);
-        // Lưu dữ liệu vào localStorage
-        localStorage.setItem("mockData", JSON.stringify(mockData));
+         // Cập nhật blogs state để thêm bài viết mới
+         setBlogs((prevBlogs) => [...prevBlogs, postData]);
         // Navigate to WatchBlog page with post data
-        navigate("/watchblog", { state: { blog: postData } });
+        // navigate("/blog-details/" + postData.id, { state: {  } });
         // Kiểm tra log và thông báo
-        console.log("Dữ liệu bài viết đã được lưu:", postData);
-        alert("Bài viết đã được lưu thành công!");
+         // Chuyển đổi đối tượng thành chuỗi để hiển thị trong alert
+        const postDataString = JSON.stringify(postData, null, 2);
+
+        // Hiển thị thông tin bài viết đã lưu
+        alert("Bài viết đã được lưu thành công!\n" + postDataString);
     };
 
     return (
