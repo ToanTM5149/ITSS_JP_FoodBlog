@@ -37,6 +37,11 @@ const HeaderBar = ({ showSearch = true, onSearchSubmit }) => { // Thêm onSearch
     navigate('/login');
   };
 
+  const handleLogoutAndNavigate = () => {
+    handleLogout(); // Gọi hàm logout
+    navigate('/');  // Chuyển hướng
+  };
+
   const handleProtectedAction = (action) => {
     if (isLoggedIn) {
       action();
@@ -114,7 +119,7 @@ const HeaderBar = ({ showSearch = true, onSearchSubmit }) => { // Thêm onSearch
               <Button
                 type="link"
                 className="header-button"
-                onClick={handleLogout}
+                onClick={handleLogoutAndNavigate}
               >
                 ログアウト
               </Button>
