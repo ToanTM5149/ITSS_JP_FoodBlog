@@ -1,84 +1,85 @@
+/* Container chính */
+.register-page {
+  display: flex;
+  height: 100vh; /* Chiều cao toàn màn hình */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  background-color: #f9f9f9;
+}
+
+/* Phần chứa form và ảnh */
 .register-container {
-    display: flex;
-    justify-content: center; 
-    flex-direction: column; 
-    align-items: center;   
-    height: 80vh;    
-    background-color: #f9f9f9;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 50px auto;
-  }
+  display: flex;
+  width: 80%; /* Chiếm 80% chiều rộng màn hình */
+  height: 80%; /* Chiều cao chiếm 80% màn hình */
+  background-color: #ffffff; /* Màu nền trắng */
+  border-radius: 8px; /* Bo góc */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ẩn các phần thừa */
+}
 
-  .custom-input {
-    border-color: #4caf50;  /* Màu viền của input */
-    border-radius: 6px;     /* Bo góc */
-    height: 100px;
-    padding: 10px 15px;      /* Khoảng cách bên trong */
-    font-size: 16px; 
-  }
-  
-  .register-title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .ant-form-item-label {
-    font-weight: bold;
-  }
-  
-  .ant-form-item {
-    margin-bottom: 24px;
-  }
-  
-  @media (max-width: 576px) {
-    .register-container {
-      padding: 20px;
-    }
-  }
+/* Phần bên trái: Ảnh minh họa */
+.register-left {
+  flex: 1; /* Chiếm 50% không gian */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0; /* Màu nền nhạt */
+}
 
-  .image-logo{
-    max-width: 100%;   
-    height: auto;
-  }
+.register-image {
+  width: 80%; /* Chiếm 80% chiều ngang phần bên trái */
+  height: auto; /* Tự động căn chỉnh chiều cao */
+  border-radius: 8px; /* Bo góc ảnh */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Phần bên phải: Form */
+.register-right {
+  flex: 1; /* Chiếm 50% không gian */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Căn giữa theo chiều dọc */
+  padding: 40px;
+}
+
+/* Logo và tiêu đề */
+.register-image-logo {
+  display: block;
+  margin: 0 auto 0px auto;
+}
+
+.register-title {
+  text-align: center;
+  font-size: 28px; /* Đồng bộ với app-name ở Login */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form đăng ký */
+.register-form {
+  width: 100%; /* Đảm bảo form chiếm toàn bộ chiều rộng */
+}
+
+.register-input {
+  border-radius: 6px;
+  height: 40px; /* Chiều cao input tương tự Login */
+  padding: 10px 15px;
+  font-size: 16px;
+}
 
 .register-button {
-    width: 100%;             
-    padding: 10px 15px;       
-    font-size: 16px;          
-    height: 50px; 
-    border-radius: 20px;       
-    border: 1px solid #4caf50; 
-    background-color: #4caf50; 
-    color: white;             
-    cursor: pointer;          
-    transition: all 0.3s;      
-  }
-  
-  .register-button:hover {
-    background-color: #45a049;
-    border-color: #45a049;    
-  }
-  
-  .register-button:disabled {
-    background-color: #c8e6c9; 
-    border-color: #c8e6c9;    
-    cursor: not-allowed;  
-  }
-
-  /* Tùy chỉnh kiểu dáng cho link đăng nhập */
-.login-link {
-  text-decoration: underline; 
+  width: 100%;
+  height: 50px; /* Chiều cao nút bấm tương tự Login */
+  border-radius: 25px;
+  background-color: #060a06;
+  color: white;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-.login-link:hover {
-  color: #512ade;
-  text-decoration: underline; 
-}
 
-  
-  
+
+
+

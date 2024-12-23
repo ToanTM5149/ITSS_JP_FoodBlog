@@ -3,7 +3,7 @@ import { Button, Tag, Avatar, List, Divider, Card } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
 import Header from "../../components/header/header.jsx";
-import { fakePost } from "../../components/watchblog/fakedata/fakedata.js";
+
 import "./WatchBlog.css";
 import { Pagination } from "antd";
 function WatchBlog() {
@@ -158,17 +158,23 @@ function WatchBlog() {
       </div>
 
       <div className="additional-section">
-        <h3 className="additional-title">和食みたい</h3>
-        <ul className="additional-list">
-          {["寿司", "ラーメン", "天ぷら", "うどん"].map((item) => (
-            <li key={item} className="additional-item">
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      
+        <div className="additional-tags">
+            <div className="additional-dishes">
+                  <h3 className="dishes-title">関連する料理のコメント:</h3>
+                  <ul className="additional-list">
+                  {Array.isArray(blog.dishes) && blog.dishes.length > 0 ? (
+                      blog.dishes.map((dish, index) => (
+                        <li key={index} className="additional-item">
+                          {dish}
+                        </li>
+                      ))
+                    ) : (
+                      <li className="additional-item">コメントはありません。</li>
+                    )}
+                  </ul>
+            </div>
+        </div>
+      </div>              
       <div className="suggestions">
         <h3>こちらもおすすめ</h3>
         <div className="suggestion-wrapper">

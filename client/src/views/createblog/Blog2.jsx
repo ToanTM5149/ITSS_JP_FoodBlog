@@ -25,21 +25,24 @@ function Blog() {
 
     // Thêm ô input mới vào danh sách bình luận
     const addInputField = () => {
-        setAdditionalDishes((prev) => [...prev, ""]);
+        setAdditionalDishes((prev) => [...prev, ""]); // Thêm một trường input mới với giá trị mặc định là chuỗi rỗng
     };
+
+    
 
     // Xử lý thay đổi bình luận của từng món ăn liên quan
     const handleAdditionalDishChange = (index, value) => {
         const newDishes = [...additionalDishes];
-        newDishes[index] = value;
-        setAdditionalDishes(newDishes);
+        newDishes[index] = value; // Cập nhật giá trị tại vị trí index cụ thể
+        setAdditionalDishes(newDishes); // Cập nhật lại state
     };
+
 
     // Xóa ô input của bình luận món ăn liên quan
     const removeInputField = (index) => {
         const newDishes = [...additionalDishes];
-        newDishes.splice(index, 1);
-        setAdditionalDishes(newDishes);
+        newDishes.splice(index, 1); // Xóa phần tử tại vị trí index
+        setAdditionalDishes(newDishes); // Cập nhật lại state
     };
 
     // Xử lý ảnh tải lên
@@ -87,12 +90,12 @@ function Blog() {
 
         // Tạo dữ liệu bài viết mới
         const postData = {
-            id: Date.now(), // ID bài viết
-            userId: 1, // ID người viết (giả định là 1)
-            title,
-            tags: selectedDishes,  // Lưu các tag món ăn
-            dishes: additionalDishes,  // Lưu các bình luận món ăn liên quan
-            timestamp: new Date().toISOString(), // Thời gian đăng bài
+            id: Date.now(), // ID bài viết - String
+            userId: 1, // ID người viết (giả định là 1) - String
+            title, // String
+            tags: selectedDishes,  // Lưu các tag món ăn - String[]
+            dishes: additionalDishes,  // Lưu các bình luận món ăn liên quan - String[]
+            timestamp: new Date().toISOString(), // Thời gian đăng bài -String[]
             image: croppedImage,
             content,
         };
@@ -132,6 +135,21 @@ function Blog() {
                                     placeholder="タグ"
                                     style={{ width: '100%', height: '44px' }}
                                     onChange={handleDishChange}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter" || e.key === " ") {
+                                            // Khi người dùng nhấn dấu cách hoặc Enter
+                                            const newTag = e.target.value.trim();  // Lấy giá trị nhập vào và loại bỏ khoảng trắng ở đầu và cuối
+                                            if (newTag) {
+                                                const tags = newTag.split(" ");  // Tách các từ theo dấu cách
+                                                const filteredTags = tags.filter(tag => tag && !selectedDishes.includes(tag));  // Loại bỏ các tag đã có và trống
+                                                if (filteredTags.length > 0) {
+                                                    // Thêm tag mới vào danh sách
+                                                    setSelectedDishes((prev) => [...prev, ...filteredTags]);
+                                                    e.target.value = ""; // Reset input sau khi thêm tag
+                                                }
+                                            }
+                                        }
+                                    }}
                                     value={selectedDishes}
                                 >
                                     <Option value="寿司">寿司</Option>
@@ -159,39 +177,41 @@ function Blog() {
                             <Input className="tag" placeholder="どんな日本料理の味に似ていますか" style={{height:'44px'}}/>
                         </Form.Item>
                         <Form.Item>
-                            <Button
-                                type="dashed"
-                                icon={<PlusOutlined />}
-                                onClick={addInputField}
-                                style={{ height: '44px' }}
-                            >
-                                <div style={{ width: 80, height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    コメント
-                                </div>
-                            </Button>
+                        <Button
+                            type="dashed"
+                            icon={<PlusOutlined />}
+                            onClick={addInputField}
+                            style={{ height: '44px' }}
+                        >
+                            <div style={{ width: 80, height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                コメント
+                            </div>
+                        </Button>
+
                         </Form.Item>
                     </div>
 
-                    {/* Hiển thị các ô input mới và nút "-" để xóa */}
+                    {/* // Render các ô input mới cho additionalDishes */}
                     {additionalDishes.map((dish, index) => (
                         <Form.Item key={index} style={{ marginBottom: '0' }}>
                             <div className="flex">
                                 <Input
                                     className="tag"
-                                    value={dish}
-                                    onChange={(e) => handleAdditionalDishChange(index, e.target.value)}
+                                    value={dish} // Liên kết giá trị từ state
+                                    onChange={(e) => handleAdditionalDishChange(index, e.target.value)} // Gọi hàm xử lý khi giá trị thay đổi
                                     placeholder={`どんな日本料理の味に似ていますか`}
                                     style={{ height: '44px' }}
                                 />
                                 <Button
                                     type="dashed"
-                                    icon={<span style={{ fontSize: '20px', color: 'red' }}>-</span>} 
-                                    onClick={() => removeInputField(index)} // Khi nhấn vào nút "-", ô input tương ứng sẽ bị xóa
+                                    icon={<span style={{ fontSize: '20px', color: 'red' }}>-</span>}
+                                    onClick={() => removeInputField(index)} // Gọi hàm xóa khi nhấn nút "-"
                                     style={{ height: '44px' }}
                                 />
                             </div>
                         </Form.Item>
                     ))}
+
                 </Form>
                 <div className='center'>
                     {/* Khung Upload ảnh */}

@@ -68,7 +68,6 @@ function Blog() {
 
     return (
         <div>
-            <Header />
             <header>
                 {/* Header nội dung của bạn, nếu cần */}
             </header>
