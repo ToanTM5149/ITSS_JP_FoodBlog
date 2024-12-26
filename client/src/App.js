@@ -41,7 +41,7 @@ function App() {
 
 function Layout({ children }) {
   const location = useLocation();
-  const noHeaderPaths = ["/login", "/register"];
+  const noHeaderPaths = ["/login", "/register", "/forgot-password", "/forgot-password2", "/new-password"]; // Các trang không cần header
   const shouldShowHeader = !noHeaderPaths.includes(location.pathname);
 
   return (
