@@ -7,9 +7,9 @@ body{
     margin: 0;
 }
 
-.blog-container .ql-editor {
+.blog-editor .ql-editor {
     width: 8.5in;
-    min-height: 100px;  /* Chiều cao mặc định */
+    min-height: 360px;  /* Chiều cao mặc định */
     max-height: 1200px; /* Chiều cao tối đa */
     padding: 1in;
     margin: 1rem;
@@ -19,18 +19,19 @@ body{
 }
 
 
-.blog-container .ql-container.ql-snow{
+.blog-editor .ql-container.ql-snow{
     border: none;
     display: flex;
     justify-content: center;
     position:static;
+    
 }
 
 /* .blog-container {
     position: relative; 
 } */
 
-.blog-container .ql-toolbar.ql-snow {
+.blog-editor .ql-toolbar.ql-snow {
     position: sticky;
     top: 66px;
     z-index: 10; /* Tăng z-index nếu cần để đảm bảo toolbar ở trên nội dung */
@@ -42,6 +43,7 @@ body{
 
 @page{
     margin: 1in;
+    
 }
 
 
@@ -50,7 +52,7 @@ body{
         background-color: none;
     }
 
-    .blog-container .ql-editor{
+    .blog-editor .ql-editor{
         width: 6.5in;
         min-height: 9in;
         padding: 0;
@@ -59,7 +61,8 @@ body{
         align-self: flex-start;
     }
 
-    .blog-container .ql-toolbar.ql{
+    .blog-editor .ql-toolbar.ql{
         display: none;
     }
+    
 }

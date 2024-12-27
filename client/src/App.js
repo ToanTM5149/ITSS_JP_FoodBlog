@@ -10,6 +10,8 @@ import AllBlog from './views/all-blogs/all_blogs.js';
 import AuthProvider from './context/auth_context.js'; // Quản lý trạng thái đăng nhập
 import DataProvider from './context/data_context.js'; // Quản lý dữ liệu JSON
 import HeaderBar from './components/header/header.jsx';
+import AdminUserManagement from './views/admin/usermanage.jsx';
+import AdminPostManagement from './views/admin/contentmanage.jsx';
 function App() {
   return (
     <AuthProvider>
@@ -22,10 +24,11 @@ function App() {
               <Route path="/register" element={<RegisterForm />} />
               <Route path="/all-blogs" element={<AllBlog />} />
               <Route path="/blog-details/:id" element={<WatchBlog />} />
-              <Route path="/createblog/:id" element={<BlogEC />} />
+              <Route path="/createblog" element={<BlogEC />} />
               <Route path="/profile" element={<Profile />} />
               
-              
+              <Route path='/admin/postmanage' element={<AdminPostManagement/>}/>
+              <Route path='/admin/usermanage' element={<AdminUserManagement/>}/>
             </Routes>
           </Layout>
         </Router>

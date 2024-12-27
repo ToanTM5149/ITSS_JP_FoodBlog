@@ -31,5 +31,5 @@ export default function TextEditor() {
     });
   }, []);
 
-  return <div className="blog-container" ref={wrapperRef}></div>;
+  return <div className="blog-editor" ref={wrapperRef}></div>;
 }
