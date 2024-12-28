@@ -11,6 +11,7 @@ import users from '../../data/users.json';
 import moment from 'moment';
 import "./blog.css";
 import { Pagination } from "antd";
+import blogpageHandle from './blogs.handle.js';
 
 function BlogDetail() {
   const { id } = useParams();
@@ -46,7 +47,7 @@ function BlogDetail() {
     tempDiv.innerHTML = content;
 
     // Lấy cả h1 từ nội dung bài viết
-    const headers = Array.from(tempDiv.querySelectorAll("h1"));
+    const headers = Array.from(tempDiv.querySelectorAll("h1, h2"));
 
     // Trả về một danh sách các header
     return headers.map((header) => ({
@@ -58,7 +59,7 @@ function BlogDetail() {
   // Function to handle scroll to the header
   const scrollToHeader = (headerText) => {
     // Tìm tất cả các phần tử h1 và h2
-    const headerElements = document.querySelectorAll("h1");
+    const headerElements = document.querySelectorAll("h1, h2");
   
     // Lọc ra phần tử có nội dung trùng khớp
     const headerElement = Array.from(headerElements).find(
@@ -106,11 +107,7 @@ function BlogDetail() {
   };  
 
   const pageSize = 6;
-  const suggestions = Array.from({ length: 12 }, (_, i) => ({
-    id: i + 1,
-    title: `おすすめの記事 ${i + 1}`,
-    content: `これは ${i + 1} の内容です。`,
-  }));
+  const suggestions = JSON.parse(localStorage.getItem("blogs")) || [];
 
   const currentSuggestions = suggestions.slice(
     (currentPage - 1) * pageSize,
@@ -177,9 +174,9 @@ function BlogDetail() {
             <div className="image-container">
               <div className="likes">
                 {isLiked ? (
-                  <HeartFilled style={{ color: "red", fontSize: "20px", cursor: "pointer" }} onClick={handleLikeClick} />
+                  <HeartFilled style={{ color: "red", fontSize: "32px", cursor: "pointer" }} onClick={handleLikeClick} />
                 ) : (
-                  <HeartOutlined style={{ color: "gray", fontSize: "20px", cursor: "pointer" }} onClick={handleLikeClick} />
+                  <HeartOutlined style={{ color: "gray", fontSize: "32px", cursor: "pointer" }} onClick={handleLikeClick} />
                 )}
                 <span className="like-count">{likeCount}</span>
               </div>
@@ -193,46 +190,57 @@ function BlogDetail() {
             </div>
           </div>
         </Card>
-
-        <div className="sidebar">
-          <h3 className="sidebar-title">記事の目次</h3>
-          <ul className="sidebar-list">
+        <div className="sidebar-wrapper">
+          <div className="sidebar">
+            <h3 className="sidebar-title">記事の目次</h3>
+            <ul className="sidebar-list">
               {headers.map((header) => (
                 <li
                   key={header.text}
-                  className="sidebar-item"
+                  className={`sidebar-item ${header.element.tagName.toLowerCase() + "-tag"}`} // Thêm class 'h1' hoặc 'h2' tùy thuộc vào tag
                   onClick={() => scrollToHeader(header.text)}
                 >
                   {header.text}
                 </li>
               ))}
-          </ul>
+            </ul>
+          </div>
+          <div className="additional-section">
+            <h3 className="additional-title">和食みたい</h3>
+            <ul className="additional-list">
+              {Array.isArray(blog.additional_food) && blog.additional_food.length > 0 ? (
+                  blog.additional_food.map((dish, index) => (
+                    <li key={index} className="additional-item">
+                      {dish}
+                    </li>
+                  ))
+              ) : (
+              <li className="additional-item">コメントはありません。</li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div className="additional-section">
-        <h3 className="additional-title">和食みたい</h3>
-        <ul className="additional-list">
-          {Array.isArray(blog.additional_food) && blog.additional_food.length > 0 ? (
-              blog.additional_food.map((dish, index) => (
-                <li key={index} className="additional-item">
-                  {dish}
-                </li>
-              ))
-          ) : (
-          <li className="additional-item">コメントはありません。</li>
-          )}
-        </ul>
-      </div>
+
 
       <div className="suggestions">
         <h3>こちらもおすすめ</h3>
         <div className="suggestion-wrapper">
           {currentSuggestions.map((item) => (
-            <Card className="suggestion-item" key={item.id} hoverable>
-              <div className="suggestion-image" />
+            <Card className="suggestion-item" 
+            onClick={() => {
+              navigate(`/blog-details/${item.id}`);
+              window.location.reload(); // Thực hiện reload trang
+              window.scrollTo(0, 0); // Cuộn lên đầu trang
+            }} 
+            key={item.id} hoverable>
+              <img className="suggestion-image" src={item.image_url} alt="" />
+              <p className="suggestion-time">
+                {new Date(item.created_at).toLocaleDateString('vi-VN')}
+              </p>
               <p className="title-text">{item.title}</p>
-              <p>{item.content}</p>
+              {/* <p>{item.content}</p> */}
             </Card>
           ))}
         </div>
