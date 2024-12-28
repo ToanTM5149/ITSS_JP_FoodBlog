@@ -4,7 +4,7 @@ import RegisterForm from './views/register-form/register';
 import LoginForm from './views/login-form/login';
 import Homepage from './views/homepage/homepage';
 import WatchBlog from './views/blog-details/blog.js';
-import BlogEC from './views/createblog/Blog.jsx';
+import BlogEC from './views/createblog/Blog2.jsx';
 import Profile from './views/profile/profile.jsx';
 import AllBlog from './views/all-blogs/all_blogs.js';
 import AuthProvider from './context/auth_context.js'; // Quản lý trạng thái đăng nhập
