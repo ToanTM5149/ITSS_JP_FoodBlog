@@ -103,3 +103,24 @@
     align-items: center;
   }
   
+  .follow-button {
+    background-color: #1890ff; /* Màu mặc định của nút Follow */
+    color: white; /* Màu chữ */
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .follow-button.followed {
+    background-color: #52c41a !important; /* Màu xanh khi Follow */
+    border-color: #52c41a !important; /* Màu viền đồng nhất */
+    color: white; /* Màu chữ */
+  }
+  
+  .follow-button:hover {
+    background-color: #40a9ff; /* Màu xanh sáng hơn khi hover */
+  }
+  
+  .follow-button.followed:hover {
+    background-color: #73d13d; /* Màu xanh sáng hơn khi đã Follow */
+  }
+  

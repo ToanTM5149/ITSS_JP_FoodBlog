@@ -21,6 +21,16 @@ export const fetchProfileData = () => {
   const userBlogs = blogs.filter((blog) => blog.author_id === user.id);
   return { user, userBlogs };
 };
+//profile cua nguoi khackhac
+export function fetchProfileData2(id) {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+  const user = users.find((u) => u.id === id); // Tìm user theo id
+  const userBlogs = blogs.filter((b) => b.userId === id); // Lọc bài viết theo userId
+
+  return { user, userBlogs };
+}
 
 // Xóa bài viết
 export const deletePost = (postId, userPosts, setUserPosts) => {

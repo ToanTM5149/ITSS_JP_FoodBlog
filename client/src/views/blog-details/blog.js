@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom"; // Import useParams
+import { useParams, useNavigate} from "react-router-dom"; // Import useParams
 import { Button, Tag, Avatar, Divider, Card } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
 import Header from "../../components/header/header.jsx";
@@ -12,6 +12,7 @@ import { Pagination } from "antd";
 function BlogDetail() {
   const { id } = useParams(); // Get the blog ID from the URL
 
+  const navigate = useNavigate(); // Sử dụng để điều hướng
   // Fetch the corresponding blog and user data
   const blog = blogs.find((b) => b.id === parseInt(id));
   const user = users.find((u) => u.id === blog?.author_id);
@@ -78,19 +79,30 @@ function BlogDetail() {
     return <div>Blog not found</div>; // Handle case where the blog or user does not exist
   }
 
+  const navigateToProfile = () => {
+    navigate(`/profile/${blog?.author_id}`); // Điều hướng đến trang profile của user
+  };
+
+
   return (
     <div className="container">
       <div className="user-info-btn-container">
         <span className="back" onClick={() => window.history.back()}>戻る</span>
         <div className="user-info">
-          <Avatar size={40} style={{ backgroundColor: "#ddd" }}>{user?.username[0]}</Avatar>
-          <span className="username">{user?.username || "Unknown User"}</span>
+          <Avatar size={40} 
+          style={{ backgroundColor: "#ddd" }}
+          onClick={navigateToProfile}>
+            {user?.username[0]}
+          </Avatar>
+          <span className="username" 
+          onClick={navigateToProfile}>
+            {user?.username || "Unknown User"}</span>
           <Button
-            type={isFollowed ? "primary" : "default"}
+            type="primary"
             onClick={handleFollowClick}
-            className="follow-button"
-          >
-            {isFollowed ? "フォロー中" : "フォロー"}
+            className={`follow-button ${isFollowed ? "followed" : ""}`}
+            >
+                {isFollowed ? "フォロー中" : "フォロー"}
           </Button>
           <span className="create-date">作成日: {moment(blog?.created_at).format('YYYY年M月D日')}</span>
         </div>
