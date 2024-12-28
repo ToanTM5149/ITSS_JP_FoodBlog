@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import RegisterForm from './views/register-form/register';
 import LoginForm from './views/login-form/login';
 import Homepage from './views/homepage/homepage';
-import WatchBlog from './views/blog-details/blog.js';
+import WatchBlog from './views/blog-details/blog.jsx';
 import BlogEC from './views/createblog/Blog.jsx';
 import Profile from './views/profile/profile.jsx';
 import AllBlog from './views/all-blogs/all_blogs.js';
