@@ -1,21 +1,15 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom"; // Import useParams
-import { Button, Tag, Avatar, Divider, Card } from "antd";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Button, Tag, Avatar, Divider, Card, message } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
-import Header from "../../components/header/header.jsx";
-import blogs from '../../data/blogs.json';
-import users from '../../data/users.json';
-import moment from 'moment';
+import moment from "moment";
 import "./blog.css";
 import { Pagination } from "antd";
 
 function BlogDetail() {
-  const { id } = useParams(); // Get the blog ID from the URL
-
-  // Fetch the corresponding blog and user data
-  const blog = blogs.find((b) => b.id === parseInt(id));
-  const user = users.find((u) => u.id === blog?.author_id);
-
+  const { id } = useParams(); // Lấy ID blog từ URL
+  const [blog, setBlog] = useState(null);
+  const [user, setUser] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [isFollowed, setIsFollowed] = useState(false);
 
@@ -25,6 +19,22 @@ function BlogDetail() {
     title: `おすすめの記事 ${i + 1}`,
     content: `これは ${i + 1} の内容です。`,
   }));
+
+  // Lấy dữ liệu blog và user từ localStorage
+  useEffect(() => {
+    const storedBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+    const foundBlog = storedBlogs.find((b) => b.id === parseInt(id, 10));
+    if (!foundBlog) {
+      message.error("Blog not found!");
+      return;
+    }
+
+    const foundUser = storedUsers.find((u) => u.id === foundBlog.author_id);
+    setBlog(foundBlog);
+    setUser(foundUser);
+  }, [id]);
 
   const currentSuggestions = suggestions.slice(
     (currentPage - 1) * pageSize,
@@ -40,7 +50,12 @@ function BlogDetail() {
   };
 
   if (!blog || !user) {
-    return <div>Blog not found</div>; // Handle case where the blog or user does not exist
+    return (
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <p>Blog not found.</p>
+        <a href="/all-blogs">Return to All Blogs</a>
+      </div>
+    );
   }
 
   return (
@@ -79,8 +94,30 @@ function BlogDetail() {
           className="article-card"
         >
           <div className="article-body">
-            <div className="image-container">
-              <img src={blog?.image_url || "https://via.placeholder.com/400"} alt="Placeholder" />
+            <div className="media-container">
+              {blog.video_url ? (
+                <video
+                  src={blog.video_url}
+                  controls
+                  style={{
+                    width: "100%",
+                    height: "400px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                  }}
+                />
+              ) : (
+                <img
+                  src={blog?.image_url || "https://via.placeholder.com/400"}
+                  alt="Blog Media"
+                  style={{
+                    width: "100%",
+                    height: "400px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                  }}
+                />
+              )}
               <div className="likes">
                 <span className="like-count">10</span>
                 <span className="like-icon">

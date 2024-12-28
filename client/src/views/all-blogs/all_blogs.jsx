@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Col, Avatar, Pagination } from "antd";
 import { useNavigate } from "react-router-dom";
-import HeaderBar from "../../components/header/header";
 import moment from "moment";
 import allBlogsHandle from "./all_blogs.handle"; // Import file handle
 
@@ -45,17 +44,30 @@ const AllBlog = () => {
               >
                 <Row gutter={16}>
                   <Col span={24} md={12}>
-                    <div className="blog-image large-image">
-                      <img
-                        src={blog.image_url || "https://via.placeholder.com/400"}
-                        alt="large-card-image"
-                        style={{
-                          width: "98%",
-                          height: "200px",
-                          objectFit: "cover",
-                          border: "20px",
-                        }}
-                      />
+                    <div className="blog-media large-image">
+                      {blog.video_url ? (
+                        <video
+                          src={blog.video_url}
+                          controls
+                          style={{
+                            width: "100%",
+                            height: "200px",
+                            objectFit: "cover",
+                            borderRadius: "8px",
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src={blog.image_url || "https://via.placeholder.com/400"}
+                          alt="media-preview"
+                          style={{
+                            width: "100%",
+                            height: "200px",
+                            objectFit: "cover",
+                            borderRadius: "8px",
+                          }}
+                        />
+                      )}
                     </div>
                   </Col>
                   <Col span={24} md={12}>

@@ -1,167 +1,86 @@
 [
-    {
+  {
       "id": 1,
       "title": "Blog Post 1",
       "content": "This is the content for Blog Post 1.",
       "image_url": "https://via.placeholder.com/400",
+      "video_url": null,
       "author_id": 3,
       "status": "public",
       "recommend_food": "Sushi",
       "created_at": "2023-01-02T10:00:00",
       "updated_at": "2023-01-03T06:00:00"
-    },
-    {
+  },
+  {
       "id": 2,
       "title": "bull bread 2",
       "content": "This is the content for Blog Post 2.",
       "image_url": "https://via.placeholder.com/400",
+      "video_url": null,
       "author_id": 8,
       "status": "draft",
       "recommend_food": "Ramen",
       "created_at": "2023-01-03T10:00:00",
       "updated_at": "2023-01-04T03:00:00"
-    },
-    {
+  },
+  {
       "id": 3,
       "title": "Hot Bread 3",
       "content": "This is the content for Blog Post 3.",
       "image_url": "https://via.placeholder.com/400",
+      "video_url": null,
       "author_id": 8,
       "status": "draft",
       "recommend_food": "Salad",
       "created_at": "2023-01-04T10:00:00",
       "updated_at": "2023-01-05T09:00:00"
-    },
-    {
+  },
+  {
       "id": 4,
       "title": "Blog Post 4",
       "content": "This is the content for Blog Post 4.",
       "image_url": "https://via.placeholder.com/400",
+      "video_url": null,
       "author_id": 2,
       "status": "draft",
       "recommend_food": "Pizza",
       "created_at": "2023-01-05T10:00:00",
       "updated_at": "2023-01-06T04:00:00"
-    },
-    {
+  },
+  {
       "id": 5,
       "title": "Blog Post 5",
       "content": "This is the content for Blog Post 5.",
       "image_url": "https://via.placeholder.com/400",
+      "video_url": null,
       "author_id": 2,
       "status": "draft",
       "recommend_food": "Salad",
       "created_at": "2023-01-06T10:00:00",
       "updated_at": "2023-01-06T14:00:00"
-    },
-    {
+  },
+  {
       "id": 6,
       "title": "Blog Post 6",
       "content": "This is the content for Blog Post 6.",
       "image_url": "https://via.placeholder.com/400",
+      "video_url": null,
       "author_id": 3,
       "status": "public",
       "recommend_food": "Sushi",
       "created_at": "2023-01-07T10:00:00",
       "updated_at": "2023-01-08T05:00:00"
-    },
-    {
-      "id": 7,
-      "title": "Blog Post 7",
-      "content": "This is the content for Blog Post 7.",
-      "image_url": "https://via.placeholder.com/400",
-      "author_id": 3,
-      "status": "draft",
-      "recommend_food": "Salad",
-      "created_at": "2023-01-08T10:00:00",
-      "updated_at": "2023-01-09T00:00:00"
-    },
-    {
-      "id": 8,
-      "title": "Blog Post 8",
-      "content": "This is the content for Blog Post 8.",
-      "image_url": "https://via.placeholder.com/400",
-      "author_id": 4,
-      "status": "draft",
-      "recommend_food": "Salad",
-      "created_at": "2023-01-09T10:00:00",
-      "updated_at": "2023-01-09T19:00:00"
-    },
-    {
-      "id": 9,
-      "title": "Blog Post 9",
-      "content": "This is the content for Blog Post 9.",
-      "image_url": "https://via.placeholder.com/400",
-      "author_id": 10,
-      "status": "private",
-      "recommend_food": "Steak",
-      "created_at": "2023-01-10T10:00:00",
-      "updated_at": "2023-01-10T13:00:00"
-    },
-    {
-      "id": 10,
-      "title": "time bread 10",
-      "content": "This is the content for Blog Post 10.",
-      "image_url": "https://via.placeholder.com/400",
-      "author_id": 16,
-      "status": "draft",
-      "recommend_food": "Donuts",
-      "created_at": "2023-01-11T10:00:00",
-      "updated_at": "2023-01-11T21:00:00"
-    },
-    {
-      "id": 11,
-      "title": "Blog Post 11",
-      "content": "This is the content for Blog Post 11.",
-      "image_url": "https://via.placeholder.com/400",
-      "author_id": 16,
-      "status": "public",
-      "recommend_food": "Ice Cream",
-      "created_at": "2023-01-12T10:00:00",
-      "updated_at": "2023-01-13T06:00:00"
-    },
-    {
-      "id": 12,
-      "title": "Blog Post 12",
-      "content": "This is the content for Blog Post 12.",
-      "image_url": "https://via.placeholder.com/400",
-      "author_id": 9,
-      "status": "public",
-      "recommend_food": "Steak",
-      "created_at": "2023-01-13T10:00:00",
-      "updated_at": "2023-01-14T02:00:00"
-    },
-    {
-      "id": 13,
-      "title": "Blog Post 13",
-      "content": "This is the content for Blog Post 13.",
-      "image_url": "https://via.placeholder.com/400",
-      "author_id": 1,
-      "status": "draft",
-      "recommend_food": "Sushi",
-      "created_at": "2023-01-14T10:00:00",
-      "updated_at": "2023-01-14T13:00:00"
-    },
-    {
-      "id": 14,
-      "title": "Blog Post 14",
-      "content": "This is the content for Blog Post 14.",
-      "image_url": "https://via.placeholder.com/400",
-      "author_id": 8,
-      "status": "public",
-      "recommend_food": "Donuts",
-      "created_at": "2023-01-15T10:00:00",
-      "updated_at": "2023-01-15T15:00:00"
-    },
-    {
+  },
+  {
       "id": 15,
       "title": "Blog Post 15",
       "content": "This is the content for Blog Post 15.",
       "image_url": "https://via.placeholder.com/400",
+      "video_url": "https://example.com/video15.mp4",
       "author_id": 7,
       "status": "public",
       "recommend_food": "Steak",
       "created_at": "2023-01-16T10:00:00",
       "updated_at": "2023-01-16T23:00:00"
-    }
-  ]
+  }
+]

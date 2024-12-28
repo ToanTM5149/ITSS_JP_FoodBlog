@@ -1,23 +1,21 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-export const AuthContext = createContext(); // Tạo AuthContext
+export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   const checkLoggedIn = () => {
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    setIsLoggedIn(!!loggedInUser);
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    setIsLoggedIn(!!user);
+    setLoggedInUser(user);
   };
 
   useEffect(() => {
-    // Kiểm tra trạng thái lần đầu
     checkLoggedIn();
 
-    // Lắng nghe sự kiện thay đổi localStorage
     window.addEventListener('storage', checkLoggedIn);
-
-    // Dọn dẹp sự kiện khi component unmount
     return () => {
       window.removeEventListener('storage', checkLoggedIn);
     };
@@ -25,16 +23,18 @@ const AuthProvider = ({ children }) => {
 
   const handleLogin = (user) => {
     localStorage.setItem('loggedInUser', JSON.stringify(user));
-    setIsLoggedIn(true); // Cập nhật trạng thái
+    setIsLoggedIn(true);
+    setLoggedInUser(user);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('loggedInUser');
-    setIsLoggedIn(false); // Cập nhật trạng thái
+    setIsLoggedIn(false);
+    setLoggedInUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, handleLogin, handleLogout }}>
+    <AuthContext.Provider value={{ isLoggedIn, loggedInUser, handleLogin, handleLogout }}>
       {children}
     </AuthContext.Provider>
   );
