@@ -1,226 +1,194 @@
-import React, { useState } from 'react';
-import './Blog.css';
-import Header from '../../components/header/header';
+import React, { useState, useContext } from 'react';
 import { Button, Input, Form, Select, Upload } from 'antd';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import BlogEditor from "./BlogEditor";
+import { AuthContext } from '../../context/auth_context';
+import { useNavigate } from 'react-router-dom';
 
 const { Option } = Select;
 
 function Blog() {
-    const [selectedDishes, setSelectedDishes] = useState([]);
-    const [additionalDishes, setAdditionalDishes] = useState([]);
-    const [croppedImage, setCroppedImage] = useState(null); // Lưu 1 ảnh duy nhất
-    const handleDishChange = (values) => {
-        setSelectedDishes(values);
+    const { loggedInUser } = useContext(AuthContext);
+    const [title, setTitle] = useState("");
+    const [tags, setTags] = useState([]);
+    const [content, setContent] = useState("");
+    const [media, setMedia] = useState(null); // Lưu ảnh hoặc video
+    const [mediaType, setMediaType] = useState(null); // Xác định loại file (image/video)
+    const navigate = useNavigate();
+
+    const handleTagsChange = (values) => {
+        setTags(values);
     };
 
-    const addInputField = () => {
-        setAdditionalDishes((prev) => [...prev, ""]); // Thêm một ô input mới vào danh sách
+    const handleMediaUpload = async ({ file }) => {
+        const fileType = file.type.split('/')[0]; // "image" hoặc "video"
+        if (fileType !== "image" && fileType !== "video") {
+            alert("Please upload an image or video file.");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            setMedia(e.target.result); // Lưu URL media
+            setMediaType(fileType); // Lưu loại file (image/video)
+        };
+        reader.readAsDataURL(file); // Đọc file dưới dạng Base64
     };
 
-    const handleAdditionalDishChange = (index, value) => {
-        const newDishes = [...additionalDishes];
-        newDishes[index] = value;
-        setAdditionalDishes(newDishes);
+    const handleSave = () => {
+        if (!title || !content || !media) {
+            alert("Please fill all required fields before saving.");
+            return;
+        }
+    
+        // Lấy danh sách blog hiện tại từ localStorage
+        const existingBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    
+        // Xác định ID mới
+        const maxId = existingBlogs.length > 0 ? Math.max(...existingBlogs.map(blog => blog.id)) : 0;
+        const newId = maxId + 1;
+    
+        // Tạo blog mới
+        const newBlog = {
+            id: newId, // Sử dụng ID mới
+            title,
+            content,
+            image_url: mediaType === "image" ? media : null,
+            video_url: mediaType === "video" ? media : null,
+            author_id: loggedInUser?.id || 0,
+            tags: tags,
+            status: "public",
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+        };
+    
+        // Lưu blog mới vào localStorage
+        localStorage.setItem("blogs", JSON.stringify([...existingBlogs, newBlog]));
+        alert("Blog has been saved successfully!");
+        navigate("/all-blogs");
     };
-
-    const removeInputField = (index) => {
-        const newDishes = [...additionalDishes];
-        newDishes.splice(index, 1); // Xóa ô input tại index
-        setAdditionalDishes(newDishes);
-    };
-
-    // Xu ly anh 
-    const cropImage = (file, width, height) => {
-        return new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext('2d');
-
-                    // Tính toán để crop ảnh giữ tỷ lệ trung tâm
-                    const scale = Math.max(width / img.width, height / img.height);
-                    const x = (width - img.width * scale) / 2;
-                    const y = (height - img.height * scale) / 2;
-
-                    ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-                    resolve(canvas.toDataURL('image/jpeg'));
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        });
-    };
-
-    const handleImageUpload = async ({ file }) => {
-        const cropped = await cropImage(file.originFileObj || file, 800, 400);
-        setCroppedImage(cropped); // Chỉ lưu ảnh duy nhất
-    };
-
-    const handleRemoveImage = () => {
-        setCroppedImage(null); // Xóa ảnh đã upload
-    };
+    
 
     return (
-        <div>
-            <header>
-                {/* Header nội dung của bạn, nếu cần */}
-            </header>
-            <main className="blog-container">
-                <a href="#">戻って読み続ける</a>
-                <Form layout="vertical">
-                    <Form.Item>
-                        <Input className="title" placeholder="タイトル" />
-                    </Form.Item>
-                    <Form.Item>
-                        <div className="related-box">
-                            <div className="related-dropdown">
-                                <Select
-                                    mode="multiple"
-                                    placeholder="タグ"
-                                    style={{ width: '100%', height: '44px' }}
-                                    onChange={handleDishChange}
-                                    dropdownStyle={{ maxHeight: 300, overflow: 'auto' }}
-                                    onSearch={(searchText) => {
-                                        // Không cần thay đổi gì ở đây
-                                    }}
-                                    onKeyDown={(e) => {
-                                        if (e.key === "Enter" || e.key === " ") {
-                                            // Khi người dùng nhấn dấu cách hoặc Enter
-                                            const newTag = e.target.value.trim();  // Lấy giá trị nhập vào và loại bỏ khoảng trắng ở đầu và cuối
-                                            if (newTag) {
-                                                const tags = newTag.split(" ");  // Tách các từ theo dấu cách
-                                                const filteredTags = tags.filter(tag => tag && !selectedDishes.includes(tag));  // Loại bỏ các tag đã có và trống
-                                                if (filteredTags.length > 0) {
-                                                    // Thêm tag mới vào danh sách
-                                                    setSelectedDishes((prev) => [...prev, ...filteredTags]);
-                                                    e.target.value = ""; // Reset input sau khi thêm tag
-                                                }
-                                            }
-                                        }
-                                    }}
-                                    value={selectedDishes}
-                                >
-                                    <Option value="sushi">寿司</Option>
-                                    <Option value="ramen">天ぷら</Option>
-                                    <Option value="tempura">ラーメン</Option>
-                                    <Option value="takoyaki">たこ焼き</Option>
-                                    <Option value="mochi">餅</Option>
-                                    <Option value="matcha">抹茶</Option>
-                                </Select>
-                            </div>
-                            {selectedDishes.length > 0 && (
-                                <div className="selected-dishes">
-                                    {selectedDishes.map((dish, index) => (
-                                        <span key={index} className="selected-dish">
-                                            {dish}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
+        <div style={{ padding: "100px 20px 20px 20px", maxWidth: "800px", margin: "0 auto" }}>
+            <a href="/all-blogs" style={{ display: "block", marginBottom: "20px", textDecoration: "underline" }}>
+                戻って投稿する
+            </a>
+            <Form layout="vertical">
+                <Form.Item style={{ marginBottom: "10px" }}>
+                    <Input
+                        placeholder="タイトル"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        style={{ height: "40px" }}
+                    />
+                </Form.Item>
+                <Form.Item style={{ marginBottom: "10px" }}>
+                    <Select
+                        mode="tags"
+                        placeholder="タグ"
+                        style={{ width: "100%" }}
+                        onChange={handleTagsChange}
+                        value={tags}
+                    >
+                        <Option value="寿司">寿司</Option>
+                        <Option value="ラーメン">ラーメン</Option>
+                        <Option value="天ぷら">天ぷら</Option>
+                        <Option value="ドーナツ">ドーナツ</Option>
+                    </Select>
+                </Form.Item>
+            </Form>
+            <div style={{ border: "1px dashed #d9d9d9", height: "400px", marginTop: "20px", position: "relative" }}>
+                {!media ? (
+                    <Upload
+                        listType="picture-card"
+                        onChange={handleMediaUpload}
+                        beforeUpload={() => false}
+                        style={{
+                            position: "absolute",
+                            left: "50%",
+                            top: "50%",
+                            transform: "translate(-50%, -50%)",
+                        }}
+                        accept="image/*,video/*"
+                    >
+                        <div>
+                            <PlusOutlined />
+                            <div>Upload Media</div>
                         </div>
-                    </Form.Item>
-                    <span className="related-label">日本の関連する料理</span>
-                    <div className="flex">
-                        <Form.Item className="flex-grow" style={{ marginBottom: 0 }}>
-                            <Input className="tag" placeholder="どんな日本料理の味に似ていますか" style={{height:'44px'}}/>
-                        </Form.Item>
-                                        
-                        <Form.Item>
-                            <Button
-                                type="dashed"
-                                icon={<span style={{ fontSize: '20px', color: '#1890ff' }}>+</span>} // Thêm dấu cộng vào nút
-                                onClick={addInputField}
-                                style={{ height: '44px' }}
+                    </Upload>
+                ) : (
+                    <>
+                        {mediaType === "image" ? (
+                            <img
+                                src={media}
+                                alt="Uploaded"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                }}
+                            />
+                        ) : (
+                            <video
+                                controls
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                }}
                             >
-                                <div style={{ width: 80, height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    コメント
-                                </div>
-                            </Button>
-                        </Form.Item>
-                    </div>
-
-                    {/* Hiển thị các ô input mới và nút "-" để xóa */}
-                    {additionalDishes.map((dish, index) => (
-                        <Form.Item key={index} style={{ marginBottom: '0' }}>
-                            <div className="flex">
-                                <Input
-                                    className="tag"
-                                    value={dish}
-                                    onChange={(e) => handleAdditionalDishChange(index, e.target.value)}
-                                    placeholder={`どんな日本料理の味に似ていますか`}
-                                    style={{ height: '44px' }}
-                                />
-                                <Button
-                                    type="dashed"
-                                    icon={<span style={{ fontSize: '20px', color: 'red' }}>-</span>} 
-                                    onClick={() => removeInputField(index)} // Khi nhấn vào nút "-", ô input tương ứng sẽ bị xóa
-                                    style={{ height: '44px' }}
-                                >
-                                </Button>
-                            </div>
-                        </Form.Item>
-                    ))}
-                </Form>
-            <div className='center'>
-                {/* Khung Upload ảnh */}
-                <div className="upload-container">
-                    {croppedImage ? (
-                        <div className="uploaded-image-container">
-                            <img src={croppedImage} alt="Uploaded" className="uploaded-image" />
-                            <Button
-                                icon={<DeleteOutlined />}
-                                type="text"
-                                danger
-                                onClick={handleRemoveImage}
-                            >
-                                写真を削除
-                            </Button>
-                        </div>
-                    ) : (
-                        <Upload
-                            listType="picture-card"
-                            onChange={handleImageUpload}
-                            beforeUpload={() => false} // Ngăn upload thực sự, chỉ xử lý cục bộ
-                            maxCount={1} // Chỉ cho phép tải lên 1 file
+                                <source src={media} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        )}
+                        <Button
+                            onClick={() => {
+                                setMedia(null);
+                                setMediaType(null);
+                            }}
+                            style={{
+                                position: "absolute",
+                                bottom: "10px",
+                                right: "10px",
+                                backgroundColor: "#ff4d4f",
+                                color: "#fff",
+                                border: "none",
+                            }}
                         >
-                            <div>
-                                <PlusOutlined />
-                                <div style={{ marginTop: 8 }}>Upload</div>
-                            </div>
-                        </Upload>
-                    )}
-                </div>
-
-                <div className="border">
-                    <BlogEditor/>
+                            Re-upload
+                        </Button>
+                    </>
+                )}
+            </div>
+            <div style={{ marginTop: "20px" }}>
+                <h3>Content</h3>
+                <div style={{ border: "1px solid #d9d9d9", padding: "10px", borderRadius: "4px" }}>
+                    <BlogEditor onContentChange={setContent} />
                 </div>
             </div>
-            <Form.Item>
-                <Button
-                    type="primary"
-                    htmlType="submit"
-                    style={{
-                        height: '44px',
-                        width: '20%',  // Đảm bảo nút chiếm toàn bộ chiều rộng của container
-                        display: 'flex',
-                        margin: '0 auto',
-                        top: '20px',
-                        justifyContent: 'center',  // Căn giữa nội dung của nút
-                        alignItems: 'center',      // Căn giữa theo chiều dọc
-                    }}
-                >
-                    投稿
-                </Button>
-            </Form.Item>
-
-           
-            </main>
+            <Button
+                type="primary"
+                onClick={handleSave}
+                style={{
+                    position: "fixed",
+                    bottom: "20px",
+                    right: "20px",
+                    backgroundColor: "#1677ff",
+                    color: "#fff",
+                    height: "44px",
+                    width: "120px",
+                    zIndex: 1000,
+                }}
+            >
+                Save
+            </Button>
         </div>
     );
 }

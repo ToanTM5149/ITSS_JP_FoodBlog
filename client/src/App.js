@@ -6,7 +6,7 @@ import Homepage from './views/homepage/homepage';
 import WatchBlog from './views/blog-details/blog.jsx';
 import BlogEC from './views/createblog/Blog.jsx';
 import Profile from './views/profile/profile.jsx';
-import AllBlog from './views/all-blogs/all_blogs.js';
+import AllBlog from './views/all-blogs/all_blogs.jsx';
 import AuthProvider from './context/auth_context.js'; // Quản lý trạng thái đăng nhập
 import DataProvider from './context/data_context.js'; // Quản lý dữ liệu JSON
 import HeaderBar from './components/header/header.jsx';
