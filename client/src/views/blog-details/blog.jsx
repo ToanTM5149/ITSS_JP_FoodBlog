@@ -231,7 +231,7 @@ function BlogDetail() {
             <Card className="suggestion-item" 
             onClick={() => {
               navigate(`/blog-details/${item.id}`);
-              window.location.reload(); // Thực hiện reload trang
+              
               window.scrollTo(0, 0); // Cuộn lên đầu trang
             }} 
             key={item.id} hoverable>
