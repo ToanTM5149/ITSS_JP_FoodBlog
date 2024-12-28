@@ -41,7 +41,7 @@ const Homepage = () => {
   };
 
   return (
-    <Layout style={{ minHeight: '100vh', margin: '44px 0 0 0' }}>
+    <Layout style={{ minHeight: '100vh', margin: '44px 0 0 0', paddingLeft: '100px', paddingRight: '100px' }}>
       <HeaderBar onSearchSubmit={handleSearch} />
       <Layout style={{ padding: '0 0 0px' }}>
         <Content
@@ -54,7 +54,7 @@ const Homepage = () => {
             boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
           }}
         >
-          <Title level={2} className="section-title" style={{ marginLeft: '50px', marginBottom: '30px' }}>
+          <Title level={2} className="section-title" style={{  marginBottom: '30px' }}>
             最近のブログ投稿
           </Title>
 
@@ -71,26 +71,36 @@ const Homepage = () => {
                     <Card
                       hoverable
                       cover={
-                        <div className="blog-image large-image">
-                          <img
-                            src={sortedBlogs[0]?.image_url || "https://via.placeholder.com/400"}
-                            alt="large-card-image"
-                            style={{ width: '100%', height: '504px', objectFit: 'cover' }}
+                        sortedBlogs[0].video_url ? (
+                          <video
+                            src={sortedBlogs[0].video_url}
+                            controls
+                            style={{
+                              width: '100%',
+                              height: '509px',
+                              objectFit: 'cover',
+                            }}
                           />
-                        </div>
+                        ) : (
+                          <img
+                            src={sortedBlogs[0]?.image_url || 'https://via.placeholder.com/400'}
+                            alt="large-card-image"
+                            style={{ width: '100%', height: '400px', objectFit: 'cover' }}
+                          />
+                        )
                       }
                       onClick={() => homepageHandle.handleNavigate(navigate, sortedBlogs[0]?.id)}
                     >
                       <div style={{ padding: '10px' }}>
                         <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
-                          {sortedBlogs[0]?.title || "No Title"}
+                          {sortedBlogs[0]?.title || 'No Title'}
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
                           <Avatar style={{ marginRight: '8px' }}>
-                            {users.find(user => user.id === sortedBlogs[0]?.author_id)?.username[0] || "U"}
+                            {users.find((user) => user.id === sortedBlogs[0]?.author_id)?.username[0] || 'U'}
                           </Avatar>
                           <span>
-                            {users.find(user => user.id === sortedBlogs[0]?.author_id)?.username || "Unknown User"} •{" "}
+                            {users.find((user) => user.id === sortedBlogs[0]?.author_id)?.username || 'Unknown User'} •{' '}
                             {moment(sortedBlogs[0]?.updated_at).format('YYYY年M月D日')}
                           </span>
                         </div>
@@ -106,11 +116,23 @@ const Homepage = () => {
                           <Card
                             hoverable
                             cover={
-                              <img
-                                src={blog.image_url}
-                                alt="small-card"
-                                style={{ height: '180px', objectFit: 'cover' }}
-                              />
+                              blog.video_url ? (
+                                <video
+                                  src={blog.video_url}
+                                  controls
+                                  style={{
+                                    width: '100%',
+                                    height: '180px',
+                                    objectFit: 'cover',
+                                  }}
+                                />
+                              ) : (
+                                <img
+                                  src={blog.image_url}
+                                  alt="small-card"
+                                  style={{ height: '180px', objectFit: 'cover' }}
+                                />
+                              )
                             }
                             onClick={() => homepageHandle.handleNavigate(navigate, blog.id)}
                           >
@@ -120,10 +142,10 @@ const Homepage = () => {
                               </div>
                               <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
                                 <Avatar style={{ marginRight: '8px' }}>
-                                  {users.find(user => user.id === blog.author_id)?.username[0] || "U"}
+                                  {users.find((user) => user.id === blog.author_id)?.username[0] || 'U'}
                                 </Avatar>
                                 <span>
-                                  {users.find(user => user.id === blog.author_id)?.username || "Unknown User"} •{" "}
+                                  {users.find((user) => user.id === blog.author_id)?.username || 'Unknown User'} •{' '}
                                   {moment(blog.updated_at).format('YYYY年M月D日')}
                                 </span>
                               </div>
@@ -138,32 +160,50 @@ const Homepage = () => {
 
               {/* Card bổ sung */}
               {sortedBlogs.length > 3 && (
-                <Card 
-                hoverable 
-                style={{ marginTop: '20px' }}
-                onClick={() => homepageHandle.handleNavigate(navigate, sortedBlogs[3]?.id)}
+                <Card
+                  hoverable
+                  style={{ marginTop: '20px' }}
+                  onClick={() => homepageHandle.handleNavigate(navigate, sortedBlogs[3]?.id)}
                 >
                   <Row gutter={16}>
                     <Col span={24} md={16}>
                       <div className="blog-image large-image">
-                        <img
-                          src={sortedBlogs[3]?.image_url || "https://via.placeholder.com/400"}
-                          alt="large-card-image"
-                          style={{ width: '100%', height: '200px', objectFit: 'cover', border: '20px' }}
-                        />
+                        {sortedBlogs[3]?.video_url ? (
+                          <video
+                            src={sortedBlogs[3]?.video_url}
+                            controls
+                            style={{
+                              width: '100%',
+                              height: '200px',
+                              objectFit: 'cover',
+                              borderRadius: '8px',
+                            }}
+                          />
+                        ) : (
+                          <img
+                            src={sortedBlogs[3]?.image_url || 'https://via.placeholder.com/400'}
+                            alt="large-card-image"
+                            style={{
+                              width: '100%',
+                              height: '200px',
+                              objectFit: 'cover',
+                              borderRadius: '8px',
+                            }}
+                          />
+                        )}
                       </div>
                     </Col>
                     <Col span={24} md={8}>
                       <div style={{ padding: '10px' }}>
                         <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
-                          {sortedBlogs[3]?.title || "No Title"}
+                          {sortedBlogs[3]?.title || 'No Title'}
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
                           <Avatar style={{ marginRight: '8px' }}>
-                            {users.find(user => user.id === sortedBlogs[3]?.author_id)?.username[0] || "U"}
+                            {users.find((user) => user.id === sortedBlogs[3]?.author_id)?.username[0] || 'U'}
                           </Avatar>
                           <span>
-                            {users.find(user => user.id === sortedBlogs[3]?.author_id)?.username || "Unknown User"} •{" "}
+                            {users.find((user) => user.id === sortedBlogs[3]?.author_id)?.username || 'Unknown User'} •{' '}
                             {moment(sortedBlogs[3]?.updated_at).format('YYYY年M月D日')}
                           </span>
                         </div>
@@ -174,7 +214,7 @@ const Homepage = () => {
               )}
 
               {/* Danh sách bài viết */}
-              <Title level={2} className="blog-title" style={{ marginLeft: '50px', marginBottom: '30px', marginTop: '40px' }}>
+              <Title level={2} className="blog-title" style={{ marginBottom: '30px', marginTop: '40px' }}>
                 すべてのブログ投稿
               </Title>
               <Row gutter={[16, 16]}>
@@ -183,11 +223,19 @@ const Homepage = () => {
                     <Card
                       hoverable
                       cover={
-                        <img
-                          src={blog.image_url}
-                          alt="blog-image"
-                          style={{ height: '180px', objectFit: 'cover' }}
-                        />
+                        blog.video_url ? (
+                          <video
+                            src={blog.video_url}
+                            controls
+                            style={{ width: '100%', height: '180px', objectFit: 'cover' }}
+                          />
+                        ) : (
+                          <img
+                            src={blog.image_url}
+                            alt="blog-image"
+                            style={{ height: '180px', objectFit: 'cover' }}
+                          />
+                        )
                       }
                       onClick={() => homepageHandle.handleNavigate(navigate, blog.id)}
                     >
@@ -197,10 +245,10 @@ const Homepage = () => {
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: 'gray' }}>
                           <Avatar style={{ marginRight: '8px' }}>
-                            {users.find(user => user.id === blog.author_id)?.username[0] || "U"}
+                            {users.find((user) => user.id === blog.author_id)?.username[0] || 'U'}
                           </Avatar>
                           <span>
-                            {users.find(user => user.id === blog.author_id)?.username || "Unknown User"} •{" "}
+                            {users.find((user) => user.id === blog.author_id)?.username || 'Unknown User'} •{' '}
                             {moment(blog.updated_at).format('YYYY年M月D日')}
                           </span>
                         </div>

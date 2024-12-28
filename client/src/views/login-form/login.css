@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 1000px; /* Giới hạn chiều rộng tối đa */
   background-color: #ffffff;
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -53,14 +53,14 @@
   font-weight: bold;
   margin-bottom: 5px;
   color: #333;
-  text-align: center;
+  text-align: start;
 }
 
 .welcome-subtitle {
   font-size: 14px;
   margin-bottom: 30px;
   color: #777;
-  text-align: center;
+  text-align: start;
 }
 
 .login-input {

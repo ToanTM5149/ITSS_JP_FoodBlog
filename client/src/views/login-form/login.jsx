@@ -80,10 +80,10 @@ const LoginForm = () => {
 
             <p style={{ textAlign: "center" }}>
               アカウントをお持ちでないですか?{" "}
-              <Link to="/register" className="register-link">
+              <Link to="/register" style={{ marginRight: "20px" }}>
                 サインアップ
               </Link>
-              <span className="tab-space"></span>
+              <br />
               <Link to="/forgot-password" className="forgot-password-link">
                 パスワードを忘れましたか?
               </Link>
