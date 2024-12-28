@@ -10,7 +10,7 @@ import AllBlog from './views/all-blogs/all_blogs.js';
 import AuthProvider from './context/auth_context.js'; // Quản lý trạng thái đăng nhập
 import DataProvider from './context/data_context.js'; // Quản lý dữ liệu JSON
 import HeaderBar from './components/header/header.jsx';
-
+import OtherProfile from './views/profile/profile2.jsx';
 function App() {
   return (
     <AuthProvider>
@@ -25,6 +25,7 @@ function App() {
               <Route path="/blog-details/:id" element={<WatchBlog />} />
               <Route path="/createblog" element={<BlogEC />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/:id" element={<OtherProfile />} />
             </Routes>
           </Layout>
         </Router>
