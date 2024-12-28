@@ -1,20 +1,15 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import "./BlogEditor.css";
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  [{ font: [] }],
   [{ list: "ordered" }, { list: "bullet" }],
   ["bold", "italic", "underline"],
-  [{ color: [] }, { background: [] }],
-  [{ script: "sub" }, { script: "super" }],
-  [{ align: [] }],
   ["blockquote", "code-block"],
   ["clean"],
 ];
-
 
 export default function TextEditor() {
   const wrapperRef = useCallback((wrapper) => {
@@ -34,8 +29,7 @@ export default function TextEditor() {
       const contentHeight = editorElement.scrollHeight;
       editorElement.style.height = contentHeight < 100 ? "100px" : Math.min(contentHeight, 1200) + "px";
     });
-
   }, []);
 
-  return <div className="blog-container" ref={wrapperRef}></div>;
+  return <div className="blog-editor" ref={wrapperRef}></div>;
 }

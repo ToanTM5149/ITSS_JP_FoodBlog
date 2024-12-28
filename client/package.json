@@ -14,8 +14,9 @@
   "description": "",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "antd": "^5.22.5",
+    "antd": "^5.22.6",
     "axios": "^1.7.9",
+    "client": "file:",
     "moment": "^2.30.1",
     "query-string": "^9.1.1",
     "quill": "^2.0.3",

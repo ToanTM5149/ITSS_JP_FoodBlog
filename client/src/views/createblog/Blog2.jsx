@@ -125,11 +125,10 @@ function Blog() {
             image_url: croppedImage,
             author_id: user.id
         };
-        alert(JSON.stringify(newPost));
-        // const success = createBlog(newPost); // Gọi hàm createBlog từ hook
-        // if (success) {
-        //     //havent do any
-        // }
+        const success = createBlog(newPost); // Gọi hàm createBlog từ hook
+        if (success) {
+            //havent do any
+        }
     };
 
     return (
