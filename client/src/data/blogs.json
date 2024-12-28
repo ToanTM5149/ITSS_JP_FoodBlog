@@ -1,4 +1,188 @@
 [
+    {
+        "id": 21,
+        "title": "sushi master",
+        "content": "<p>Delicious sushi made by the best chef.</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        }
+        ],
+        "author_id": 3,
+        "tags": ["sushi", "delicious"],
+        "dishes": ["Sushi"],
+        "rating": 5,
+        "status": "public",
+        "created_at": "2024-12-28T11:05:00.000Z",
+        "updated_at": "2024-12-28T11:05:00.000Z"
+    },
+    {
+        "id": 22,
+        "title": "tempura delight",
+        "content": "<p>Tempura shrimp with crispy batter.</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        }
+        ],
+        "author_id": 4,
+        "tags": ["tempura", "shrimp"],
+        "dishes": ["Tempura"],
+        "rating": 4,
+        "status": "public",
+        "created_at": "2024-12-28T11:10:00.000Z",
+        "updated_at": "2024-12-28T11:10:00.000Z"
+    },
+    {
+        "id": 23,
+        "title": "ramen lover",
+        "content": "<p>Enjoy the best ramen in town.</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        }
+        ],
+        "author_id": 5,
+        "tags": ["ramen", "noodles"],
+        "dishes": ["Ramen"],
+        "rating": 4,
+        "status": "public",
+        "created_at": "2024-12-28T11:15:00.000Z",
+        "updated_at": "2024-12-28T11:15:00.000Z"
+    },
+    {
+        "id": 24,
+        "title": "unagi experience",
+        "content": "<p>Savor the rich flavor of grilled eel.</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        }
+        ],
+        "author_id": 6,
+        "tags": ["unagi", "eel"],
+        "dishes": ["Unagi"],
+        "rating": 5,
+        "status": "public",
+        "created_at": "2024-12-28T11:20:00.000Z",
+        "updated_at": "2024-12-28T11:20:00.000Z"
+    },
+    {
+        "id": 25,
+        "title": "sashimi platter",
+        "content": "<p>Fresh sashimi from the finest fish.</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        }
+        ],
+        "author_id": 7,
+        "tags": ["sashimi", "fresh"],
+        "dishes": ["Sashimi"],
+        "rating": 5,
+        "status": "public",
+        "created_at": "2024-12-28T11:25:00.000Z",
+        "updated_at": "2024-12-28T11:25:00.000Z"
+    },
+    {
+        "id": 26,
+        "title": "sushi rolling tutorial",
+        "content": "<p>Learn how to make sushi rolls at home!</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        },
+        {
+            "url": "https://www.example.com/video.mp4",
+            "type": "video"
+        }
+        ],
+        "author_id": 8,
+        "tags": ["sushi", "tutorial"],
+        "dishes": ["Sushi"],
+        "rating": 4,
+        "status": "public",
+        "created_at": "2024-12-28T11:30:00.000Z",
+        "updated_at": "2024-12-28T11:30:00.000Z"
+    },
+    {
+        "id": 27,
+        "title": "yakitori grill",
+        "content": "<p>Grilled skewers of chicken and vegetables.</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        }
+        ],
+        "author_id": 9,
+        "tags": ["yakitori", "grill"],
+        "dishes": ["Yakitori"],
+        "rating": 4,
+        "status": "public",
+        "created_at": "2024-12-28T11:35:00.000Z",
+        "updated_at": "2024-12-28T11:35:00.000Z"
+    },
+    {
+        "id": 28,
+        "title": "sushi and sake",
+        "content": "<p>A perfect combination of sushi and sake.</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        }
+        ],
+        "author_id": 10,
+        "tags": ["sushi", "sake"],
+        "dishes": ["Sushi"],
+        "rating": 5,
+        "status": "public",
+        "created_at": "2024-12-28T11:40:00.000Z",
+        "updated_at": "2024-12-28T11:40:00.000Z"
+    },
+    {
+        "id": 29,
+        "title": "tuna tartare",
+        "content": "<p>Fresh tuna with a tangy sauce.</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        }
+        ],
+        "author_id": 11,
+        "tags": ["tuna", "tartare"],
+        "dishes": ["Tuna Tartare"],
+        "rating": 5,
+        "status": "public",
+        "created_at": "2024-12-28T11:45:00.000Z",
+        "updated_at": "2024-12-28T11:45:00.000Z"
+    },
+    {
+        "id": 30,
+        "title": "sushi party",
+        "content": "<p>Host a sushi party with friends and family.</p>",
+        "media": [
+        {
+            "url": "https://via.placeholder.com/400x400.png",
+            "type": "image"
+        }
+        ],
+        "author_id": 12,
+        "tags": ["sushi", "party"],
+        "dishes": ["Sushi"],
+        "rating": 4,
+        "status": "public",
+        "created_at": "2024-12-28T11:50:00.000Z",
+        "updated_at": "2024-12-28T11:50:00.000Z"
+    },
   {
       "id": 1,
       "title": "ベトナムの絶品バンチャー",

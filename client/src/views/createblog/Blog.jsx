@@ -74,7 +74,7 @@ function Blog() {
             content,
             media,
             author_id: loggedInUser?.id || 0,
-            tags,
+            tags: tags,
             status: "public",
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
