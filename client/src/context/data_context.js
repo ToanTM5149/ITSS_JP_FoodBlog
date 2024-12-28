@@ -24,7 +24,11 @@ const DataProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    localStorage.clear();
+    Object.keys(localStorage).forEach((key) => {
+      if (key !== 'loggedInUser') {
+        localStorage.removeItem(key);
+      }
+    });
     localStorage.setItem('blogs', JSON.stringify(blogs));
     localStorage.setItem('blogTags', JSON.stringify(blogTags));
     localStorage.setItem('enums', JSON.stringify(enums));
