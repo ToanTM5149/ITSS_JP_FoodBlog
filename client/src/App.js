@@ -10,7 +10,7 @@ import AllBlog from './views/all-blogs/all_blogs.jsx';
 import AuthProvider from './context/auth_context.js'; // Quản lý trạng thái đăng nhập
 import DataProvider from './context/data_context.js'; // Quản lý dữ liệu JSON
 import HeaderBar from './components/header/header.jsx';
-
+import Footer from './components/footer/footer.jsx'
 function App() {
   return (
     <AuthProvider>
@@ -42,6 +42,7 @@ function Layout({ children }) {
     <>
       {shouldShowHeader && <HeaderBar />}
       {children}
+      {<Footer/>}
     </>
   );
 }
