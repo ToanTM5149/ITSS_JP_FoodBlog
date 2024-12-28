@@ -5,16 +5,17 @@ import { useParams } from "react-router-dom"; // Import useParams
 import { Button, Tag, Avatar, Divider, Card, Modal } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
 import { HeartFilled } from "@ant-design/icons"; // Import HeartFilled icon
-import Header from "../../components/header/header.jsx";
-import blogs from '../../data/blogs.json';
-import users from '../../data/users.json';
+
 import moment from 'moment';
 import "./blog.css";
 import { Pagination } from "antd";
-import blogpageHandle from './blogs.handle.js';
 
 function BlogDetail() {
   const { id } = useParams();
+
+  const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
   // Lấy loggedInUser từ localStorage
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   const navigate = useNavigate(); 
@@ -107,7 +108,7 @@ function BlogDetail() {
   };  
 
   const pageSize = 6;
-  const suggestions = JSON.parse(localStorage.getItem("blogs")) || [];
+  const suggestions = (JSON.parse(localStorage.getItem("blogs")) || []).slice(0, 12);
 
   const currentSuggestions = suggestions.slice(
     (currentPage - 1) * pageSize,
