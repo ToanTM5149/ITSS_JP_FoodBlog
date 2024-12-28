@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Row, Col, Avatar, Card, List, Button, message, Spin } from "antd";
-import {
-  UserOutlined,
-  MailOutlined,
-  PhoneOutlined,
-  HomeOutlined,
-  HeartOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import {UserOutlined,MailOutlined,PhoneOutlined,HomeOutlined,HeartOutlined,DeleteOutlined,} from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { fetchProfileData, deletePost } from "./profile.handle";
+import { fetchProfileData, deletePost, fetchProfileData2 } from "./profile.handle"; 
+import { useParams } from "react-router-dom"; // Import useParams
 import "./profile.css";
 
 function Profile() {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [userPosts, setUserPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null); 
+  const [userPosts, setUserPosts] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [isFollowed, setIsFollowed] = useState(false);
   const navigate = useNavigate(); // Để điều hướng
-
+  const {id} = useParams();
+    
   useEffect(() => {
+    
     setLoading(true);
-    const { user, userBlogs } = fetchProfileData(); // Gọi hàm lấy dữ liệu
-
-    // if (user) {
-    //   setCurrentUser(user);
-    //   setUserPosts(userBlogs);
-    // }
+      const { user, userBlogs } = fetchProfileData2(id); // Gọi hàm lấy dữ liệu
+        console.log(user);
+    
     // const user = {
     //   "id": 7,
     //   "username": "john_doe",
@@ -77,31 +71,46 @@ function Profile() {
       </div>
     );
   }
+ const handleFollowClick = () => {
+    setIsFollowed(!isFollowed); // Đổi trạng thái giữa Follow và Unfollow
+};
 
   return (
    <Layout style={{margin: '20px 10% 0 10%'}}>
     <Layout style={{ minHeight: "100vh", margin: "0 0 0 0" }}>
       <Card style={{ width: "100%", marginBottom: "20px", padding: 0 }}>
-        <div
-          className="cover-image"
-          style={{ backgroundImage: "url(/image/back.jpg)", height: "200px", backgroundSize: "cover" }}
-        />
+        <div className="cover-image" style={{ backgroundImage: "url(/image/back.jpg)" }} />
         <div className="avatar-container">
           <Avatar
             size={64}
             src={currentUser.avatar}
             className="avatar"
-            style={{ width: "120px", height: "120px", border: "4px solid white" }}
+            style={{ width: "120px", height: "120px" }}
           />
         </div>
-        {/* Tên và Status */}
+        {/* Tên và Status va follow*/}
+        <div style={{display: "flex", justifyContent: "glow"}}>
         <div className="user-name-status">
           <h3 className="user-name">{currentUser.username}</h3>
-          <p className="user-status" style={{ color: "green" }}>Online</p>
+          <p className="user-status">Online</p>
         </div>
-
+        <Button
+            type="primary"
+            className="follow-button"
+            onClick={handleFollowClick}
+            style={{
+                width: "100px",
+                margin: "-20px 0 0 30px",
+                backgroundColor: isFollowed ? "green" : "#1677ff", // Xanh lá khi được bấm
+                borderColor: isFollowed ? "green" : "#1677ff",
+                color: "#fff",
+            }}
+        >
+            {isFollowed ? "フォロー中" : "フォロー"} {/* Thay đổi nội dung nút */}
+        </Button>
+        </div>
         {/* Hai cột thông tin và bài viết */}
-        <Row gutter={[20, 20]} className="profile-content" style={{ padding: "20px" }}>
+        <Row gutter={[20, 20]} className="profile-content">
           {/* Cột thông tin */}
           <Col span={8} className="user-details">
             <h4 className="section-title">ユーザー情報</h4>
@@ -133,9 +142,8 @@ function Profile() {
                   key={post.id}
                   hoverable
                   onClick={() => navigate(`/blog-details/${post.id}`)} // Điều hướng đến trang chi tiết bài viết
-                  style={{ marginBottom: "20px" }}
                 >
-                  <Row gutter={[10, 10]}>
+                  <Row>
                     <Col span={2}>
                       <Avatar src={currentUser.avatar} size={48} />
                     </Col>
@@ -145,7 +153,7 @@ function Profile() {
                         <p className="post-time" style={{marginTop: "0px"}}>{new Date(post.updated_at).toLocaleString()}</p>
                       </div>
                     </Col>
-                    <Col span={2} className="delete-icon">
+                    {/* <Col span={2} className="delete-icon">
                       <Button
                         type="text"
                         icon={<DeleteOutlined />}
@@ -154,7 +162,7 @@ function Profile() {
                           deletePost(post.id, userPosts, setUserPosts); // Gọi hàm xóa
                         }}
                       />
-                    </Col>
+                    </Col> */}
                   </Row>
                   <div className="post-image">
                     <img src={post.image_url} style={{maxHeight: "360px"}} alt="Post" />

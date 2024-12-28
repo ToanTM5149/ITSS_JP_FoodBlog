@@ -24,31 +24,18 @@ const DataProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    // Kiểm tra và lưu dữ liệu vào localStorage nếu chưa có
-    const initializeData = (key, defaultData) => {
-      if (!localStorage.getItem(key)) {
-        localStorage.setItem(key, JSON.stringify(defaultData));
+    Object.keys(localStorage).forEach((key) => {
+      if (key !== 'loggedInUser') {
+        localStorage.removeItem(key);
       }
-      return JSON.parse(localStorage.getItem(key));
-    };
-
-    setData({
-      blogs: initializeData("blogs", blogs),
-      blogTags: initializeData("blogTags", blogTags),
-      enums: initializeData("enums", enums),
-      follows: initializeData("follows", follows),
-      likes: initializeData("likes", likes),
-      tags: initializeData("tags", tags),
-      users: initializeData("users", users),
     });
-    
-    // localStorage.setItem("blogs", JSON.stringify(blogs));
-    // localStorage.setItem("blogTags", JSON.stringify(blogTags));
-    // localStorage.setItem("enums", JSON.stringify(enums));
-    // localStorage.setItem("follows", JSON.stringify(follows));
-    // localStorage.setItem("likes", JSON.stringify(likes));
-    // localStorage.setItem("tags", JSON.stringify(tags));
-    // localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem('blogs', JSON.stringify(blogs));
+    localStorage.setItem('blogTags', JSON.stringify(blogTags));
+    localStorage.setItem('enums', JSON.stringify(enums));
+    localStorage.setItem('follows', JSON.stringify(follows));
+    localStorage.setItem('likes', JSON.stringify(likes));
+    localStorage.setItem('tags', JSON.stringify(tags));
+    localStorage.setItem('users', JSON.stringify(users));
   }, []);
 
   // Hàm cập nhật dữ liệu và đồng bộ localStorage

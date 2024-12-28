@@ -12,6 +12,7 @@ export const handleLogin = (values, setLoading, navigate, handleAuthLogin) => {
     if (user) {
       handleAuthLogin(user); // Gọi hàm handleLogin từ AuthContext
       message.success("Đăng nhập thành công!");
+
       navigate("/"); // Chuyển hướng sang homepage
     } else {
       message.error("Email hoặc mật khẩu không chính xác!");

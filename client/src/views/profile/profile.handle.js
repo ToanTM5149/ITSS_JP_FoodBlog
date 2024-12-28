@@ -18,9 +18,23 @@ export const fetchProfileData = () => {
     return { user: null, userBlogs: [] };
   }
 
-  const userBlogs = blogs.filter((blog) => blog.author_id === user.id);
+  const userBlogs = blogs.filter((blog) => blog.author_id === Number(user.id));
   return { user, userBlogs };
 };
+
+export const fetchProfileData2 = (id) => {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+  const user = users.find((user) => user.id === Number(id));
+  if (!user) {
+    message.error("Không tìm thấy thông tin người dùng!");
+    return { user: null, userBlogs: [] };
+  }
+
+  const userBlogs = blogs.filter((blog) => blog.author_id === user.id);
+  return { user, userBlogs };
+}
 
 // Xóa bài viết
 export const deletePost = (postId, userPosts, setUserPosts) => {
