@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useParams } from "react-router-dom"; // Import useParams
-import { Button, Tag, Avatar, Divider, Card } from "antd";
+import { Button, Tag, Avatar, Divider, Card, Modal } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
+import { HeartFilled } from "@ant-design/icons"; // Import HeartFilled icon
 import Header from "../../components/header/header.jsx";
 import blogs from '../../data/blogs.json';
 import users from '../../data/users.json';
@@ -10,7 +13,10 @@ import "./blog.css";
 import { Pagination } from "antd";
 
 function BlogDetail() {
-  const { id } = useParams(); // Get the blog ID from the URL
+  const { id } = useParams();
+  // Lấy loggedInUser từ localStorage
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const navigate = useNavigate(); 
 
   // Fetch the corresponding blog and user data
   const blog = blogs.find((b) => b.id === parseInt(id));
@@ -18,6 +24,21 @@ function BlogDetail() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isFollowed, setIsFollowed] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const [likeCount, setLikeCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    const likes = JSON.parse(localStorage.getItem("likes")) || [];
+    const blogLikes = likes.filter((like) => like.blog_id === blog.id);
+    setLikeCount(blogLikes.length);
+    
+    if (loggedInUser) {
+      const userLike = blogLikes.find((like) => like.user_id === loggedInUser.id);
+      setIsLiked(!!userLike);
+    }
+  }, [blog.id, loggedInUser]);   
 
   // Tìm các thẻ h1 trong nội dung blog để tạo danh sách sidebar
   const getHeadersFromContent = (content) => {
@@ -52,7 +73,37 @@ function BlogDetail() {
     }
   };
 
-
+  const handleLikeClick = () => {
+    if (!loggedInUser) {
+      setIsModalVisible(true);
+      return;
+    }
+  
+    const likes = JSON.parse(localStorage.getItem("likes")) || [];
+  
+    if (isLiked) {
+      // Nếu đã like, thì xóa like
+      const updatedLikes = likes.filter(
+        (like) => !(like.blog_id === blog.id && like.user_id === loggedInUser.id)
+      );
+      localStorage.setItem("likes", JSON.stringify(updatedLikes));
+      setLikeCount((prev) => prev - 1);
+      setIsLiked(false);
+    } else {
+      // Nếu chưa like, thì thêm like
+      console.log(loggedInUser.id);
+      const newLike = {
+        id: likes.length ? Math.max(...likes.map((like) => like.id)) + 1 : 1,
+        user_id: loggedInUser.id,
+        blog_id: blog.id,
+        created_at: new Date().toISOString(),
+      };
+      const updatedLikes = [...likes, newLike];
+      localStorage.setItem("likes", JSON.stringify(updatedLikes));
+      setLikeCount((prev) => prev + 1);
+      setIsLiked(true);
+    }
+  };  
 
   const pageSize = 6;
   const suggestions = Array.from({ length: 12 }, (_, i) => ({
@@ -72,6 +123,15 @@ function BlogDetail() {
 
   const handleFollowClick = () => {
     setIsFollowed((prev) => !prev);
+  };
+
+  const handleModalOk = () => {
+    setIsModalVisible(false);
+    navigate("/login");
+  };
+
+  const handleModalCancel = () => {
+    setIsModalVisible(false);
   };
 
   if (!blog || !user) {
@@ -115,13 +175,15 @@ function BlogDetail() {
         >
           <div className="article-body">
             <div className="image-container">
-              <img src={blog?.image_url || "https://via.placeholder.com/400"} alt="Placeholder" />
               <div className="likes">
-                <span className="like-count">10</span>
-                <span className="like-icon">
-                  <HeartOutlined />
-                </span>
+                {isLiked ? (
+                  <HeartFilled style={{ color: "red", fontSize: "20px", cursor: "pointer" }} onClick={handleLikeClick} />
+                ) : (
+                  <HeartOutlined style={{ color: "gray", fontSize: "20px", cursor: "pointer" }} onClick={handleLikeClick} />
+                )}
+                <span className="like-count">{likeCount}</span>
               </div>
+              <img src={blog?.image_url || "https://via.placeholder.com/400"} alt="Placeholder" />
             </div>
             <Divider />
             <div className="content-container"
@@ -182,6 +244,18 @@ function BlogDetail() {
           className="pagination"
         />
       </div>
+
+      <Modal
+        title="Chưa đăng nhập"
+        visible={isModalVisible}
+        onOk={handleModalOk}
+        onCancel={handleModalCancel}
+        okText="Đồng ý"
+        cancelText="Hủy"
+        centered
+      >
+        <p>Bạn cần đăng nhập để thực hiện tác vụ này.</p>
+      </Modal>
     </div>
   );
 }

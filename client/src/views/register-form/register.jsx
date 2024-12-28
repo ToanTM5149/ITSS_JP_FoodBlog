@@ -5,13 +5,11 @@ import "./register.css";
 
 const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Dùng useNavigate để chuyển hướng
+  const navigate = useNavigate();
   const [form] = Form.useForm();
 
-  // Hàm xử lý khi submit form
   const onFinish = (values) => {
-    setLoading(true); // Bắt đầu gửi dữ liệu
-
+    setLoading(true);
     try {
       const users = JSON.parse(localStorage.getItem("users")) || [];
       const existingUser = users.find((user) => user.email === values.email);
@@ -61,8 +59,8 @@ const RegisterForm = () => {
             className="register-image-logo"
             src="/image/ic_launcher.png"
             alt="Logo"
-            width={100}
-            height={100}
+            width={50}
+            height={50}
           />
           <h2 className="register-title">アカウントを作成</h2>
           <Form

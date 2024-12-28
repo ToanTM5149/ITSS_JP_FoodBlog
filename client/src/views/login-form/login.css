@@ -1,19 +1,21 @@
 /* Container chính */
 .login-page {
   display: flex;
-  height: 100vh;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   background-color: #f9f9f9;
+  padding: 20px; /* Thêm padding để tránh bị chèn sát màn hình */
 }
 
 /* Phần chứa form và ảnh */
 .login-container {
   display: flex;
-  width: 80%;
-  height: 80%;
+  flex-wrap: wrap; /* Đảm bảo chia phần tử dọc khi màn hình nhỏ */
+  width: 100%;
+  max-width: 1000px; /* Giới hạn chiều rộng tối đa */
   background-color: #ffffff;
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -21,16 +23,19 @@
 /* Form đăng nhập */
 .login-left {
   flex: 1;
+  min-width: 300px; /* Đảm bảo phần form không bị quá nhỏ */
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 40px;
+  box-sizing: border-box;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .image-logo {
@@ -48,12 +53,14 @@
   font-weight: bold;
   margin-bottom: 5px;
   color: #333;
+  text-align: start;
 }
 
 .welcome-subtitle {
   font-size: 14px;
   margin-bottom: 30px;
   color: #777;
+  text-align: start;
 }
 
 .login-input {
@@ -80,22 +87,77 @@
   background-color: #45a049;
 }
 
+/* Phần ảnh minh họa */
 .login-right {
   flex: 1;
+  min-width: 300px; /* Đảm bảo hình ảnh không quá nhỏ */
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f0f0f0;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .login-image {
-  width: 80%;
-  height: auto;
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+  max-width: 400px; /* Giới hạn chiều rộng ảnh */
+  height: auto; /* Tự động co theo tỷ lệ */
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.tab-space {
-  display: inline-block;
-  width: 1em; 
+/* Responsive chỉnh cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column; /* Chuyển từ ngang sang dọc */
+  }
+
+  .login-left,
+  .login-right {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .login-right {
+    background-color: #ffffff; /* Loại bỏ nền khác màu */
+  }
+
+  .login-image {
+    max-width: 100%; /* Chiếm toàn bộ màn hình nhỏ */
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    padding: 10px;
+  }
+
+  .login-left {
+    min-width: 350px;
+    padding: 20px 10px; /* Giảm padding */
+  }
+
+  .login-right {
+    min-width: 350px;
+    padding: 10px;
+  }
+
+  .welcome-title {
+    font-size: 18px;
+  }
+
+  .welcome-subtitle {
+    font-size: 12px;
+  }
+
+  .login-button {
+    font-size: 14px;
+    height: 45px;
+  }
+
+  .login-input {
+    font-size: 14px;
+    padding: 10px;
+  }
 }

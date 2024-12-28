@@ -1,17 +1,17 @@
 import React, { useState, useContext } from "react";
 import { Form, Input, Button, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/auth_context"; // Import AuthContext
-import { handleLogin } from "./login.handler"; // Import hàm xử lý đăng nhập
+import { AuthContext } from "../../context/auth_context"; 
+import { handleLogin } from "./login.handler"; 
 import "./login.css";
 
 const LoginForm = () => {
-  const [loading, setLoading] = useState(false); // Trạng thái loading
-  const navigate = useNavigate(); // Điều hướng
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); 
   const { handleLogin: handleAuthLogin } = useContext(AuthContext); // Lấy hàm handleLogin từ AuthContext
 
   const handleSubmit = (values) => {
-    handleLogin(values, setLoading, navigate, handleAuthLogin); // Gọi hàm xử lý từ login.handler
+    handleLogin(values, setLoading, navigate, handleAuthLogin); 
   };
 
   return (
@@ -80,10 +80,10 @@ const LoginForm = () => {
 
             <p style={{ textAlign: "center" }}>
               アカウントをお持ちでないですか?{" "}
-              <Link to="/register" className="register-link">
+              <Link to="/register" style={{ marginRight: "20px" }}>
                 サインアップ
               </Link>
-              <span className="tab-space"></span>
+              <br />
               <Link to="/forgot-password" className="forgot-password-link">
                 パスワードを忘れましたか?
               </Link>
