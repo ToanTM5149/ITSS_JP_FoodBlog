@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import RegisterForm from './views/register-form/register';
 import LoginForm from './views/login-form/login';
 import Homepage from './views/homepage/homepage';
+<<<<<<< HEAD
 import WatchBlog from './views/blog-details/blog.js';
 import BlogEC from './views/createblog/Blog2.jsx';
 import Profile from './views/profile/profile.jsx';
@@ -13,6 +14,16 @@ import DataProvider from './context/data_context.js'; // Quản lý dữ liệu 
 import HeaderBar from './components/header/header.jsx';
 import AdminUserManagement from './views/admin/usermanage.jsx';
 import AdminPostManagement from './views/admin/contentmanage.jsx';
+=======
+import WatchBlog from './views/blog-details/blog.jsx';
+import BlogEC from './views/createblog/Blog.jsx';
+import Profile from './views/profile/profile.jsx';
+import AllBlog from './views/all-blogs/all_blogs.jsx';
+import AuthProvider from './context/auth_context.js'; // Quản lý trạng thái đăng nhập
+import DataProvider from './context/data_context.js'; // Quản lý dữ liệu JSON
+import HeaderBar from './components/header/header.jsx';
+import Footer from './components/footer/footer.jsx'
+>>>>>>> front-end-TANH
 function App() {
   return (
     <AuthProvider>
@@ -48,6 +59,7 @@ function Layout({ children }) {
     <>
       {shouldShowHeader && <HeaderBar />}
       {children}
+      {<Footer/>}
     </>
   );
 }

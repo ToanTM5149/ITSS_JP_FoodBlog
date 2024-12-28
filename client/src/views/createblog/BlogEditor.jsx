@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import "./BlogEditor.css";
 
 const TOOLBAR_OPTIONS = [
+<<<<<<< HEAD
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
   [{ list: "ordered" }, { list: "bullet" }],
   ["bold", "italic", "underline"],
@@ -12,6 +12,15 @@ const TOOLBAR_OPTIONS = [
 ];
 
 export default function TextEditor() {
+=======
+  [{ header: [1, 2, 3, false] }],
+  ["bold", "italic", "underline"],
+  [{ list: "ordered" }, { list: "bullet" }],
+  ["clean"],
+];
+
+export default function BlogEditor({ onContentChange }) {
+>>>>>>> front-end-TANH
   const wrapperRef = useCallback((wrapper) => {
     if (wrapper == null) return;
 
@@ -23,13 +32,15 @@ export default function TextEditor() {
       modules: { toolbar: TOOLBAR_OPTIONS },
     });
 
-    // Lắng nghe sự thay đổi nội dung và cập nhật chiều cao
     quill.on("text-change", () => {
-      const editorElement = wrapper.querySelector(".ql-editor");
-      const contentHeight = editorElement.scrollHeight;
-      editorElement.style.height = contentHeight < 100 ? "100px" : Math.min(contentHeight, 1200) + "px";
+      const content = quill.root.innerHTML; // Lấy nội dung HTML
+      onContentChange(content); // Gửi nội dung về component cha
     });
+<<<<<<< HEAD
   }, []);
+=======
+  }, [onContentChange]);
+>>>>>>> front-end-TANH
 
   return <div className="blog-editor" ref={wrapperRef}></div>;
 }

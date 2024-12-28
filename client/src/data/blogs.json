@@ -1,12 +1,19 @@
 [
-    {
+  {
       "id": 1,
       "title": "Blog Post 1",
+<<<<<<< HEAD
       "content": "<h1>Khám Phá Du Lịch Việt Nam</h1><p>Du lịch là một phần quan trọng trong cuộc sống, giúp con người thư giãn, học hỏi và khám phá những điều mới mẻ. Việt Nam là một quốc gia nổi bật với cảnh quan thiên nhiên tuyệt đẹp và nền văn hóa phong phú, mang đến cho du khách những trải nghiệm không thể quên.</p><h1>Hà Nội - Thủ đô nghìn năm văn hiến</h1><p>Hà Nội, thủ đô của Việt Nam, là nơi có nền văn hóa lâu đời, các công trình kiến trúc cổ kính và ẩm thực đa dạng. Những điểm đến nổi bật ở Hà Nội bao gồm:</p><ul><li>Hồ Hoàn Kiếm</li><li>Chùa Một Cột</li><li>Lăng Chủ tịch Hồ Chí Minh</li></ul><h1>Hội An - Thành phố di sản</h1><p>Hội An là một thành phố nhỏ xinh nằm ở miền Trung Việt Nam, nổi tiếng với những con phố cổ và ánh đèn lồng lung linh vào ban đêm. Du khách đến Hội An có thể tham quan:</p><ol><li>Chợ Hội An</li><li>Nhà cổ Tấn Ký</li><li>Cầu Nhật Bản</li></ol><h3>Ẩm thực Hội An</h3><p>Ẩm thực Hội An là sự kết hợp hoàn hảo của các món ăn truyền thống và hiện đại. Một số món đặc sản nổi tiếng bao gồm:</p><ul><li>Cao Lầu</li><li>Hến xào</li><li>Bánh đập</li></ul><h2>Phú Quốc - Thiên đường nghỉ dưỡng</h2><p>Phú Quốc, hòn đảo xinh đẹp thuộc tỉnh Kiên Giang, nổi tiếng với những bãi biển cát trắng và làn nước trong xanh. Đây là điểm đến lý tưởng cho những ai muốn thư giãn và tận hưởng kỳ nghỉ tuyệt vời. Các địa điểm hấp dẫn tại Phú Quốc gồm:</p><ul><li>Vườn quốc gia Phú Quốc</li><li>Đảo Hòn Thơm</li><li>Chợ Dương Đông</li></ul><p>Với sự đa dạng về cảnh quan, ẩm thực và văn hóa, Việt Nam là một điểm đến du lịch không thể bỏ qua đối với những ai yêu thích sự khám phá và trải nghiệm mới mẻ.</p>",
       "image_url": "https://via.placeholder.com/400",
+=======
+      "content": "This is the content for Blog Post 1.",
+      "image_url": "https://gofood.vn//upload/r/tong-hop-tin-tuc/kinh-nghiem-meo-hay/quan-sushi-o-ha-noi-anh-5.jpg",
+      "video_url": null,
+>>>>>>> front-end-TANH
       "author_id": 3,
       "status": "public",
       "created_at": "2023-01-02T10:00:00",
+<<<<<<< HEAD
       "updated_at": "2023-01-03T06:00:00",
       "tags": ["Travel", "Culture", "Vietnam", "2024"],
       "additional_food": ["This is just a fake post", "No more no less"]
@@ -16,9 +23,20 @@
       "title": "bull bread 2",
       "content": "<h1>Hành Trình Khám Phá Tây Bắc</h1><p>Tây Bắc là một vùng đất nổi tiếng với vẻ đẹp hoang sơ, hùng vĩ của núi non, những bản làng dân tộc thiểu số và những nét văn hóa đặc sắc. Đây là điểm đến lý tưởng cho những ai yêu thích khám phá thiên nhiên và tìm hiểu về các nền văn hóa truyền thống.</p><h2>Sapa - Vùng đất của những ruộng bậc thang</h2><p>Sapa là một trong những điểm du lịch nổi tiếng nhất tại Tây Bắc, với những thửa ruộng bậc thang trải dài trên các sườn đồi, tạo nên một cảnh quan tuyệt đẹp. Du khách đến Sapa có thể tham quan:</p><ul><li>Ruộng bậc thang tại bản Tả Van</li><li>Chợ Sapa</li><li>Núi Fansipan</li></ul><h2>Mù Cang Chải - Cảnh đẹp tựa thiên đường</h2><p>Mù Cang Chải là một huyện thuộc tỉnh Yên Bái, nổi tiếng với những ruộng bậc thang tuyệt đẹp. Cảnh vật nơi đây khiến du khách không khỏi trầm trồ, nhất là vào mùa lúa chín.</p>",
       "image_url": "https://via.placeholder.com/400",
+=======
+      "updated_at": "2023-01-03T06:00:00"
+  },
+  {
+      "id": 2,
+      "title": "bull bread 2",
+      "content": "This is the content for Blog Post 2.",
+      "image_url": "https://gofood.vn//upload/r/tong-hop-tin-tuc/kinh-nghiem-meo-hay/quan-sushi-o-ha-noi-anh-5.jpg",
+      "video_url": null,
+>>>>>>> front-end-TANH
       "author_id": 8,
       "status": "draft",
       "created_at": "2023-01-03T10:00:00",
+<<<<<<< HEAD
       "updated_at": "2023-01-04T03:00:00",
       "tags": ["Travel", "Nature", "Vietnam"],
       "additional_food": ["Cơm lam", "Lợn cắp nách"]
@@ -28,9 +46,20 @@
       "title": "Khám Phá Đà Lạt",
       "content": "<h1>Đà Lạt - Thành phố ngàn hoa</h1><p>Đà Lạt, nằm ở vùng cao nguyên Lâm Viên, là một trong những điểm đến lý tưởng cho những ai yêu thích sự mát mẻ và không khí trong lành. Thành phố này nổi tiếng với những vườn hoa rực rỡ và cảnh sắc thiên nhiên tuyệt đẹp.</p><h2>Những địa điểm nổi bật ở Đà Lạt</h2><p>Khi đến Đà Lạt, du khách không thể bỏ qua các địa điểm nổi tiếng như:</p><ul><li>Thung lũng tình yêu</li><li>Hồ Xuân Hương</li><li>Chùa Linh Phước</li></ul><h2>Ẩm thực Đà Lạt</h2><p>Đà Lạt không chỉ nổi tiếng với cảnh đẹp mà còn với những món ăn ngon như:</p><ul><li>Bánh căn</li><li>Chè nóng</li><li>Cơm lam</li></ul><h3>Khám phá vẻ đẹp Đà Lạt</h3><p>Với không khí dễ chịu và cảnh vật thiên nhiên tươi đẹp, Đà Lạt luôn là lựa chọn lý tưởng cho những chuyến du lịch nghỉ dưỡng hoặc khám phá vẻ đẹp thiên nhiên của Tây Nguyên.</p>",
       "image_url": "https://via.placeholder.com/400",
+=======
+      "updated_at": "2023-01-04T03:00:00"
+  },
+  {
+      "id": 3,
+      "title": "Hot Bread 3",
+      "content": "This is the content for Blog Post 3.",
+      "image_url": "https://gofood.vn//upload/r/tong-hop-tin-tuc/kinh-nghiem-meo-hay/quan-sushi-o-ha-noi-anh-5.jpg",
+      "video_url": null,
+>>>>>>> front-end-TANH
       "author_id": 8,
       "status": "public",
       "created_at": "2023-01-04T10:00:00",
+<<<<<<< HEAD
       "updated_at": "2023-01-05T09:00:00",
       "tags": ["Travel", "Nature", "Vietnam"],
       "additional_food": ["Bánh căn", "Chè nóng"]
@@ -40,9 +69,20 @@
       "title": "Phú Yên - Vùng đất biển cả",
       "content": "<h1>Khám Phá Phú Yên</h1><p>Phú Yên, một tỉnh ven biển miền Trung, là nơi nổi tiếng với những bãi biển đẹp và những cảnh sắc hoang sơ. Đây là điểm đến lý tưởng cho những ai yêu thích sự tĩnh lặng và muốn khám phá vẻ đẹp của biển cả.</p><h2>Những địa điểm nổi bật tại Phú Yên</h2><p>Phú Yên sở hữu những địa danh đẹp và hấp dẫn như:</p><ul><li>Bãi Xép</li><li>Vịnh Vũng Rô</li><li>Nhà thờ Mằng Lăng</li></ul><h2>Ẩm thực Phú Yên</h2><p>Phú Yên cũng nổi tiếng với các món hải sản tươi ngon như:</p><ul><li>Cá ngừ đại dương</li><li>Ốc nhảy</li><li>Cua biển</li></ul><p>Đây là một địa điểm tuyệt vời để thư giãn và tận hưởng không khí trong lành của biển cả.</p>",
       "image_url": "https://via.placeholder.com/400",
+=======
+      "updated_at": "2023-01-05T09:00:00"
+  },
+  {
+      "id": 4,
+      "title": "Blog Post 4",
+      "content": "This is the content for Blog Post 4.",
+      "image_url": "https://gofood.vn//upload/r/tong-hop-tin-tuc/kinh-nghiem-meo-hay/quan-sushi-o-ha-noi-anh-5.jpg",
+      "video_url": null,
+>>>>>>> front-end-TANH
       "author_id": 2,
       "status": "draft",
       "created_at": "2023-01-05T10:00:00",
+<<<<<<< HEAD
       "updated_at": "2023-01-06T04:00:00",
       "tags": ["Travel", "Nature", "Vietnam"],
       "additional_food": ["Cá ngừ đại dương", "Ốc nhảy"]
@@ -52,9 +92,20 @@
       "title": "Bắc Giang - Mảnh đất cổ tích",
       "content": "<h1>Khám Phá Bắc Giang</h1><p>Bắc Giang là một tỉnh thuộc miền Bắc Việt Nam, nổi tiếng với cảnh quan thiên nhiên tươi đẹp và các di tích lịch sử phong phú. Đây là nơi lý tưởng để khám phá văn hóa dân tộc và tìm hiểu về những giá trị lịch sử của đất nước.</p><h2>Những điểm đến không thể bỏ qua</h2><p>Khi đến Bắc Giang, bạn có thể tham quan các địa điểm như:</p><ul><li>Chùa Vĩnh Nghiêm</li><li>Đền Bà Chúa Thượng Ngàn</li><li>Cổng Tam Quan</li></ul><h2>Ẩm thực Bắc Giang</h2><p>Ẩm thực Bắc Giang rất đa dạng với những món ăn đặc sắc như:</p><ul><li>Vịt quay Bắc Giang</li><li>Bánh đa cá rô</li><li>Cơm lam Bắc Giang</li></ul><p>Hãy đến và khám phá Bắc Giang để cảm nhận những giá trị truyền thống của miền Bắc.</p>",
       "image_url": "https://via.placeholder.com/400",
+=======
+      "updated_at": "2023-01-06T04:00:00"
+  },
+  {
+      "id": 5,
+      "title": "Blog Post 5",
+      "content": "This is the content for Blog Post 5.",
+      "image_url": "https://gofood.vn//upload/r/tong-hop-tin-tuc/kinh-nghiem-meo-hay/quan-sushi-o-ha-noi-anh-5.jpg",
+      "video_url": null,
+>>>>>>> front-end-TANH
       "author_id": 2,
       "status": "draft",
       "created_at": "2023-01-06T10:00:00",
+<<<<<<< HEAD
       "updated_at": "2023-01-06T14:00:00",
       "tags": ["Travel", "Nature", "Vietnam"],
       "additional_food": ["Vịt quay Bắc Giang", "Bánh đa cá rô"]
@@ -64,9 +115,20 @@
       "title": "Khám Phá Hạ Long",
       "content": "<h1>Vịnh Hạ Long - Kỳ quan thiên nhiên</h1><p>Vịnh Hạ Long là một trong những kỳ quan thiên nhiên nổi tiếng thế giới với hàng nghìn đảo đá vôi nhô lên từ mặt nước. Đây là một trong những điểm đến không thể bỏ qua khi đến Việt Nam.</p><h2>Những địa điểm nổi bật tại Vịnh Hạ Long</h2><p>Vịnh Hạ Long có rất nhiều địa điểm đẹp để tham quan, như:</p><ul><li>Đảo Ti Top</li><li>Hang Sửng Sốt</li><li>Đảo Cô Tô</li></ul><h2>Ẩm thực Hạ Long</h2><p>Hạ Long còn nổi tiếng với các món ăn ngon như:</p><ul><li>Cầu Gai</li><li>Cá đối</li><li>Chả mực</li></ul><p>Hãy đến và khám phá Vịnh Hạ Long, nơi hội tụ vẻ đẹp hoang sơ của thiên nhiên.</p>",
       "image_url": "https://via.placeholder.com/400",
+=======
+      "updated_at": "2023-01-06T14:00:00"
+  },
+  {
+      "id": 6,
+      "title": "Blog Post 6",
+      "content": "This is the content for Blog Post 6.",
+      "image_url": "https://gofood.vn//upload/r/tong-hop-tin-tuc/kinh-nghiem-meo-hay/quan-sushi-o-ha-noi-anh-5.jpg",
+      "video_url": null,
+>>>>>>> front-end-TANH
       "author_id": 3,
       "status": "public",
       "created_at": "2023-01-07T10:00:00",
+<<<<<<< HEAD
       "updated_at": "2023-01-08T05:00:00",
       "tags": ["Travel", "Nature", "Vietnam"],
       "additional_food": ["Cầu Gai", "Chả mực"]
@@ -168,15 +230,27 @@
       "additional_food": ["Bánh căn", "Cua huỳnh đế"]
     },
     {
+=======
+      "updated_at": "2023-01-08T05:00:00"
+  },
+  {
+>>>>>>> front-end-TANH
       "id": 15,
       "title": "Blog Post 15",
       "content": "<h1>Khám Phá Quảng Ninh</h1><p>Quảng Ninh, nổi tiếng với Vịnh Hạ Long và những bãi biển đẹp, là một trong những điểm đến nổi bật ở miền Bắc Việt Nam. Vùng đất này không chỉ thu hút du khách với cảnh quan thiên nhiên hùng vĩ mà còn với nền văn hóa đặc sắc của các dân tộc vùng núi.</p><h2>Những địa điểm nổi bật tại Quảng Ninh</h2><p>Quảng Ninh có nhiều địa danh nổi tiếng như:</p><ul><li>Vịnh Bái Tử Long</li><li>Chùa Ba Vàng</li><li>Công viên Sun World</li></ul><h2>Ẩm thực Quảng Ninh</h2><p>Ẩm thực Quảng Ninh rất đa dạng, với những món ăn nổi tiếng như:</p><ul><li>Cá chẽm</li><li>Chả mực</li><li>Cua biển</li></ul><p>Quảng Ninh là một điểm đến tuyệt vời cho những ai yêu thích thiên nhiên và ẩm thực đặc sản vùng biển.</p>",
       "image_url": "https://via.placeholder.com/400",
+      "video_url": "https://gofood.vn//upload/r/tong-hop-tin-tuc/kinh-nghiem-meo-hay/quan-sushi-o-ha-noi-anh-5.jpg",
       "author_id": 7,
       "status": "public",
       "created_at": "2023-01-16T10:00:00",
+<<<<<<< HEAD
       "updated_at": "2023-01-16T23:00:00",
       "tags": ["Travel", "Nature", "Vietnam"],
       "additional_food": ["Cá chẽm", "Chả mực"]
     }
   ]
+=======
+      "updated_at": "2023-01-16T23:00:00"
+  }
+]
+>>>>>>> front-end-TANH
