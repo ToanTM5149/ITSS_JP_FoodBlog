@@ -1,4 +1,5 @@
 import { message } from "antd";
+import { Navigate } from "react-router-dom";
 
 // Lấy thông tin người dùng hiện tại và bài viết của họ
 export const fetchProfileData = () => {
@@ -6,6 +7,7 @@ export const fetchProfileData = () => {
 
   if (!loggedInUserEmail) {
     message.error("Bạn chưa đăng nhập!");
+    
     return { user: null, userBlogs: [] };
   }
 
@@ -14,7 +16,7 @@ export const fetchProfileData = () => {
 
   const user = users.find((user) => user.email === loggedInUserEmail);
   if (!user) {
-    message.error("Không tìm thấy thông tin người dùng!");
+    // message.error("Không tìm thấy thông tin người dùng!");
     return { user: null, userBlogs: [] };
   }
 

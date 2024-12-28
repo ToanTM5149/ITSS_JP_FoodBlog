@@ -24,18 +24,27 @@ const DataProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    Object.keys(localStorage).forEach((key) => {
-      if (key !== 'loggedInUser') {
-        localStorage.removeItem(key);
-      }
-    });
-    localStorage.setItem('blogs', JSON.stringify(blogs));
-    localStorage.setItem('blogTags', JSON.stringify(blogTags));
-    localStorage.setItem('enums', JSON.stringify(enums));
-    localStorage.setItem('follows', JSON.stringify(follows));
-    localStorage.setItem('likes', JSON.stringify(likes));
-    localStorage.setItem('tags', JSON.stringify(tags));
-    localStorage.setItem('users', JSON.stringify(users));
+    if (!localStorage.getItem('blogs')) {
+      localStorage.setItem('blogs', JSON.stringify(blogs));
+    }
+    if (!localStorage.getItem('blogTags')) {
+      localStorage.setItem('blogTags', JSON.stringify(blogTags));
+    }
+    if (!localStorage.getItem('enums')) {
+      localStorage.setItem('enums', JSON.stringify(enums));
+    }
+    if (!localStorage.getItem('follows')) {
+      localStorage.setItem('follows', JSON.stringify(follows));
+    }
+    if (!localStorage.getItem('likes')) {
+      localStorage.setItem('likes', JSON.stringify(likes));
+    }
+    if (!localStorage.getItem('tags')) {
+      localStorage.setItem('tags', JSON.stringify(tags));
+    }
+    if (!localStorage.getItem('users')) {
+      localStorage.setItem('users', JSON.stringify(users));
+    }
   }, []);
 
   // Hàm cập nhật dữ liệu và đồng bộ localStorage

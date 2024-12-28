@@ -12,6 +12,7 @@ import DataProvider from './context/data_context.js'; // Quản lý dữ liệu 
 import HeaderBar from './components/header/header.jsx';
 import Footer from './components/footer/footer.jsx';
 import OtherProfile from './views/profile/profile2.jsx';
+import ManagerBlog from './views/admin/contentmanage.jsx'
 function App() {
   return (
     <AuthProvider>
@@ -27,6 +28,9 @@ function App() {
               <Route path="/createblog" element={<BlogEC />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/:id" element={<OtherProfile />} />
+
+              {/* Admin */}
+              <Route path='/admin/content-manage' element={<ManagerBlog />} />
             </Routes>
           </Layout>
         </Router>
