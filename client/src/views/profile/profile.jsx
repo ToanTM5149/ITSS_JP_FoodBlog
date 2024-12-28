@@ -13,13 +13,26 @@ function Profile() {
 
   useEffect(() => {
     setLoading(true);
-    const { user, userBlogs } = fetchProfileData(); // Gọi hàm lấy dữ liệu
+    // const { user, userBlogs } = fetchProfileData(); // Gọi hàm lấy dữ liệu
 
-    if (user) {
-      setCurrentUser(user);
-      setUserPosts(userBlogs);
-    }
-
+    // if (user) {
+    //   setCurrentUser(user);
+    //   setUserPosts(userBlogs);
+    // }
+    const user = {
+      "id": 7,
+      "username": "john_doe",
+      "email": "john_doe@example.com",
+      "password": "password318",
+      "role": "User",
+      "sex": "Female",
+      "avatar": "https://via.placeholder.com/150",
+      "address": "789 Oak St",
+      "phone": "8247147140"
+    };
+    const userBlogs= [
+      
+    ]
     setLoading(false); // Kết thúc tải dữ liệu
   }, []);
 

@@ -19,6 +19,41 @@ function BlogDetail() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isFollowed, setIsFollowed] = useState(false);
 
+  // Tìm các thẻ h1 trong nội dung blog để tạo danh sách sidebar
+  const getHeadersFromContent = (content) => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = content;
+
+    // Lấy cả h1 từ nội dung bài viết
+    const headers = Array.from(tempDiv.querySelectorAll("h1"));
+
+    // Trả về một danh sách các header
+    return headers.map((header) => ({
+      text: header.innerText,
+      element: header
+    }));
+  };
+  const headers = getHeadersFromContent(blog.content);
+  // Function to handle scroll to the header
+  const scrollToHeader = (headerText) => {
+    // Tìm tất cả các phần tử h1 và h2
+    const headerElements = document.querySelectorAll("h1");
+  
+    // Lọc ra phần tử có nội dung trùng khớp
+    const headerElement = Array.from(headerElements).find(
+      (header) => header.innerText === headerText
+    );
+  
+    if (headerElement) {
+      // Cuộn đến phần tử tìm thấy
+      headerElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      
+    }
+  };
+
+
+
   const pageSize = 6;
   const suggestions = Array.from({ length: 12 }, (_, i) => ({
     id: i + 1,
@@ -67,7 +102,7 @@ function BlogDetail() {
             <>
               <h2 className="title">{blog?.title || "No Title"}</h2>
               <div className="tags">
-                {(blog?.tags || ["タグ1", "タグ2"]).map((tag) => (
+                {blog.tags.map((tag) => (
                   <Tag color="blue" key={tag}>
                     {tag}
                   </Tag>
@@ -89,16 +124,26 @@ function BlogDetail() {
               </div>
             </div>
             <Divider />
-            <div className="content-container">{blog?.content}</div>
+            <div className="content-container"
+               dangerouslySetInnerHTML={{
+                __html: blog.content,
+              }}>
+            </div>
           </div>
         </Card>
 
         <div className="sidebar">
           <h3 className="sidebar-title">記事の目次</h3>
           <ul className="sidebar-list">
-            <li className="sidebar-item">第1部: 紹介</li>
-            <li className="sidebar-item">第2部: 主な内容</li>
-            <li className="sidebar-item">第3部: 結論</li>
+              {headers.map((header) => (
+                <li
+                  key={header.text}
+                  className="sidebar-item"
+                  onClick={() => scrollToHeader(header.text)}
+                >
+                  {header.text}
+                </li>
+              ))}
           </ul>
         </div>
       </div>
@@ -106,11 +151,15 @@ function BlogDetail() {
       <div className="additional-section">
         <h3 className="additional-title">和食みたい</h3>
         <ul className="additional-list">
-          {["寿司", "ラーメン", "天ぷら", "うどん"].map((item) => (
-            <li key={item} className="additional-item">
-              {item}
-            </li>
-          ))}
+          {Array.isArray(blog.additional_food) && blog.additional_food.length > 0 ? (
+              blog.additional_food.map((dish, index) => (
+                <li key={index} className="additional-item">
+                  {dish}
+                </li>
+              ))
+          ) : (
+          <li className="additional-item">コメントはありません。</li>
+          )}
         </ul>
       </div>
 
