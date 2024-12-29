@@ -233,6 +233,13 @@ function BlogDetail() {
     setIsModalVisible(false);
   };
 
+  const goToProfile = () => {
+    const profileUrl = checkAuthorIsUser() ? '/profile' : `/profile/${user?.id}`;
+    navigate(profileUrl);
+  };
+
+
+
   if (!blog || !user) {
     return <div>ブログが見つかりません</div>; // Handle case where the blog or user does not exist
   }
@@ -245,10 +252,10 @@ function BlogDetail() {
         <div className="user-info">
           <div style={{display: "flex",gap: "10px"}}>
             <Avatar size={40} style={{ backgroundColor: "#ddd" }}
-            onClick={() => navigate(`/profile/${user?.id}`)}
+              onClick={() => goToProfile()}
             >{user?.username[0]}</Avatar>
             <span className="username" style={{marginTop: "10px"}}
-               onClick={() => navigate(`/profile/${user?.id}`)}
+               onClick={() => goToProfile()}
             >{user?.username || "Unknown User"}</span>
           </div>
           {FollowButton()}
