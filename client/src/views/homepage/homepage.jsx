@@ -26,6 +26,7 @@ const Homepage = () => {
     if (Array.isArray(media) && media.length > 0) {
       const firstMedia = media[0];
 
+      console.log(firstMedia.url);
       if (firstMedia.type === "image") {
         return <img
           src={firstMedia.url} alt="Media Content"

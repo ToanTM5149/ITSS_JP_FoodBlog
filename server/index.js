@@ -69,35 +69,37 @@ app.use('/videos', express.static(path.join(__dirname, 'videos')));
 
 // Route kiểm tra
 app.get('/', (req, res) => {
-    res.send('Hello World');
+  res.send('Hello World');
 });
 
 // Route upload
 app.post('/upload', upload.single('file'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded or unsupported file type.' });
-    }
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded or unsupported file type.' });
+  }
 
-    // Xác định URL truy cập file
-    const protocol = req.protocol;
-    const host = req.get('host');
-    let fileUrl = '';
+  // Xác định URL truy cập file
+  const protocol = req.protocol;
+  const host = req.get('host');
+  let fileUrl = '';
 
-    if (req.file.mimetype.startsWith('image/')) {
-        fileUrl = `${protocol}://${host}/images/${req.file.filename}`;
-    } else if (req.file.mimetype.startsWith('video/')) {
-        fileUrl = `${protocol}://${host}/videos/${req.file.filename}`;
-    }
+  if (req.file.mimetype.startsWith('image/')) {
+    fileUrl = `${protocol}://${host}/images/${req.file.filename}`;
+  } else if (req.file.mimetype.startsWith('video/')) {
+    fileUrl = `${protocol}://${host}/videos/${req.file.filename}`;
+  }
 
-    res.json({ url: fileUrl });
+  console.log(fileUrl);
+
+  res.json({ url: fileUrl });
 });
 
 // Xử lý lỗi Multer
 app.use((err, req, res, next) => {
-    if (err instanceof multer.MulterError || err.message === 'Unsupported file type') {
-        return res.status(400).json({ error: err.message });
-    }
-    next(err);
+  if (err instanceof multer.MulterError || err.message === 'Unsupported file type') {
+    return res.status(400).json({ error: err.message });
+  }
+  next(err);
 });
 
 // Bắt đầu server
