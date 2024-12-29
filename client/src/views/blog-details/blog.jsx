@@ -385,7 +385,7 @@ function BlogDetail() {
         cancelText="Hủy"
         centered
       >
-        <p>Bạn cần đăng nhập để thực hiện tác vụ này.</p>
+        <p>この操作を実行するには、ログインする必要があります。</p>
       </Modal>
     </div>
   );

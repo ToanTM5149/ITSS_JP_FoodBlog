@@ -11,15 +11,15 @@ export const handleLogin = (values, setLoading, navigate, handleAuthLogin) => {
 
     if (user) {
       handleAuthLogin(user); // Gọi hàm handleLogin từ AuthContext
-      message.success("Đăng nhập thành công!");
+      message.success("ログインに成功しました！");
 
       navigate("/"); // Chuyển hướng sang homepage
     } else {
-      message.error("Email hoặc mật khẩu không chính xác!");
+      message.error("メールアドレスまたはパスワードが正しくありません！");
     }
   } catch (error) {
-    console.error("Login error:", error);
-    message.error("Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại!");
+    console.error("ログインエラー:", error);
+    message.error("ログイン中にエラーが発生しました。もう一度お試しください！");
   } finally {
     setLoading(false); // Kết thúc trạng thái loading
   }

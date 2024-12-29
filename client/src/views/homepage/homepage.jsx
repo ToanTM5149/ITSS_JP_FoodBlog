@@ -39,7 +39,7 @@ const Homepage = () => {
         return (
           <video controls>
             <source src={firstMedia.url} type="video/mp4" />
-            Your browser does not support the video tag.
+            ブラウザはこの動画タグをサポートしていません。
             style={{
                   width: "100%",
                   height: "200px",

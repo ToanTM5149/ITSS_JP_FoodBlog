@@ -84,7 +84,7 @@ function Profile() {
       setCurrentUser(user);
       setUserPosts(userBlogs);
     }else{
-        alert("Không tìm thấy thông tin người dùng!"); // Thông báo lỗi
+        alert("ユーザー情報が見つかりませんでした"); // Thông báo lỗi
         navigate("/login"); // Điều hướng sau khi hiển thị alert
     }
     setLoading(false); // Kết thúc tải dữ liệu
