@@ -18,7 +18,7 @@ function BlogDetail() {
 
   // Lấy loggedInUser từ localStorage
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   // Fetch the corresponding blog and user data
   const blog = blogs.find((b) => b.id === parseInt(id));
@@ -31,16 +31,18 @@ function BlogDetail() {
   const [likeCount, setLikeCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
+  const [popupMediaUrl, setPopupMediaUrl] = useState(null);
+
   useEffect(() => {
     const likes = JSON.parse(localStorage.getItem("likes")) || [];
     const blogLikes = likes.filter((like) => like.blog_id === blog.id);
     setLikeCount(blogLikes.length);
-    
+
     if (loggedInUser) {
       const userLike = blogLikes.find((like) => like.user_id === loggedInUser.id);
       setIsLiked(!!userLike);
     }
-  }, [blog.id, loggedInUser]);   
+  }, [blog.id, loggedInUser]);
 
   // Tìm các thẻ h1 trong nội dung blog để tạo danh sách sidebar
   const getHeadersFromContent = (content) => {
@@ -61,18 +63,96 @@ function BlogDetail() {
   const scrollToHeader = (headerText) => {
     // Tìm tất cả các phần tử h1 và h2
     const headerElements = document.querySelectorAll("h1, h2");
-  
+
     // Lọc ra phần tử có nội dung trùng khớp
     const headerElement = Array.from(headerElements).find(
       (header) => header.innerText === headerText
     );
-  
+
     if (headerElement) {
       // Cuộn đến phần tử tìm thấy
       headerElement.scrollIntoView({ behavior: "smooth", block: "center" });
     } else {
-      
+
     }
+  };
+
+  const handleMediaClick = (url) => {
+    setPopupMediaUrl(url);
+  };
+
+  const closeModal = () => {
+    setPopupMediaUrl(null);
+  };
+
+  const renderMedia = (media) => {
+    if (Array.isArray(media) && media.length > 0) {
+      const firstMedia = media[0];
+
+      if (firstMedia.type === "image") {
+        return <img src={firstMedia.url} alt="Media Content" />;
+      } else if (firstMedia.type === "video") {
+        return (
+          <video controls>
+            <source src={firstMedia.url} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        );
+      }
+    }
+
+    return <img src="https://via.placeholder.com/400" alt="Placeholder" />;
+  };
+
+  const renderMediaItems = (media) => {
+    if (!Array.isArray(media) || media.length <= 1) {
+      return <div></div>;
+    }
+
+    // Nếu độ dài mảng media lớn hơn 1, bỏ qua phần tử đầu tiên
+    const filteredMedia = media.length > 1 ? media.slice(1) : media;
+
+    return (
+      <div className="media-gallery">
+        {filteredMedia.map((item, index) => {
+          if (item.type === "image") {
+            return (
+              <img
+                key={index}
+                src={item.url}
+                alt={`Media ${index + 2}`} // Bắt đầu đánh số từ 2
+                onClick={() => handleMediaClick(item.url)}
+                style={{
+                  width: "200px",
+                  margin: "10px",
+                  cursor: "pointer",
+                  borderRadius: "8px",
+                }}
+              />
+            );
+          } else if (item.type === "video") {
+            return (
+              <video
+                key={index}
+                controls
+                style={{
+                  width: "200px",
+                  margin: "10px",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleMediaClick(item.url)}
+              >
+                <source src={item.url} type="video/mp4" />
+                お使いのブラウザはビデオタグをサポートしていません。
+              </video>
+            );
+          } else {
+            return null;
+          }
+        })}
+      </div>
+    );
   };
 
   const handleLikeClick = () => {
@@ -80,9 +160,9 @@ function BlogDetail() {
       setIsModalVisible(true);
       return;
     }
-  
+
     const likes = JSON.parse(localStorage.getItem("likes")) || [];
-  
+
     if (isLiked) {
       // Nếu đã like, thì xóa like
       const updatedLikes = likes.filter(
@@ -105,7 +185,7 @@ function BlogDetail() {
       setLikeCount((prev) => prev + 1);
       setIsLiked(true);
     }
-  };  
+  };
 
   const pageSize = 6;
   const suggestions = (JSON.parse(localStorage.getItem("blogs")) || []).slice(0, 12);
@@ -133,7 +213,7 @@ function BlogDetail() {
   };
 
   if (!blog || !user) {
-    return <div>Blog not found</div>; // Handle case where the blog or user does not exist
+    return <div>ブログが見つかりません</div>; // Handle case where the blog or user does not exist
   }
 
   return (
@@ -181,7 +261,7 @@ function BlogDetail() {
                 )}
                 <span className="like-count">{likeCount}</span>
               </div>
-              <img src={blog?.image_url || "https://via.placeholder.com/400"} alt="Placeholder" />
+              {renderMedia(blog.media)}
             </div>
             <Divider />
             <div className="content-container"
@@ -189,6 +269,18 @@ function BlogDetail() {
                 __html: blog.content,
               }}>
             </div>
+            <Divider />
+            <div className="image-container">
+              {renderMediaItems(blog.media)}
+            </div>
+            <Modal
+              visible={!!popupMediaUrl}
+              footer={null}
+              onCancel={closeModal}
+              centered
+            >
+              <img src={popupMediaUrl} alt="Popup Media" style={{ width: "100%" }} />
+            </Modal>
           </div>
         </Card>
         <div className="sidebar-wrapper">
@@ -198,7 +290,7 @@ function BlogDetail() {
               {headers.map((header) => (
                 <li
                   key={header.text}
-                  className={`sidebar-item ${header.element.tagName.toLowerCase() + "-tag"}`} // Thêm class 'h1' hoặc 'h2' tùy thuộc vào tag
+                  className={`sidebar-item ${header.element.tagName.toLowerCase() + "-tag"}`}
                   onClick={() => scrollToHeader(header.text)}
                 >
                   {header.text}
@@ -209,8 +301,8 @@ function BlogDetail() {
           <div className="additional-section">
             <h3 className="additional-title">和食みたい</h3>
             <ul className="additional-list">
-              {Array.isArray(blog.additional_food) && blog.additional_food.length > 0 ? (
-                  blog.additional_food.map((dish, index) => (
+              {Array.isArray(blog.dishes) && blog.dishes.length > 0 ? (
+                  blog.dishes.map((dish, index) => (
                     <li key={index} className="additional-item">
                       {dish}
                     </li>
@@ -223,20 +315,18 @@ function BlogDetail() {
         </div>
       </div>
 
-
-
       <div className="suggestions">
         <h3>こちらもおすすめ</h3>
         <div className="suggestion-wrapper">
           {currentSuggestions.map((item) => (
-            <Card className="suggestion-item" 
+            <Card className="suggestion-item"
             onClick={() => {
               navigate(`/blog-details/${item.id}`);
-              
+
               window.scrollTo(0, 0); // Cuộn lên đầu trang
-            }} 
+            }}
             key={item.id} hoverable>
-              <img className="suggestion-image" src={item.image_url} alt="" />
+              <img className="suggestion-image" src={item.media[0].url} alt="" />
               <p className="suggestion-time">
                 {new Date(item.created_at).toLocaleDateString('vi-VN')}
               </p>

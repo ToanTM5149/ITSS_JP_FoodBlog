@@ -88,16 +88,13 @@ function Blog() {
             rating,
             author_id: loggedInUser?.id || 0,
             tags: tags,
+            tags: tags,
             status: "public",
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
         };
 
-        if (media[0].type === "image") {
-            newBlog.image_url = media[0].url;
-        } else if (media[0].type === "video") {
-            newBlog.video_url = media[0].url;
-        }
+        newBlog.media = media.map((item, index) => ({ ...item, id: index + 1 }));
 
         localStorage.setItem("blogs", JSON.stringify([...existingBlogs, newBlog]));
         alert("Blog has been saved successfully!");
