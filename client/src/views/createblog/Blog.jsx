@@ -73,6 +73,8 @@ function Blog() {
             title,
             content,
             media,
+            dishes,
+            rating,
             author_id: loggedInUser?.id || 0,
             tags: tags,
             status: "public",
