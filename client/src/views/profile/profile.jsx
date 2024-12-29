@@ -17,7 +17,24 @@ function Profile() {
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate(); // Để điều hướng
+  const renderMedia = (media) => {
+    if (Array.isArray(media) && media.length > 0) {
+      const firstMedia = media[0];
 
+      if (firstMedia.type === "image") {
+        return <img src={firstMedia.url} alt="Media Content" />;
+      } else if (firstMedia.type === "video") {
+        return (
+          <video controls>
+            <source src={firstMedia.url} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        );
+      }
+    }
+
+    return <img src="https://via.placeholder.com/400" alt="Placeholder" />;
+  };
   useEffect(() => {
     setLoading(true);
     const { user, userBlogs } = fetchProfileData(); // Gọi hàm lấy dữ liệu
@@ -160,7 +177,8 @@ function Profile() {
                     </Col>
                   </Row>
                   <div className="post-image">
-                    <img src={post.image_url} style={{maxHeight: "360px"}} alt="Post" />
+                    {renderMedia(post.media)}
+                    {/* <img src={post.image_url} style={{maxHeight: "360px"}} alt="Post" /> */}
                   </div>
                   <div
                     className="post-title"

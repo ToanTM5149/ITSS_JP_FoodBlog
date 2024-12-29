@@ -42,6 +42,15 @@ function BlogDetail() {
       setIsLiked(!!userLike);
     }
   }, [blog.id, loggedInUser]);
+  //ham kiem tra nguoi dung co phai author khong
+  const checkAuthorIsUser=() =>{
+      const user_idc = loggedInUser.id;
+      const author_idc = blog.author_id;
+      console.error(author_idc, "______", user_idc);
+      if(user_idc === author_idc){
+        return true;
+      } else return false;
+  }
 
   // Tìm các thẻ h1 trong nội dung blog để tạo danh sách sidebar
   const getHeadersFromContent = (content) => {
@@ -193,7 +202,20 @@ function BlogDetail() {
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
-
+  const FollowButton = () => {
+    if(!checkAuthorIsUser()){
+      return(
+        <Button
+            type={isFollowed ? "primary" : "default"}
+            onClick={handleFollowClick}
+            className="follow-button"
+            style={{marginTop: "4px"}}
+          >
+            {isFollowed ? "フォロー中" : "フォロー"}
+          </Button>
+      );
+    }else return;
+  }
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -206,7 +228,7 @@ function BlogDetail() {
     setIsModalVisible(false);
     navigate("/login");
   };
-
+  
   const handleModalCancel = () => {
     setIsModalVisible(false);
   };
@@ -214,6 +236,7 @@ function BlogDetail() {
   if (!blog || !user) {
     return <div>ブログが見つかりません</div>; // Handle case where the blog or user does not exist
   }
+
 
   return (
     <div className="container">
@@ -228,13 +251,7 @@ function BlogDetail() {
                onClick={() => navigate(`/profile/${user?.id}`)}
             >{user?.username || "Unknown User"}</span>
           </div>
-          <Button
-            type={isFollowed ? "primary" : "default"}
-            onClick={handleFollowClick}
-            className="follow-button"
-          >
-            {isFollowed ? "フォロー中" : "フォロー"}
-          </Button>
+          {FollowButton()}
           <span className="create-date">作成日: {moment(blog?.created_at).format('YYYY年M月D日')}</span>
         </div>
       </div>
