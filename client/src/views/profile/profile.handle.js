@@ -13,14 +13,17 @@ export const fetchProfileData = () => {
 
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+  const likes = JSON.parse(localStorage.getItem("likes")) || [];
 
   const user = users.find((user) => user.email === loggedInUserEmail);
   if (!user) {
-    // message.error("Không tìm thấy thông tin người dùng!");
     return { user: null, userBlogs: [] };
   }
 
   const userBlogs = blogs.filter((blog) => blog.author_id === Number(user.id));
+  userBlogs.forEach((blog) => {
+    blog.likes = likes.filter((like) => like.blog_id === blog.id).length;
+  });
   return { user, userBlogs };
 };
 

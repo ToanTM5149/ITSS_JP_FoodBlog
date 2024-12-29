@@ -17,6 +17,7 @@ function Profile() {
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate(); // Để điều hướng
+
   const renderMedia = (media) => {
     if (Array.isArray(media) && media.length > 0) {
       const firstMedia = media[0];
@@ -35,51 +36,10 @@ function Profile() {
 
     return <img src="https://via.placeholder.com/400" alt="Placeholder" />;
   };
+
   useEffect(() => {
     setLoading(true);
     const { user, userBlogs } = fetchProfileData(); // Gọi hàm lấy dữ liệu
-
-    // if (user) {
-    //   setCurrentUser(user);
-    //   setUserPosts(userBlogs);
-    // }
-    // const user = {
-    //   "id": 7,
-    //   "username": "john_doe",
-    //   "email": "john_doe@example.com",
-    //   "password": "password318",
-    //   "role": "User",
-    //   "sex": "Female",
-    //   "avatar": "https://via.placeholder.com/150",
-    //   "address": "789 Oak St",
-    //   "phone": "8247147140"
-    // };
-    // const userBlogs= [
-    //   {
-    //     "id": 9,
-    //     "title": "カフェトゥン",
-    //     "content": "<h1>カフェトゥン - ベトナムのエッグコーヒー</h1><p>ベトナムの特別なデザート「カフェトゥン」（ベトナムのエッグコーヒー）をご紹介します。この独特なドリンクは、ベトナムのカフェ文化の中でも非常に人気があり、多くの人々を魅了しています。カフェトゥンは、そのクリーミーでリッチな味わいが特徴で、寒い季節にもぴったりの温かいデザートコーヒーです。</p><h2>材料と作り方</h2><p>カフェトゥンは、コーヒー、卵黄、砂糖、バター、練乳を使用して作られます。最初に、エスプレッソコーヒーを抽出し、冷やしておきます。その後、卵黄、砂糖、バターを泡立て、ふんわりとしたクリーム状にします。これをエスプレッソの上にたっぷりと乗せて、カフェトゥンが完成します。クリームのふわふわ感と、コーヒーの苦味が絶妙に調和し、まろやかな味わいが楽しめます。</p><h2>カフェ文化の象徴</h2><p>カフェトゥンは、ベトナムのカフェや屋台で一般的に見かけることができます。特に、ハノイやホーチミンのカフェ文化の中で、このドリンクは象徴的な存在です。寒い季節に温かくして飲むだけでなく、涼しい日には冷やして楽しむこともできます。ベトナム国内外で愛され、多くのカフェやレストランで提供されています。</p><h2>一杯の中に詰まった文化</h2><p>もしベトナムを訪れた際には、ぜひ一度カフェトゥンを試してみてください。その一杯には、ベトナムのカフェ文化と豊かな風味が詰まっています。</p>",
-    //     "image_url": "https://static.vinwonders.com/production/cafe-trung-ha-noi-3.jpg",
-    //     "author_id": 3,
-    //     "status": "public",
-    //     "created_at": "2023-02-10T10:00:00",
-    //     "updated_at": "2023-02-11T08:00:00",
-    //     "tags": ["カフェトゥン", "エッグコーヒー", "ベトナムコーヒー", "デザートドリンク"],
-    //     "additional_food": ["タピオカミルクティー", "抹茶ラテ", "アフォガート"]
-    // },
-    // {
-    //     "id": 10,
-    //     "title": "ミークアン",
-    //     "content": "<h1>ミークアン - クアンナムの伝統的な麺料理</h1><p>ミークアンは、クアンナム地方の代表的な料理で、豊かな風味と美味しさ、そして新鮮な食材を使った絶妙な組み合わせで知られています。この料理は、クアンナムの人々の誇りであるだけでなく、ベトナム全土で愛されており、特に肌寒い日や家族が集まる時に人気があります。</p><h2>特徴と材料</h2><p>ミークアンの麺は、米粉で作られており、ほどよい太さと自然な黄色を持っています。この黄色はウコンによるものです。麺は適度に弾力があり、スープやトッピングの風味をよく吸収します。スープは、他の麺料理と比べて少なめですが、麺をしっとりさせるのに十分な量です。スープは、豚骨、鶏の骨、またはカニの出汁で煮込まれ、玉ねぎ、ニンニク、唐辛子、そして少しのオイルを加えて魅力的な色と香りを生み出します。</p><h2>多彩なトッピング</h2><p>ミークアンのトッピングは非常に豊富で多様です。豚肉、鶏肉、エビ、またはカラシナを合わせて食べることができます。肉は丁寧に調理され、炒めたり茹でたりして薄切りにされます。また、香草やもやし、バジル、コリアンダーなどの生野菜もトッピングとして加えられ、さっぱりとした風味と香りを引き立てます。</p><h2>食べ方と楽しみ方</h2><p>ミークアンは、少しの生レモン、唐辛子、そしてローストピーナッツを添えて食べるのが一般的です。これにより、酸味、辛味、甘味が絶妙にバランスよく調和します。ローストピーナッツは、食感を加えるだけでなく、料理の美味しさを引き立てます。食べるときには、麺、野菜、スープをよく混ぜて、すべての素材が完璧に調和した味を楽しむことができます。</p><h2>クアンナム文化の象徴</h2><p>ミークアンは、美味しいだけでなく、クアンナムの食文化において重要な一部を占める料理です。この料理は、祭りや家族の集まりなど、特別な日にもよく登場します。ミークアンの一杯は、伝統の一部であり、ベトナム料理の創造性と洗練された技を反映している料理です。</p>",
-    //     "image_url": "https://hapinut.com/wp-content/uploads/2022/03/mi-quang-quang-nam.jpg",
-    //     "author_id": 3,
-    //     "status": "public",
-    //     "created_at": "2023-01-02T10:00:00",
-    //     "updated_at": "2023-01-03T06:00:00",
-    //     "tags": ["ミークアン", "クアンナム料理", "ベトナム麺料理", "伝統料理"],
-    //     "additional_food": ["ラーメン", "フォー", "うどん"]
-    // }
-    // ];
     if (user) {
       setCurrentUser(user);
       setUserPosts(userBlogs);
@@ -193,8 +153,7 @@ function Profile() {
                   
                   <div className="post-likes" style={{display: "flex", justifyContent: "flex-end", marginTop: "-38px"}}>
                     <HeartOutlined />
-                    <span style={{fontSize:'0.5em'}}>1000</span>
-                    {/* <span>{post.additional_food}</span> */}
+                    <span style={{fontSize:'20px'}}> {post.likes} </span>
                   </div>
                 </Card>
               )}

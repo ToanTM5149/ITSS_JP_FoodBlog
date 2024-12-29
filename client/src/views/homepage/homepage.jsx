@@ -28,30 +28,30 @@ const Homepage = () => {
 
       if (firstMedia.type === "image") {
         return <img
-                src={firstMedia.url} alt="Media Content"
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                }} />;
+          src={firstMedia.url} alt="Media Content"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "8px",
+          }} />;
       } else if (firstMedia.type === "video") {
         return (
           <video controls>
             <source src={firstMedia.url} type="video/mp4" />
             ブラウザはこの動画タグをサポートしていません。
             style={{
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                }}
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "8px",
+            }}
           </video>
         );
       }
     }
 
-    return <img src="https://via.placeholder.com/400" alt="Placeholder" style={{height: "400px"}} />;
+    return <img src="https://via.placeholder.com/400" alt="Placeholder" style={{ height: "400px" }} />;
   };
   // Lọc blogs dựa trên từ khóa tìm kiếm
   const filteredBlogs = blogs.filter((blog) =>
@@ -71,7 +71,7 @@ const Homepage = () => {
   };
 
   return (
-    <Layout style={{ minHeight: '100vh', margin: '44px 0 0 0', paddingLeft: '100px', paddingRight: '100px' }}>
+    <Layout style={{ minHeight: '100vh', margin: '80px 0 0 0', paddingLeft: '100px', paddingRight: '100px' }}>
       <HeaderBar onSearchSubmit={handleSearch} />
       <Layout style={{ padding: '0 0 0px' }}>
         <Content
@@ -94,21 +94,19 @@ const Homepage = () => {
             </p>
           ) : (
             <>
-              {/* Card lớn */}
               {sortedBlogs.length > 0 && (
                 <Row gutter={[16, 16]}>
-                  <Col span={24} md={16}>
+                  {/* Card lớn */}
+                  <Col span={24} md={16} style={{ display: 'flex', flexDirection: 'column' }}>
                     <Card
                       hoverable
                       cover={
-                        renderMedia(sortedBlogs[0]?.media)
-                        // <img
-                        //   src={sortedBlogs[0]?.image_url || 'https://via.placeholder.com/400'}
-                        //   alt="large-card-image"
-                        //   style={{ width: '100%', height: '400px', objectFit: 'cover' }}
-                        // />
+                        <div style={{ height: '550px', overflow: 'hidden' }}>
+                          {renderMedia(sortedBlogs[0]?.media)}
+                        </div>
                       }
                       onClick={() => homepageHandle.handleNavigate(navigate, sortedBlogs[0]?.id)}
+                      style={{ height: '100%' }}
                     >
                       <div style={{ padding: '10px' }}>
                         <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>
@@ -138,14 +136,7 @@ const Homepage = () => {
                               <div style={{ height: '200px', overflow: 'hidden' }}>
                                 {renderMedia(blog.media)}
                               </div>
-                              
-                              // <img
-                              //   src={blog.image_url}
-                              //   alt="small-card"
-                              //   style={{ height: '180px', objectFit: 'cover' }}
-                              // />
                             }
-                          
                             onClick={() => homepageHandle.handleNavigate(navigate, blog.id)}
                           >
                             <div style={{ padding: '10px' }}>
@@ -181,13 +172,8 @@ const Homepage = () => {
                       hoverable
                       cover={
                         <div style={{ height: '180px', overflow: 'hidden' }}>
-                                {renderMedia(blog.media)}
-                              </div>
-                        // <img
-                        //   src={blog.image_url}
-                        //   alt="blog-image"
-                        //   style={{ height: '180px', objectFit: 'cover' }}
-                        // />
+                          {renderMedia(blog.media)}
+                        </div>
                       }
                       onClick={() => homepageHandle.handleNavigate(navigate, blog.id)}
                     >
