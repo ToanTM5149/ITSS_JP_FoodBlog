@@ -22,7 +22,37 @@ const Homepage = () => {
     setBlogs(storedBlogs);
     setUsers(storedUsers);
   }, []);
+  const renderMedia = (media) => {
+    if (Array.isArray(media) && media.length > 0) {
+      const firstMedia = media[0];
 
+      if (firstMedia.type === "image") {
+        return <img
+                src={firstMedia.url} alt="Media Content"
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: "8px",
+                }} />;
+      } else if (firstMedia.type === "video") {
+        return (
+          <video controls>
+            <source src={firstMedia.url} type="video/mp4" />
+            Your browser does not support the video tag.
+            style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: "8px",
+                }}
+          </video>
+        );
+      }
+    }
+
+    return <img src="https://via.placeholder.com/400" alt="Placeholder" style={{height: "400px"}} />;
+  };
   // Lọc blogs dựa trên từ khóa tìm kiếm
   const filteredBlogs = blogs.filter((blog) =>
     blog.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -71,11 +101,12 @@ const Homepage = () => {
                     <Card
                       hoverable
                       cover={
-                        <img
-                          src={sortedBlogs[0]?.image_url || 'https://via.placeholder.com/400'}
-                          alt="large-card-image"
-                          style={{ width: '100%', height: '400px', objectFit: 'cover' }}
-                        />
+                        renderMedia(sortedBlogs[0]?.media)
+                        // <img
+                        //   src={sortedBlogs[0]?.image_url || 'https://via.placeholder.com/400'}
+                        //   alt="large-card-image"
+                        //   style={{ width: '100%', height: '400px', objectFit: 'cover' }}
+                        // />
                       }
                       onClick={() => homepageHandle.handleNavigate(navigate, sortedBlogs[0]?.id)}
                     >
@@ -104,12 +135,17 @@ const Homepage = () => {
                           <Card
                             hoverable
                             cover={
-                              <img
-                                src={blog.image_url}
-                                alt="small-card"
-                                style={{ height: '180px', objectFit: 'cover' }}
-                              />
+                              <div style={{ height: '200px', overflow: 'hidden' }}>
+                                {renderMedia(blog.media)}
+                              </div>
+                              
+                              // <img
+                              //   src={blog.image_url}
+                              //   alt="small-card"
+                              //   style={{ height: '180px', objectFit: 'cover' }}
+                              // />
                             }
+                          
                             onClick={() => homepageHandle.handleNavigate(navigate, blog.id)}
                           >
                             <div style={{ padding: '10px' }}>
@@ -144,11 +180,14 @@ const Homepage = () => {
                     <Card
                       hoverable
                       cover={
-                        <img
-                          src={blog.image_url}
-                          alt="blog-image"
-                          style={{ height: '180px', objectFit: 'cover' }}
-                        />
+                        <div style={{ height: '180px', overflow: 'hidden' }}>
+                                {renderMedia(blog.media)}
+                              </div>
+                        // <img
+                        //   src={blog.image_url}
+                        //   alt="blog-image"
+                        //   style={{ height: '180px', objectFit: 'cover' }}
+                        // />
                       }
                       onClick={() => homepageHandle.handleNavigate(navigate, blog.id)}
                     >

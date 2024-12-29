@@ -9,7 +9,6 @@ import { HeartFilled } from "@ant-design/icons"; // Import HeartFilled icon
 import moment from 'moment';
 import "./blog.css";
 import { Pagination } from "antd";
-
 function BlogDetail() {
   const { id } = useParams();
 
@@ -221,8 +220,14 @@ function BlogDetail() {
       <div className="user-info-btn-container">
         <span className="back" onClick={() => window.history.back()}>戻る</span>
         <div className="user-info">
-          <Avatar size={40} style={{ backgroundColor: "#ddd" }}>{user?.username[0]}</Avatar>
-          <span className="username">{user?.username || "Unknown User"}</span>
+          <div style={{display: "flex",gap: "10px"}}>
+            <Avatar size={40} style={{ backgroundColor: "#ddd" }}
+            onClick={() => navigate(`/profile/${user?.id}`)}
+            >{user?.username[0]}</Avatar>
+            <span className="username" style={{marginTop: "10px"}}
+               onClick={() => navigate(`/profile/${user?.id}`)}
+            >{user?.username || "Unknown User"}</span>
+          </div>
           <Button
             type={isFollowed ? "primary" : "default"}
             onClick={handleFollowClick}
@@ -326,7 +331,10 @@ function BlogDetail() {
               window.scrollTo(0, 0); // Cuộn lên đầu trang
             }}
             key={item.id} hoverable>
-              <img className="suggestion-image" src={item.media[0].url} alt="" />
+              <div style={{height: '180px', overflow: 'hidden'}}>
+                {renderMedia(item.media)}
+              </div>
+              {/* <img className="suggestion-image" src={item.media[0].url} alt="" /> */}
               <p className="suggestion-time">
                 {new Date(item.created_at).toLocaleDateString('vi-VN')}
               </p>
