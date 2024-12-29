@@ -1,17 +1,17 @@
 import React, { useState, useContext } from "react";
 import { Form, Input, Button, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/auth_context"; 
-import { handleLogin } from "./login.handler"; 
+import { AuthContext } from "../../context/auth_context";
+import { handleLogin } from "./login.handler";
 import "./login.css";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const { handleLogin: handleAuthLogin } = useContext(AuthContext); // Lấy hàm handleLogin từ AuthContext
 
   const handleSubmit = (values) => {
-    handleLogin(values, setLoading, navigate, handleAuthLogin); 
+    handleLogin(values, setLoading, navigate, handleAuthLogin);
   };
 
   return (
