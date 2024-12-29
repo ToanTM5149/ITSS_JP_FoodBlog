@@ -326,7 +326,7 @@ function BlogDetail() {
               window.scrollTo(0, 0); // Cuộn lên đầu trang
             }}
             key={item.id} hoverable>
-              <img className="suggestion-image" src={item.image_url} alt="" />
+              <img className="suggestion-image" src={item.media[0].url} alt="" />
               <p className="suggestion-time">
                 {new Date(item.created_at).toLocaleDateString('vi-VN')}
               </p>
