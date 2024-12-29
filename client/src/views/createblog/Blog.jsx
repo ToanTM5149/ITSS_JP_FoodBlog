@@ -38,22 +38,34 @@ function Blog() {
     };
 
     const handleMediaUpload = ({ fileList }) => {
-        const updatedMedia = fileList.map(file => {
+        const updatedMedia = fileList.map(async file => {
             const fileType = file.type.split('/')[0];
             if (fileType !== "image" && fileType !== "video") {
                 alert("Please upload an image or video file.");
                 return null;
             }
-
-            const reader = new FileReader();
-            return new Promise((resolve) => {
-                reader.onload = (e) => {
-                    resolve({ url: e.target.result, type: fileType });
-                };
-                reader.readAsDataURL(file.originFileObj);
-            });
+    
+            const formData = new FormData();
+            formData.append('file', file.originFileObj);
+    
+            console.log('Uploading media:', file.originFileObj);
+    
+            try {
+                const response = await fetch('http://localhost:8000/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const data = await response.json();
+                if (data.url) {
+                    console.log('Media uploaded:', data.url);
+                    return { type: fileType, url: data.url };
+                }
+            } catch (error) {
+                console.error('Error uploading media:', error);
+                return null;
+            }
         });
-
+    
         Promise.all(updatedMedia).then(results => {
             setMedia(results.filter(item => item !== null));
         });
@@ -72,13 +84,20 @@ function Blog() {
             id: newId,
             title,
             content,
-            media,
+            dishes,
+            rating,
             author_id: loggedInUser?.id || 0,
-            tags,
+            tags: tags,
             status: "public",
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
         };
+
+        if (media[0].type === "image") {
+            newBlog.image_url = media[0].url;
+        } else if (media[0].type === "video") {
+            newBlog.video_url = media[0].url;
+        }
 
         localStorage.setItem("blogs", JSON.stringify([...existingBlogs, newBlog]));
         alert("Blog has been saved successfully!");
