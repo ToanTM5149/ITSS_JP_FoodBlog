@@ -9,7 +9,6 @@ import { HeartFilled } from "@ant-design/icons"; // Import HeartFilled icon
 import moment from 'moment';
 import "./blog.css";
 import { Pagination } from "antd";
-
 function BlogDetail() {
   const { id } = useParams();
 
@@ -43,6 +42,15 @@ function BlogDetail() {
       setIsLiked(!!userLike);
     }
   }, [blog.id, loggedInUser]);
+  //ham kiem tra nguoi dung co phai author khong
+  const checkAuthorIsUser=() =>{
+      const user_idc = loggedInUser.id;
+      const author_idc = blog.author_id;
+      console.error(author_idc, "______", user_idc);
+      if(user_idc === author_idc){
+        return true;
+      } else return false;
+  }
 
   // Tìm các thẻ h1 trong nội dung blog để tạo danh sách sidebar
   const getHeadersFromContent = (content) => {
@@ -194,7 +202,20 @@ function BlogDetail() {
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
-
+  const FollowButton = () => {
+    if(!checkAuthorIsUser()){
+      return(
+        <Button
+            type={isFollowed ? "primary" : "default"}
+            onClick={handleFollowClick}
+            className="follow-button"
+            style={{marginTop: "4px"}}
+          >
+            {isFollowed ? "フォロー中" : "フォロー"}
+          </Button>
+      );
+    }else return;
+  }
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -207,29 +228,37 @@ function BlogDetail() {
     setIsModalVisible(false);
     navigate("/login");
   };
-
+  
   const handleModalCancel = () => {
     setIsModalVisible(false);
   };
 
+  const goToProfile = () => {
+    const profileUrl = checkAuthorIsUser() ? '/profile' : `/profile/${user?.id}`;
+    navigate(profileUrl);
+  };
+
+
+
   if (!blog || !user) {
     return <div>ブログが見つかりません</div>; // Handle case where the blog or user does not exist
   }
+
 
   return (
     <div className="container">
       <div className="user-info-btn-container">
         <span className="back" onClick={() => window.history.back()}>戻る</span>
         <div className="user-info">
-          <Avatar size={40} style={{ backgroundColor: "#ddd" }}>{user?.username[0]}</Avatar>
-          <span className="username">{user?.username || "Unknown User"}</span>
-          <Button
-            type={isFollowed ? "primary" : "default"}
-            onClick={handleFollowClick}
-            className="follow-button"
-          >
-            {isFollowed ? "フォロー中" : "フォロー"}
-          </Button>
+          <div style={{display: "flex",gap: "10px"}}>
+            <Avatar size={40} style={{ backgroundColor: "#ddd" }}
+              onClick={() => goToProfile()}
+            >{user?.username[0]}</Avatar>
+            <span className="username" style={{marginTop: "10px"}}
+               onClick={() => goToProfile()}
+            >{user?.username || "Unknown User"}</span>
+          </div>
+          {FollowButton()}
           <span className="create-date">作成日: {moment(blog?.created_at).format('YYYY年M月D日')}</span>
         </div>
       </div>
@@ -326,7 +355,10 @@ function BlogDetail() {
               window.scrollTo(0, 0); // Cuộn lên đầu trang
             }}
             key={item.id} hoverable>
-              <img className="suggestion-image" src={item.media[0].url} alt="" />
+              <div style={{height: '180px', overflow: 'hidden'}}>
+                {renderMedia(item.media)}
+              </div>
+              {/* <img className="suggestion-image" src={item.media[0].url} alt="" /> */}
               <p className="suggestion-time">
                 {new Date(item.created_at).toLocaleDateString('vi-VN')}
               </p>
@@ -353,7 +385,7 @@ function BlogDetail() {
         cancelText="Hủy"
         centered
       >
-        <p>Bạn cần đăng nhập để thực hiện tác vụ này.</p>
+        <p>この操作を実行するには、ログインする必要があります。</p>
       </Modal>
     </div>
   );

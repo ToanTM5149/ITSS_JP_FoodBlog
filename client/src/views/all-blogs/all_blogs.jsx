@@ -94,7 +94,7 @@ const AllBlog = () => {
                   <Row gutter={16}>
                     {/* Phần ảnh hoặc video */}
                     <Col span={24} md={12}>
-                      <div className="blog-media large-image">
+                      <div className="blog-media large-image" >
                         {/* {blog.video_url ? (
                           <video
                             src={blog.video_url}

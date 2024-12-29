@@ -15,7 +15,7 @@ const RegisterForm = () => {
       const existingUser = users.find((user) => user.email === values.email);
 
       if (existingUser) {
-        message.error("Email này đã được đăng ký!");
+        message.error("このメールアドレスは既に登録されています!");
         setLoading(false);
         return;
       }
@@ -31,11 +31,11 @@ const RegisterForm = () => {
 
       const updatedUsers = [...users, newUser];
       localStorage.setItem("users", JSON.stringify(updatedUsers));
-      message.success("Đăng ký thành công!");
+      message.success("登録が成功しました!");
       navigate("/login");
     } catch (error) {
       console.error("Lỗi đăng ký:", error);
-      message.error("Có lỗi xảy ra. Vui lòng thử lại sau!");
+      message.error("エラーが発生しました。後で再試行してください。");
     } finally {
       setLoading(false);
     }
@@ -78,8 +78,8 @@ const RegisterForm = () => {
               label="メールアドレス"
               required={false}
               rules={[
-                { required: true, message: "Vui lòng nhập email!" },
-                { type: "email", message: "Địa chỉ email không hợp lệ!" },
+                { required: true, message: "メールアドレスを入力してください！" },
+                { type: "email", message: "無効なメールアドレスです！" },
               ]}
             >
               <Input className="register-input" placeholder="メールアドレスを入力" />
@@ -89,7 +89,7 @@ const RegisterForm = () => {
               name="username"
               label="氏名"
               required={false}
-              rules={[{ required: true, message: "Vui lòng nhập tên người dùng!" }]}
+              rules={[{ required: true, message: "ユーザー名を入力してください！" }]}
             >
               <Input className="register-input" placeholder="氏名を入力" />
             </Form.Item>
@@ -98,7 +98,7 @@ const RegisterForm = () => {
               name="password"
               label="パスワード"
               required={false}
-              rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}
+              rules={[{ required: true, message: "パスワードを入力してください！" }]}
               hasFeedback
             >
               <Input.Password className="register-input" placeholder="パスワードを作成" />
