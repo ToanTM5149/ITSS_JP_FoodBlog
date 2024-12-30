@@ -87,7 +87,6 @@
   background-color: #45a049;
 }
 
-/* Phần ảnh minh họa */
 .login-right {
   flex: 1;
   min-width: 300px; /* Đảm bảo hình ảnh không quá nhỏ */
@@ -107,57 +106,24 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive chỉnh cho màn hình nhỏ */
+.login-right {
+  position: relative;
+  width: 100%;
+  background-image: url("../../../public/image/login-part.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
 @media (max-width: 768px) {
-  .login-container {
-    flex-direction: column; /* Chuyển từ ngang sang dọc */
-  }
-
-  .login-left,
   .login-right {
-    width: 100%;
-    padding: 20px;
-  }
-
-  .login-right {
-    background-color: #ffffff; /* Loại bỏ nền khác màu */
-  }
-
-  .login-image {
-    max-width: 100%; /* Chiếm toàn bộ màn hình nhỏ */
+    height: 300px;
   }
 }
 
 @media (max-width: 480px) {
-  .login-page {
-    padding: 10px;
-  }
-
-  .login-left {
-    min-width: 350px;
-    padding: 20px 10px; /* Giảm padding */
-  }
-
   .login-right {
-    min-width: 350px;
-    padding: 10px;
-  }
-
-  .welcome-title {
-    font-size: 18px;
-  }
-
-  .welcome-subtitle {
-    font-size: 12px;
-  }
-
-  .login-button {
-    font-size: 14px;
-    height: 45px;
-  }
-
-  .login-input {
-    font-size: 14px;
-    padding: 10px;
+    height: 250px;
   }
 }

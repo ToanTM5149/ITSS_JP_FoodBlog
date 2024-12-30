@@ -137,15 +137,15 @@ const HeaderBar = ({ showSearch = true, onSearchSubmit }) => { // Thêm onSearch
       </Header>
 
       <Modal
-        title="Chưa đăng nhập"
+        title="未ログインです"
         visible={isModalVisible}
         onOk={handleModalOk}
         onCancel={handleModalCancel}
-        okText="Đồng ý"
-        cancelText="Hủy"
+        okText="同意"
+        cancelText="キャンセル"
         centered
       >
-        <p>Bạn cần đăng nhập để thực hiện tác vụ này.</p>
+        <p>この操作を行うにはログインが必要です。</p>
       </Modal>
     </>
   );

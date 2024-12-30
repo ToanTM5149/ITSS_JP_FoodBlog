@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth_context";
 import { handleLogin } from "./login.handler";
+import { motion } from "framer-motion";
 import "./login.css";
 
 const LoginForm = () => {
@@ -22,12 +23,12 @@ const LoginForm = () => {
           <div className="logo-container">
             <img
               className="image-logo"
-              src="/image/ic_launcher.png"
+              src="image/preview.png"
               alt="Logo"
               width={50}
               height={50}
             />
-            <h1 className="app-name">Food Blog</h1>
+            <h1 className="app-name">ベトフード</h1>
           </div>
 
           <h2 className="welcome-title">おかえりなさい</h2>
@@ -47,8 +48,8 @@ const LoginForm = () => {
               label="メールアドレス"
               required={false}
               rules={[
-                { required: true, message: "Vui lòng nhập email!" },
-                { type: "email", message: "Địa chỉ email không hợp lệ!" },
+                { required: true, message: "メールアドレスを入力してください！" },
+                { type: "email", message: "有効なメールアドレスを入力してください！" },
               ]}
             >
               <Input className="login-input" placeholder="メールアドレスを入力" />
@@ -58,7 +59,7 @@ const LoginForm = () => {
               name="password"
               label="パスワード"
               required={false}
-              rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}
+              rules={[{ required: true, message: "パスワードを入力してください！" }]}
               hasFeedback
             >
               <Input.Password
@@ -79,26 +80,28 @@ const LoginForm = () => {
             </Form.Item>
 
             <p style={{ textAlign: "center" }}>
-              アカウントをお持ちでないですか?{" "}
+              アカウントをお持ちでないですか？{" "}
               <Link to="/register" style={{ marginRight: "20px" }}>
                 サインアップ
               </Link>
               <br />
               <Link to="/forgot-password" className="forgot-password-link">
-                パスワードを忘れましたか?
+                パスワードを忘れましたか？
               </Link>
             </p>
-
           </Form>
         </div>
 
         {/* Phần bên phải: Ảnh minh họa */}
         <div className="login-right">
-          <img
-            src="/image/food-placeholder.jpg"
-            alt="Delicious food"
+          {/* <motion.img
+            src="/image/preview.png"
+            alt="おいしい食べ物"
             className="login-image"
-          />
+            initial={{ opacity: 0, x: 100 }}  // Khởi tạo trạng thái ảnh ẩn và di chuyển bên phải
+            animate={{ opacity: 1, x: 0 }}    // Ảnh sẽ hiện lên và di chuyển về vị trí ban đầu
+            transition={{ duration: 1 }}       // Thời gian hiệu ứng
+          /> */}
         </div>
       </div>
     </div>

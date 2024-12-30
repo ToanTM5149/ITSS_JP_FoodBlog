@@ -17,6 +17,7 @@ function BlogDetail() {
 
   // Lấy loggedInUser từ localStorage
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  console.log(loggedInUser);
   const navigate = useNavigate();
 
   // Fetch the corresponding blog and user data
@@ -96,7 +97,7 @@ function BlogDetail() {
   const renderMedia = (media) => {
     if (Array.isArray(media) && media.length > 0) {
       const firstMedia = media[0];
-  
+
       if (firstMedia.type === "image") {
         return (
           <img
@@ -127,7 +128,7 @@ function BlogDetail() {
         );
       }
     }
-  
+
     return <img src="https://via.placeholder.com/400" alt="Placeholder" />;
   };
 
@@ -247,7 +248,7 @@ function BlogDetail() {
     setIsModalVisible(false);
     navigate("/login");
   };
-  
+
   const handleModalCancel = () => {
     setIsModalVisible(false);
   };

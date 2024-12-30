@@ -46,18 +46,18 @@ const RegisterForm = () => {
       <div className="register-container">
         {/* Phần bên trái: Hình ảnh minh họa */}
         <div className="register-left">
-          <img
+          {/* <img
             src="/image/register-placeholder.jpg"
             alt="Delicious food"
             className="register-image"
-          />
+          /> */}
         </div>
 
         {/* Phần bên phải: Form */}
         <div className="register-right">
           <img
             className="register-image-logo"
-            src="/image/ic_launcher.png"
+            src="/image/preview.png"
             alt="Logo"
             width={50}
             height={50}

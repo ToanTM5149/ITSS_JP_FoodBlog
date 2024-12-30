@@ -44,12 +44,12 @@ function Blog() {
                 alert("Please upload an image or video file.");
                 return null;
             }
-    
+
             const formData = new FormData();
             formData.append('file', file.originFileObj);
-    
+
             console.log('Uploading media:', file.originFileObj);
-    
+
             try {
                 const response = await fetch('http://localhost:8000/upload', {
                     method: 'POST',
@@ -65,7 +65,7 @@ function Blog() {
                 return null;
             }
         });
-    
+
         Promise.all(updatedMedia).then(results => {
             setMedia(results.filter(item => item !== null));
         });
@@ -97,7 +97,7 @@ function Blog() {
         newBlog.media = media.map((item, index) => ({ ...item, id: index + 1 }));
 
         localStorage.setItem("blogs", JSON.stringify([...existingBlogs, newBlog]));
-        alert("Blog has been saved successfully!");
+        alert("ブログが正常に保存されました！");
         navigate("/all-blogs");
     };
 
@@ -157,7 +157,7 @@ function Blog() {
                 <div className="editor-container">
                     <div className="action-buttons">
                         <div className="container mt-4">
-                            <p>日本ではこの料理の水と同じ料理がありますか</p>
+                            <p>日本ではこの料理の味と同じ料理がありますか？</p>
                             {dishes.map((dish, index) => (
                                 <div className="input-group mb-2" key={index}>
                                     <Input

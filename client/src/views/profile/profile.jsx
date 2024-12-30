@@ -117,7 +117,7 @@ function Profile() {
                 <HomeOutlined /> {currentUser.address}
               </p>
               <p>
-                <UserOutlined /> Role: {currentUser.role}
+                <UserOutlined /> ロール: {currentUser.role}
               </p>
             </Col>
 

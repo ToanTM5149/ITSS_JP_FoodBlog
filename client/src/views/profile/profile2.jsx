@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Layout, Row, Col, Avatar, Card, List, Button, message, Spin } from "antd";
 import {UserOutlined,MailOutlined,PhoneOutlined,HomeOutlined,HeartOutlined,DeleteOutlined,} from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { fetchProfileData, deletePost, fetchProfileData2 } from "./profile.handle"; 
+import { fetchProfileData, deletePost, fetchProfileData2 } from "./profile.handle";
 import { useParams } from "react-router-dom"; // Import useParams
 import "./profile.css";
 
 function Profile() {
-  const [currentUser, setCurrentUser] = useState(null); 
-  const [userPosts, setUserPosts] = useState([]); 
-  const [loading, setLoading] = useState(true); 
+  const [currentUser, setCurrentUser] = useState(null);
+  const [userPosts, setUserPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isFollowed, setIsFollowed] = useState(false);
   const navigate = useNavigate(); // Để điều hướng
   const {id} = useParams();
@@ -17,7 +17,7 @@ function Profile() {
   const renderMedia = (media) => {
     if (Array.isArray(media) && media.length > 0) {
       const firstMedia = media[0];
-  
+
       if (firstMedia.type === "image") {
         return (
           <img
@@ -48,16 +48,16 @@ function Profile() {
         );
       }
     }
-  
+
     return <img src="https://via.placeholder.com/400" alt="Placeholder" />;
   };
 
   useEffect(() => {
-    
+
     setLoading(true);
       const { user, userBlogs } = fetchProfileData2(id); // Gọi hàm lấy dữ liệu
         console.log(user);
-    
+
     if (user) {
       setCurrentUser(user);
       setUserPosts(userBlogs);
@@ -128,7 +128,7 @@ function Profile() {
               <HomeOutlined /> {currentUser.address}
             </p>
             <p>
-              <UserOutlined /> Role: {currentUser.role}
+              <UserOutlined /> ロール: {currentUser.role}
             </p>
           </Col>
 
@@ -172,14 +172,14 @@ function Profile() {
                   <div
                     className="post-title"
                     style={{
-                    whiteSpace: "nowrap", 
-                    overflow: "hidden", 
-                    textOverflow: "ellipsis", 
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                     width: "70%", // Đặt độ rộng cho box
                     display: "inline-block" // Đảm bảo nó không chiếm toàn bộ dòng
                   }}
                   >{post.title}</div>
-                  
+
                   <div className="post-likes" style={{display: "flex", justifyContent: "flex-end", marginTop: "-38px"}}>
                     <HeartOutlined />
                     <span style={{fontSize:'0.5em'}}>1000</span>
