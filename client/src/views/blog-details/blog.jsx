@@ -287,7 +287,7 @@ function BlogDetail() {
         <Card
           title={
             <>
-              <h2 className="title">{blog?.title || "No Title"}</h2>
+              <h2 className="title" style={{marginTop: "20px", fontWeight: "bold"}}>{blog?.title || "No Title"}</h2>            
               <div className="tags">
                 {blog.tags.map((tag) => (
                   <Tag color="blue" key={tag}>
