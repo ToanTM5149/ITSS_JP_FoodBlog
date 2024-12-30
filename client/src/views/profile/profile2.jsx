@@ -154,20 +154,9 @@ function Profile() {
                         <p className="post-time" style={{marginTop: "0px"}}>{new Date(post.updated_at).toLocaleString()}</p>
                       </div>
                     </Col>
-                    {/* <Col span={2} className="delete-icon">
-                      <Button
-                        type="text"
-                        icon={<DeleteOutlined />}
-                        onClick={(e) => {
-                          e.stopPropagation(); // Ngăn chặn sự kiện onClick của Card
-                          deletePost(post.id, userPosts, setUserPosts); // Gọi hàm xóa
-                        }}
-                      />
-                    </Col> */}
                   </Row>
                   <div className="post-image">
                     {renderMedia(post.media)}
-                    {/* <img src={post.image_url} style={{maxHeight: "360px"}} alt="Post" /> */}
                   </div>
                   <div
                     className="post-title"
@@ -182,8 +171,7 @@ function Profile() {
 
                   <div className="post-likes" style={{display: "flex", justifyContent: "flex-end", marginTop: "-38px"}}>
                     <HeartOutlined />
-                    <span style={{fontSize:'0.5em'}}>1000</span>
-                    {/* <span>{post.additional_food}</span> */}
+                    <span style={{fontSize:'0.5em'}}> {post.likes} </span>
                   </div>
                 </Card>
               )}

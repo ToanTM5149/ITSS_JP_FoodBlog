@@ -30,6 +30,7 @@ export const fetchProfileData = () => {
 export const fetchProfileData2 = (id) => {
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+  const likes = JSON.parse(localStorage.getItem("likes")) || [];
 
   const user = users.find((user) => user.id === Number(id));
   if (!user) {
@@ -38,6 +39,9 @@ export const fetchProfileData2 = (id) => {
   }
 
   const userBlogs = blogs.filter((blog) => blog.author_id === user.id);
+  userBlogs.forEach((blog) => {
+    blog.likes = likes.filter((like) => like.blog_id === blog.id).length;
+  });
   return { user, userBlogs };
 }
 
