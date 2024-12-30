@@ -22,11 +22,12 @@
   
   .user-name-status {
     margin-top: -80px;
-    margin-left: 20%;
+    margin-left: 25%;
     text-align: left;
   }
   
   .user-name {
+    margin-top: 10px;
     font-size: 2rem;
     font-weight: bold;
   }
@@ -82,15 +83,16 @@
   }
   
   .post-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 10px 0;
+    font-size: 1.3rem;
+    font-weight:100;
+    margin: 0px 0;
   }
   
   .post-likes {
     display: flex;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.8rem;
+    margin: 10px 0;
   }
   
   .post-likes span {

@@ -10,7 +10,9 @@ import AllBlog from './views/all-blogs/all_blogs.jsx';
 import AuthProvider from './context/auth_context.js'; // Quản lý trạng thái đăng nhập
 import DataProvider from './context/data_context.js'; // Quản lý dữ liệu JSON
 import HeaderBar from './components/header/header.jsx';
-
+import Footer from './components/footer/footer.jsx';
+import OtherProfile from './views/profile/profile2.jsx';
+import ManagerBlog from './views/admin/contentmanage.jsx'
 function App() {
   return (
     <AuthProvider>
@@ -25,6 +27,10 @@ function App() {
               <Route path="/blog-details/:id" element={<WatchBlog />} />
               <Route path="/createblog" element={<BlogEC />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/:id" element={<OtherProfile />} />
+
+              {/* Admin */}
+              <Route path='/admin/content-manage' element={<ManagerBlog />} />
             </Routes>
           </Layout>
         </Router>
@@ -42,6 +48,7 @@ function Layout({ children }) {
     <>
       {shouldShowHeader && <HeaderBar />}
       {children}
+      {<Footer/>}
     </>
   );
 }

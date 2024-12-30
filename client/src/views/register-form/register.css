@@ -88,53 +88,24 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive chỉnh cho màn hình nhỏ */
+.register-left {
+  position: relative;
+  width: 100%;
+  background-image: url("../../../public/image/login-part.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
 @media (max-width: 768px) {
-  .register-container {
-    flex-direction: column; /* Chuyển từ ngang sang dọc */
-  }
-
-  .register-right,
   .register-left {
-    width: 100%;
-    padding: 20px;
-  }
-
-  .register-left {
-    background-color: #ffffff; /* Loại bỏ nền khác màu */
-  }
-
-  .register-image {
-    max-width: 100%; /* Chiếm toàn bộ màn hình nhỏ */
+    height: 300px; /* Điều chỉnh chiều cao phù hợp cho màn hình nhỏ */
   }
 }
 
 @media (max-width: 480px) {
-  .register-page {
-    padding: 10px;
-  }
-
-  .register-right {
-    min-width: 350px;
-    padding: 20px 10px; /* Giảm padding */
-  }
-
   .register-left {
-    min-width: 350px;
-    padding: 10px;
-  }
-
-  .register-title {
-    font-size: 18px;
-  }
-
-  .register-button {
-    font-size: 14px;
-    height: 45px;
-  }
-
-  .register-input {
-    font-size: 14px;
-    padding: 10px;
+    height: 250px; /* Điều chỉnh chiều cao cho màn hình rất nhỏ */
   }
 }

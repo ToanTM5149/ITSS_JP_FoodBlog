@@ -38,20 +38,32 @@ function Blog() {
     };
 
     const handleMediaUpload = ({ fileList }) => {
-        const updatedMedia = fileList.map(file => {
+        const updatedMedia = fileList.map(async file => {
             const fileType = file.type.split('/')[0];
             if (fileType !== "image" && fileType !== "video") {
                 alert("Please upload an image or video file.");
                 return null;
             }
 
-            const reader = new FileReader();
-            return new Promise((resolve) => {
-                reader.onload = (e) => {
-                    resolve({ url: e.target.result, type: fileType });
-                };
-                reader.readAsDataURL(file.originFileObj);
-            });
+            const formData = new FormData();
+            formData.append('file', file.originFileObj);
+
+            console.log('Uploading media:', file.originFileObj);
+
+            try {
+                const response = await fetch('http://localhost:8000/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const data = await response.json();
+                if (data.url) {
+                    console.log('Media uploaded:', data.url);
+                    return { type: fileType, url: data.url };
+                }
+            } catch (error) {
+                console.error('Error uploading media:', error);
+                return null;
+            }
         });
 
         Promise.all(updatedMedia).then(results => {
@@ -72,16 +84,20 @@ function Blog() {
             id: newId,
             title,
             content,
-            media,
+            dishes,
+            rating,
             author_id: loggedInUser?.id || 0,
-            tags,
+            tags: tags,
+            tags: tags,
             status: "public",
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
         };
 
+        newBlog.media = media.map((item, index) => ({ ...item, id: index + 1 }));
+
         localStorage.setItem("blogs", JSON.stringify([...existingBlogs, newBlog]));
-        alert("Blog has been saved successfully!");
+        alert("ブログが正常に保存されました！");
         navigate("/all-blogs");
     };
 
@@ -141,7 +157,7 @@ function Blog() {
                 <div className="editor-container">
                     <div className="action-buttons">
                         <div className="container mt-4">
-                            <p>日本ではこの料理の水と同じ料理がありますか</p>
+                            <p>日本ではこの料理の味と同じ料理がありますか？</p>
                             {dishes.map((dish, index) => (
                                 <div className="input-group mb-2" key={index}>
                                     <Input
